@@ -1,0 +1,94 @@
+{% extends 'homestaff.html' %}
+{% block main %}
+
+    <div class=" container">
+        <div class="bg-white rounded-2 mb-4 px-5 py-3">
+            <div class="d-flex justify-content-between ">
+                <div>
+                    <h5 class="fw-bold">ข้อมูลการแนะนำรายการเข้าสู่ระบบ</h5>
+                </div>
+            </div>
+            <hr>
+            {% for AllRecList in AllRecList %}
+            <div class="row">
+                <div class="d-flex col-md-5 ">
+                    <div class="d-flex"><span>ผู้แนะนำ</span> &nbsp <span class="text-muted">{{ AllRecList.username }}</span></div>
+                </div>
+                <div class="d-flex col-md-5 ">
+                    <div class="d-flex"><span>วันที่แนะนำ</span> &nbsp <span class="text-muted">{{ AllRecList.datetime }}</span></div>
+                </div>
+                <div class="d-flex col-md-5 ">
+                    <div class="d-flex"><span>ลิงก์พัสดุ</span> &nbsp <span
+                            class="text-muted" href="{{ AllRecList.username }}">{{ AllRecList.link }}</span></div>
+                </div>
+                <div class="d-flex col-md-5 ">
+                    <div class="d-flex "><span>รายละเอียด</span> &nbsp <span class="text-muted">{{ AllRecList.description }}</span></div>
+                </div>
+                <div class="d-flex col-md-5 ">
+                    <div class="d-flex "><span>อีเมลล์</span> &nbsp <span
+                            class="text-muted">somchai.sa.63@ubu.ac.th</span></div>
+                </div>
+            </div>
+            {% endfor %}
+            <br>
+            <div class="d-flex justify-content-between ">
+                <div>
+                    <h5 class="">ข้อมูลการแนะนำรายการเข้าสู่ระบบ</h5>
+                </div>
+            </div>
+            <hr>
+            <div class="row mt-3  mx-2">
+                <table id="example" class="table table-striped">
+                    <thead class="table-dark">
+                        <tr>
+                            <th class="col-md-4" scope="col">ชื่อรายการ</th>
+                            <th class="col-md-1 text-center" scope="col">ยี่ห้อ</th>
+                            <th class="col-md-1 text-center" scope="col">จำนวน</th>
+                            <th class="col-md-1 text-center" scope="col">ราคา</th>
+                        </tr>
+                    </thead>
+                    <tbody id="xTable">
+                        {% for AllRecList in AllRecList %}
+                        <tr class="qrow text-center">
+                            <td>
+                                <p class="text-start">{{ AllRecList.name }}</p>
+                            </td>
+                            <td>
+                                <p>{{ AllRecList.brand }}</p>
+                            </td>
+                            <td>
+                                <p>{{ AllRecList.quantity }}</p>
+                            </td>
+                            <td>
+                                <p>{{ AllRecList.price }}</p>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+                <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+                <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+                <script>
+                  $(document).ready(function () {
+                    $('#example').DataTable();
+                  });
+                </script>
+            </div>
+            <form class="row align-items-center">
+                <div class="mb-3">
+                    <label class="form-label">จัดการสถานะ</label>
+                    <select class="form-select rounded-pill ">
+                        <option selected>Open this select menu</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+
+                <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-success rounded-pill">ดำเนินการ</button>
+                </div>
+            </form>
+        </div>
+        {% endblock %} 

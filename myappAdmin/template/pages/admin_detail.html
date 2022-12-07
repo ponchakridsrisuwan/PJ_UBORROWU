@@ -1,0 +1,62 @@
+{% extends 'homeAdmin.html' %}
+{% block main %}
+{% load static %}
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5"
+                    src="/static/profile.png" width="90">
+                <span class="font-weight-bold">{{user.first_name}}&nbsp{{user.last_name}}</span>
+                <!-- <span class="text-black-50">somchai.sr.63@ubu.ac.th</span> -->
+            </div>
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center">
+                    <p class="text-right fs-5 fw-bold">ข้อมูลส่วนตัว</p>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6">
+                        <label class="labels">ชื่อ</label>
+                        <input type="text" class="form-control rounded-pill text-muted" placeholder="ชื่อ"
+                            value="{{user.first_name}}" disabled>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="labels">นามสกุล</label>
+                        <input type="text" class="form-control  rounded-pill text-muted" value="{{user.last_name}}"
+                            placeholder="นามสกุล" disabled>
+                    </div>
+                    <div class="col-md-12">
+                        <label class="labels">อีเมลล์</label>
+                        <input type="email" class="form-control rounded-pill text-muted" placeholder="อีเมลล์"
+                            value="{{user.email}}" disabled>
+                    </div>
+                    <div class="col-md-12">
+                        <label class="labels">เบอร์โทรศัพท์</label>
+                        <input type="text" class="form-control rounded-pill" 
+                            value="" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-3 py-5">
+                <div class="">
+                    <p class="fs-5 fw-bold">จัดการสิทธิ์ผู้ใช้งาน</p>
+                    <p class="btn btn-warning rounded-pill">บล็อค</p><i class="material-icons px-2" data-bs-toggle="tooltip"
+                        data-bs-placement="right" title="การบล็อค">&#xe88f;</i><br>
+                    <p class="btn btn-danger rounded-pill">ลบผู้ใช้</p>
+                </div><hr>
+                <div >
+                    <p class="fs-5 fw-bold">กิจกรรมการเข้าสู่ระบบ</p>
+                    <p class="fw-bold">ครั้งแรกที่เข้ามายังเว็บไซต์</p>
+                    <p class="small">{{ user.date_joined }}</p>
+                    <p class="fw-bold">เข้ามายังเว็บไซต์ครั้งสุดท้าย เมื่อ</p>
+                    <p class="small">{{ user.last_login }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

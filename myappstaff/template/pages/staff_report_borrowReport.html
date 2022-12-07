@@ -1,0 +1,145 @@
+{% extends 'homestaff.html' %}
+{% block main %}
+
+    <div class=" container">
+        <div class="bg-white rounded-2 mb-4 px-5 py-3">
+            <div class="d-flex justify-content-between ">
+                <div>
+                    <h5 class="fw-bold">รายงานการยืมพัสดุ</h5>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="d-flex col-md-5 ">
+                    <div class="d-flex"><span>ผู้ยืม</span> &nbsp <span class="text-muted">นายวรพล สุนทร</span></div>
+                </div>
+                <div class="d-flex col-md-5 ">
+                    <div class="d-flex "><span>จำนวนที่ยืม</span> &nbsp <span class="text-muted">4</span></div>
+                </div>
+                <div class="d-flex col-md-5 ">
+                    <div class="d-flex "><span>ยืมครั้งล่าสุด</span> &nbsp <span class="text-muted">22/9/2001</span></div>
+                </div>
+                <div class="d-flex col-md-5 ">
+                    <div class="d-flex "><span>อีเมล</span> &nbsp <span class="text-muted">worapon.so.63@ubu.ac.th</span></div>
+                </div>
+            </div>
+        </div>    
+    </div>
+
+    <div class=" container">
+        <div class="bg-white rounded-2 mb-4 px-5 py-3">
+            <div class="d-flex justify-content-between ">
+                <div>
+                    <h5 class="fw-bold">ประวัติการยืม</h5>
+                </div>
+                <div>
+                    <a class="btn btn-outline-dark rounded-pill">PDF</a>
+                </div>
+            </div>
+            <div class="d-flex row rounded-2 small fw-bold justify-content-between mt-2">
+                <div class="d-flex col-sm-12 col-md-12 col-lg-6">
+                    <div class="align-items-center">
+                        <span>เรียงโดย</span>
+                        <div class="px-2 me-2 btn btn-outline-dark border-0 rounded-pill">ล่าสุด</div>
+                    </div>
+                    <div class="align-items-center">
+                        <div class="d-flex flex-row align-items-center">
+                            <label class="fw-bold me-2" id="dropdownMenu">แสดง</label>
+                            <select class="form-select border-0" aria-label="dropdownMenu">
+                                <option selected value="1">20</option>
+                                <option value="2">28</option>
+                                <option value="3">36</option>
+                                <option value="4">52</option>
+                                <option value="5">100</option>
+                              </select>
+                        </div>
+                    </div>
+                    <div class="align-items-center">
+                        <div class="d-flex flex-row align-items-center">
+                            <label class="fw-bold me-2" id="dropdownMenu">หมวดหมู่</label>
+                            <select class="form-select border-0" aria-label="dropdownMenu">
+                                <option selected>เลือก</option>
+                                <option value="1">อุปกรณ์สื่อสาร</option>
+                                <option value="2">โดรน</option>
+                                <option value="3">คอมพิวเตอร์</option>
+                                <option value="4">IoT</option>
+                              </select>
+                        </div>
+                    </div>
+                    <div class="align-items-center">
+                        <div class="d-flex flex-row align-items-center">
+                            <label class="fw-bold me-2" id="dropdownMenu">สถานะ</label>
+                            <select class="form-select border-0" aria-label="dropdownMenu">
+                                <option selected >ทั้งหมด</option>
+                                <option value="1">พัสดุ</option>
+                                <option value="2">ครุภัณฑ์</option>
+                              </select>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-6">
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2 border-dark" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-dark" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            <hr>
+            <div class="row mt-3  mx-5">
+                <table class="table">
+                    <thead >
+                        <tr>
+                            <th class="col-md-1" scope="col">เลขทะเบียน</th>
+                            <th class="col-md-4" scope="col">พัสดุ</th>
+                            <th class="col-md-1 text-center" scope="col">ประเภท</th>
+                            <th class="col-md-1 text-center" scope="col">จำนวน</th>
+                            <th class="col-md-1 text-center" scope="col">วันที่ยืม</th>
+                            <th class="col-md-1 text-center" scope="col">วันที่คืน</th>
+                            <th class="col-md-3 text-center" scope="col">เหตุผลในการยืม</th>
+                        </tr>
+                    </thead>
+                    <tbody id="xTable">
+                        <tr class="qrow text-center">
+                            <td><p class="text-start">00000001</p></td>
+                            <td><p class="text-start">MacBook Air M1</p></td>
+                            <td><p>คอมพิวเตอร์</p></td>
+                            <td><p>1</p></td>
+                            <td><p>17/09/2022</p></td>
+                            <td><p>22/09/2022</p></td>
+                            <td><p>ใช้เพื่อทำ project จบการศึกษา</p></td>
+                        </tr>
+                        <tr class="qrow text-center">
+                            <td><p class="text-start">00000001</p></td>
+                            <td><p class="text-start">MacBook Air M1</p></td>
+                            <td><p>คอมพิวเตอร์</p></td>
+                            <td><p>1</p></td>
+                            <td><p>17/09/2022</p></td>
+                            <td><p>22/09/2022</p></td>
+                            <td><p>ใช้เพื่อทำ project จบการศึกษา</p></td>
+                        </tr>
+                        <tr class="qrow text-center">
+                            <td><p class="text-start">00000001</p></td>
+                            <td><p class="text-start">MacBook Air M1</p></td>
+                            <td><p>คอมพิวเตอร์</p></td>
+                            <td><p>1</p></td>
+                            <td><p>17/09/2022</p></td>
+                            <td><p>22/09/2022</p></td>
+                            <td><p>ใช้เพื่อทำ project จบการศึกษา</p></td>
+                        </tr>
+                        <tr class="qrow text-center">
+                            <td><p class="text-start">00000001</p></td>
+                            <td><p class="text-start">MacBook Air M1</p></td>
+                            <td><p>คอมพิวเตอร์</p></td>
+                            <td><p>1</p></td>
+                            <td><p>17/09/2022</p></td>
+                            <td><p>22/09/2022</p></td>
+                            <td><p>ใช้เพื่อทำ project จบการศึกษา</p></td>
+                        </tr>
+                        
+                    </tbody>
+                    
+                </table>
+            </div>
+        </div>
+        {% endblock %} 

@@ -1,0 +1,149 @@
+{% extends 'homeAdmin.html' %}
+{% block main %}
+{% load static %}
+<div class=" container  ">
+    <div class="bg-white rounded-2 mb-4 px-5 py-3">
+        <div class="d-flex justify-content-between justify-content: right;"></div>
+
+        <div class="">
+            <div class="bg-white rounded-2 mb-4 px-5 py-3">
+                <div class="d-flex justify-content-between row">
+                    <div class="col-md-12 col-lg-6">
+                        <h5 class="fw-bold">ข้อมูลเจ้าหน้าที่</h5>
+                    </div>
+                    <div class="d-flex flex-row col-md-12 col-lg-6 justify-content-end">
+                        <div>
+                            <a class="btn btn-outline-dark rounded-pill ms-2" data-bs-toggle="modal"
+                                data-bs-target="#adduser">เพิ่มเจ้าหน้าที่</a>
+                            <label class="btn btn-outline-dark rounded-pill">
+                                Import <input type="file"
+                                    accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                                    hidden>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- เพิ่มเเจ้าหน้าที่ -->
+                    <div class="modal fade" id="adduser" tabindex="-1" aria-labelledby="adduserModal"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
+                            <div class="modal-content">
+                                <form action="/admin_staff_setting">
+                                    {% csrf_token %}
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="adduserModal">เพิ่มเจ้าหน้าที่ </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <div class="col" for="email_staff">
+                                                <input type="email" class="form-control rounded-pill" id="email_staff"
+                                                    name="email_staff" placeholder="Email">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary rounded-pill"
+                                            data-bs-dismiss="modal">ยกเลิก</button>
+                                        <button type="submit" class="btn btn-warning rounded-pill">ยืนยัน</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex row rounded-2 small fw-bold justify-content-between mt-2">
+                    <div class="d-flex col-sm-12 col-md-12 col-lg-6">
+                        <div class="-flex flex-row align-items-center ">
+                            <span>เรียงโดย</span>
+                            <div class="px-2 me-2 btn btn-outline-dark border-0 rounded-pill">ล่าสุด</div>
+                        </div>
+                        <div class="align-items-center">
+                            <div class="d-flex flex-row align-items-center">
+                                <label class="fw-bold me-2" id="dropdownMenu">แสดง</label>
+                                <select class="form-select border-0" aria-label="dropdownMenu">
+                                    <option selected value="1">20</option>
+                                    <option value="2">28</option>
+                                    <option value="3">36</option>
+                                    <option value="4">52</option>
+                                    <option value="5">100</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-6">
+                        <form class="d-flex" role="search" action="SearchStaff/">
+                            <input class="form-control me-2 border-dark" type="search" placeholder="Search"
+                                aria-label="Search" name="query" id="query">
+                            <button class="btn btn-outline-dark" type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+                <hr>
+                <div class="bg-white rounded-2 mb-4 px-2 py-3">
+                    <div class="row mt-3 ">
+                        <table id="example" class="table table-striped">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th class="col-md-1 text-start" scope="col"></th>
+                                    <th class="col-md-3 text-center" scope="col">อีเมลล์</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="xTable">
+                                {% for All_staff in All_staff %}
+                                <tr class="qrow text-center">
+                                    
+                                    <td><i href="#" class="fa fa-trash" value="Delete" data-bs-toggle="modal"
+                                            data-bs-target="#Delete"></i></td>
+                                    <td>
+                                        <p>{{ All_staff.email_staff }}</p>
+                                    </td>
+                                    <td>
+                                        <p>{{All_staff.}}</p>
+                                    </td>
+                                    <td><a class="btn btn-warning rounded-pill badge"
+                                            href="/admin_detail/">รายละเอียด</a></td>
+                                </tr>
+                                {% endfor %}
+
+                                <!-- ลบข้อมูล -->
+                                <div class="modal fade" id="Delete" tabindex="-1" aria-labelledby="DeleteuserModal"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="DeleteuserModal">ยืนยันการลบข้อมูล
+                                                </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="cancer" class="btn btn-secondary rounded-pill"
+                                                    data-bs-dismiss="modal">ยกเลิก</button>
+                                                <a type="submit" class="btn btn-warning rounded-pill"
+                                                    href="/DeleteStaff/{{ All_staff.id }}">ยืนยัน</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </tbody>
+                        </table>
+                        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+                        <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+                        <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+                        <script>
+                            $(document).ready(function () {
+                                $('#example').DataTable();
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

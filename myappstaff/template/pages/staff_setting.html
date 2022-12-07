@@ -1,0 +1,113 @@
+{% extends 'homestaff.html' %}
+{% block main %}
+
+<div class="container bg-white px-5 py-3 rounded-2" style="margin-top: 10px;">
+    <div>
+        <h5 class="fw-bold">การตั้งค่าหมวดหมู่</h5>
+    </div>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="tab" href="#category">หมวดหมู่</a>
+        </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <!-- หมวดหมู่ -->
+        <div class="tab-pane container active" id="category">
+            <table id="example" class="table table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th class="col-12">หมวดหมู่</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for All_CategoryType in All_CategoryType %}
+                    <tr>
+                        <td>
+                            <span>{{ All_CategoryType.name_CategoryType }}</span>
+                        </td>
+                        <td>
+                            <i class="bi bi-three-dots-vertical" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                            <ul class="dropdown-menu dropdown-menu-lg-end  shadow-sm">
+                                <li><a class="dropdown-item btn-0 btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#edititemcatecory">แก้ไข</a>
+                                </li>
+                                <li><a href="/DeleteCategoryType/{{ All_CategoryType.id }}" class="dropdown-item btn-0 btn-sm"  >ลบ</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <p class="btn btn-outline-dark rounded-pill mt-2" data-bs-toggle="modal"
+                    data-bs-target="#additemcatecory">เพิ่มหมวดหมู่</p>
+            </table>
+            <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+            <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+            <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+            <script>
+              $(document).ready(function () {
+                $('#example').DataTable();
+              });
+            </script>
+        </div>
+        <!-- moal เพิ่มรายการ -->
+        <div class="modal fade" id="additemcatecory" tabindex="-1" aria-labelledby="additemModal" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
+                <form action="" >
+                    {% csrf_token %}
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="additemModal">เพิ่มหมวดหมู่</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <div class="col" for="name_CategoryType">
+                                <input type="text" class="form-control rounded-pill" name="name_CategoryType" id="name_CategoryType" placeholder="หมวดหมู่ เช่น โดรน คอมพิวเตอร์">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary rounded-pill"
+                            data-bs-dismiss="modal">ยกเลิก</button>
+                        <button type="submit" class="btn btn-warning rounded-pill">ยืนยัน</button>
+                    </div>
+                </div>
+            </form>
+            </div>
+        </div>
+        <!-- moal แก้ไขรายการ -->
+        <div class="modal fade" id="edititemcatecory" tabindex="-1" aria-labelledby="edititemModal" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="edititemModal">แก้ไขหมวดหมู่</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <div class="col">
+                                <input type="number" class="form-control rounded-pill" id="#"
+                                    placeholder="จำนวนการแสดงผล">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary rounded-pill"
+                            data-bs-dismiss="modal">ยกเลิก</button>
+                        <button type="button" class="btn btn-warning rounded-pill">ยืนยัน</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

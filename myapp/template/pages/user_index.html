@@ -1,0 +1,121 @@
+{% extends 'home.html' %}
+{% block class_user_index %}active{% endblock %}
+{% block main %}
+
+{% load static %}
+<div class=" container-lg py-3 ">
+
+    <!-- รายการยืมบ่อยที่สุด -->
+    <div class="bg-white rounded-2 mb-4 px-5 py-3">
+        <div class="d-flex justify-content-between ">
+            <div>
+                <h5 class="fw-bold">รายการยืมบ่อยที่สุด</h5>
+            </div>
+            <div>
+                <a class="text-muted" href="{% url 'user_durable_articles' %}">ดูรายการทั้งหมด</a>
+            </div>
+        </div>
+        <hr>
+        <div class="row small">
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+                <div class="card border">
+                    <div class="bg-image" data-mdb-ripple-color="light">
+                        <img src="static/california.png" class="w-100" />
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center">
+                            <h5 class="card-title text-dark">Macbook Air M2</h5>
+                            <span class="mb-4 text-success">พร้อมยืม</span>
+                            <a href="{% url 'user_detail' %}" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- หมวดหมู่ -->
+    <div>
+        <div class="bg-white rounded-2 mb-4 px-5 py-3">
+            <h5 class="fw-bold">หมวดหมู่</h5>
+            <hr>
+            <a class=" btn btn-outline-dark rounded-pill me-1 mb-1"
+                href="{% url 'user_durable_articles' %}">อุปกรณ์สือสาร</a>
+            <a class=" btn btn-outline-dark rounded-pill me-1 mb-1" href="{% url 'user_durable_articles' %}">โดรน</a>
+            <a class=" btn btn-outline-dark rounded-pill me-1 mb-1"
+                href="{% url 'user_durable_articles' %}">คอมพิวเตอร์</a>
+            <a class=" btn btn-outline-dark rounded-pill me-1 mb-1" href="{% url 'user_durable_articles' %}">IoT</a>
+        </div>
+    </div>
+
+    <!-- รายการพัสด -->
+
+    <div class="bg-white d-flex justify-content-between rounded-2 mb-4 px-5 py-3">
+        <div>
+            <h5 class="fw-bold">รายการพัสดุ</h5>
+        </div>
+        <div>
+            <a class="text-muted" href="{% url 'user_durable_articles' %}">ดูรายการทั้งหมด</a>
+        </div>
+    </div>
+
+    <div class="row ">
+        <div class="col-6 col-sm-4 col-md-3 mb-4">
+            <div class=" card ">
+                <div class="bg-image" data-mdb-ripple-color="light">
+                    <img src="static/california.png" class="w-100" />
+                </div>
+                <div class="card-body small">
+                    <div class="text-center">
+                        <h5 class="card-title">Macbook Air M2</h5>
+                        <span class="mb-4 text-success">พร้อมยืม</span>
+                    </div>
+                    <div>
+                        <div class="d-flex justify-content-between">
+                            <span>หมวดหมู่</span><span>คอมพิวเตอร์</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span>ประเภท</span><span>ต้องคืน</span>
+                        </div>
+                    </div>
+                    <a href="{% url 'user_detail' %}" class="stretched-link"></a>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- รายการครุภัณฑ์ -->
+        <div class="">
+            <div class="bg-white d-flex justify-content-between rounded-2 mb-4 px-5 py-3">
+                <div>
+                    <h5 class="fw-bold">รายการครุภัณฑ์</h5>
+                </div>
+                <div>
+                    <a class="text-muted" href="{% url 'user_durable_articles' %}">ดูรายการทั้งหมด</a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6 col-sm-4 col-md-3 mb-4">
+                    <div class=" card ">
+                        <div class="bg-image" data-mdb-ripple-color="light">
+                            <img src="static/california.png" class="w-100" />
+                        </div>
+                        <div class="card-body small">
+                            <div class="text-center">
+                                <h5 class="card-title">Macbook Air M2</h5>
+                                <span class="mb-4 text-success">พร้อมยืม</span>
+                            </div>
+                            <div>
+                                <div class="d-flex justify-content-between">
+                                    <span>หมวดหมู่</span><span>คอมพิวเตอร์</span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span>ประเภท</span><span>ต้องคืน</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endblock %}

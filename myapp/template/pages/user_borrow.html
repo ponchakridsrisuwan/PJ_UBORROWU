@@ -1,0 +1,46 @@
+{% extends 'home.html' %} 
+{% block main %}
+
+    <div class="container mt-1 p-3 rounded-2 cart bg-white">
+        <div class="d-flex flex-row align-items-center">
+            <span  class="ml-2 fw-bold fs-5">รายการยืม</span>
+        </div>
+    </div>
+    <div class="container mt-3 p-3 rounded-2 cart bg-white" href="#">
+        <div class="row">
+            <div class="">
+                <div class="small">
+                    <div class="d-flex justify-content-between">
+                        <h5 class="d-flex text-warning fw-bold  ">รอดำเนินการ</h5>
+                        <div class="d-flex "><a>วันเริ่มต้นยืม</a> &nbsp <a>22/9/2001</a></div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between">
+                        <div><span>เลขที่ทำรายการ</span>&nbsp &nbsp<span>00001</span></div>
+                        <div class="d-flex "><a>กำหนดวันคืน</a> &nbsp <a>22/9/2001</a></div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded-2 ">
+                        <div class="d-flex flex-row">
+                            <img class="rounded me-2" src="/static/california.png" width="80" height="80">
+                            <div class="ml-2"><span class="font-weight-bold d-block h6">Macbook Air M2</span>
+                                <span class="small text-muted" name="spac">รายละเอียด</span><br/>
+                                <span class="small text-muted" name="spac">วันที่คืน</span><br/>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row align-items-center ">
+                            <span class="fs-6 small text-muted" name="spac">X</span><br />
+                            <span class="d-block pe-3">2</span>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="text-center">
+                        <a href="/user_cart_detail_del" class="text-muted">ดูรายการเพิ่มเติม</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><br><br>
+
+
+{% endblock %}

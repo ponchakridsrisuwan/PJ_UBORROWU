@@ -1,0 +1,178 @@
+{% extends 'homestaff.html' %}
+{% block main %}
+
+
+<div class="container mt-3 mb-5">
+    <div class="card">
+        <div class="row g-0">
+            <div class="col-md-6 border-end">
+                <div class="d-flex flex-column justify-content-center">
+                    <div class="main_image"> <img src="/static/california.png" id="main_product_image" width="500">
+                    </div>
+                    <div class="thumbnail_images">
+                        <ul id="thumbnail">
+                            <li><img onclick="changeImage(this)" src="/static/california.png" width="70"></li>
+                            <li><img onclick="changeImage(this)" src="/static/california.png" width="70"></li>
+                            <li><img onclick="changeImage(this)" src="/static/california.png" width="70"></li>
+                            <li><img onclick="changeImage(this)" src="/static/california.png" width="70"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="p-3 right-side">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h3>Macbook Air M2</h3>
+                        <div>
+                            <a class="btn btn-outline-dark rounded-pill align-items-center" data-bs-toggle="modal"
+                                data-bs-target="#edititem">
+                                <i class='far fa-edit'></i>
+                                แก้ไข
+                            </a>
+                            <a class="btn btn-outline-dark rounded-pill align-items-center" data-bs-toggle="modal"
+                                data-bs-target="#delete">
+                                <i class='far fa-trash-alt py-1'></i>
+                            </a>
+                        </div>
+                        
+                        <!-- แก้ไขรายการพัสดุ-ครุภัณฑ์ -->
+                        <div class="modal fade" id="edititem" tabindex="-1" aria-labelledby="edititemModal">
+                            <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="edititemModal">แก้ไขรายการ</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <div class="col justify-content-between">
+                                                <span>หมายเลขพัสดุ</span>&nbsp<span>00000001</span>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="col">
+                                                <select class="form-select rounded-pill">
+                                                    <option selected>สถานะ</option>
+                                                    <option value="ต้องคืน">พร้อมยืม</option>
+                                                    <option value="จำหน่ายทิ้ง">งดยืม</option>>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <div class="col">
+                                                <input type="text" class="form-control rounded-pill" id="#"
+                                                    placeholder="ชื่อ">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <div class="col">
+                                                <select class="form-select rounded-pill"
+                                                    aria-label="Default select example">
+                                                    <option selected class="text-muted">หมวดหมู่</option>
+                                                    <option value="อุปกรณ์สือสาร">อุปกรณ์สือสาร</option>
+                                                    <option value="โดรน">โดรน</option>
+                                                    <option value="คอมพิวเตอร์">คอมพิวเตอร์</option>
+                                                    <option value="IoT">IoT</option>
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select rounded-pill">
+                                                    <option selected>ประเภท</option>
+                                                    <option value="ต้องคืน">ต้องคืน</option>
+                                                    <option value="จำหน่ายทิ้ง">จำหน่ายทิ้ง</option>>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <div class="col">
+                                                <input type="number" class="col form-control rounded-pill" placeholder="จำนวน">
+                                            </div>
+                                            <div class="col">
+                                                <input type="number" class="col form-control rounded-pill" placeholder="กำหนดระยะเวลาในการยืม(วัน)">
+                                            </div>
+                                           
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label class="labels">รายละเอียด</label>
+                                            <textarea class="form-control rounded-4" id="exampleFormControlTextarea1"
+                                                rows="3"></textarea>
+                                        </div>
+                                        <div>
+                                            <div class="thumbnail_images">
+                                                <ul id="thumbnail">
+                                                    <li><img src="/static/california.png" width="70"></li>
+                                                    <li><img src="/static/california.png" width="70"></li>
+                                                    <li><img src="/static/california.png" width="70"></li>
+                                                    <li><img src="/static/california.png" width="70"></li>
+                                                </ul>
+                                            </div>
+                                            <label for="formFileMultiple" class="form-label">เพิ่มรูปภาพ</label>
+                                            <input class="form-control rounded-pill" type="file" id="formFileMultiple"
+                                                multiple />
+                                        </div>
+
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary rounded-pill"
+                                            data-bs-dismiss="modal">ยกเลิก</button>
+                                        <button type="button" class="btn btn-warning rounded-pill">ยืนยัน</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <label class="labels px-2">หมายเลขทะเบียน</label>
+                        <p>00000001</p>
+                    </div>
+                    <div class="d-flex">
+                        <label class="labels px-2">วันที่เพิ่มเข้าระบบ</label>
+                        <p>12/06/2022</p>
+                    </div>
+                    <div class="d-flex">
+                        <label class="labels px-2">ระยะเวลาที่อนุญาติให้ยืม</label>
+                        <p>12 วัน</p>
+                    </div>
+                    <div class="d-flex">
+                        <label class="labels px-2">หมวดหมู่</label>
+                        <p>คอมพิวเตอร์</p>
+                    </div>
+                    <div class="d-flex">
+                        <label class="labels px-2">ประเภท</label>
+                        <p>ต้องคืน</p>
+                    </div>
+                    <div class="d-flex ">
+                        <label class="labels px-2">สถานะ</label>
+                        <p class="text-success">พร้อมยืม</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bg-white rounded-2 my-2 p-5 ">
+        <h5>รายละเอียด</h5>
+        <hr>
+        <p>ชิป M2 พร้อมประสิทธิภาพด้าน CPU, GPU และการเรียนรู้ของระบบเจเนอเรชั่นถัดไป
+            CPU แบบ 8-core และ GPU สูงสุดแบบ 10-core ที่เร็วขึ้นให้คุณจัดการกับงานที่ซับซ้อนได้อยู่หมัด2
+            Neural Engine แบบ 16-core เพื่องานด้านการเรียนรู้ของระบบสุดล้ำ
+        </p>
+        <br><br>
+        <h5>รายละเอียดเชิงเทคนิค</h5>
+        <hr>
+        <div class="d-flex">
+            <label class="labels px-2">ซ่อมครั้งล่าสุด</label>
+            <p>17 สิงหาคม 2565</p>
+        </div>
+        <div class="d-flex">
+            <label class="labels px-2">จำนวนครั้งที่ซ่อม</label>
+            <p>1 ครั้ง</p>
+        </div>
+        <div class="d-flex">
+            <label class="labels px-2">อายุของพัสดุ</label>
+            <p>1 ปี 1 เดือน</p>
+        </div>
+    </div>
+    {% endblock %}

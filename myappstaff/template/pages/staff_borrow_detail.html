@@ -1,0 +1,165 @@
+{% extends 'homestaff.html' %}
+{% block main %}
+
+    <div class="container mt-1 p-3 rounded-2 cart bg-white">
+        <div class="row no-gutters">
+            <div class="col-md-8">
+                <div class="product-details mr-2">
+                    <div class="d-flex flex-row align-items-center"><span
+                            class="ml-2 fw-bold fs-5">รายการยืมพัสดุ</span></div>
+                    <hr>
+                    <h6 class="mb-0">รายการทั้งหมด</h6>
+                    <div class="d-flex ">
+                        <span class="text-muted small">คุณมีพัสดุ 4 รายการ</span>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded-2 ">
+                        <div class="d-flex flex-row">
+                            <img class="rounded me-2" src="/static/california.png" width="50">
+                            <div class="ml-2"><span class="font-weight-bold d-block">Macbook Air M2</span>
+                                <span class="small text-muted" name="spac">รายละเอียด</span>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row align-items-center ">
+                            <span class="d-block fs-5">x</span>
+                            <span class="d-block">2</span>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded-2 ">
+                        <div class="d-flex flex-row">
+                            <img class="rounded me-2" src="/static/california.png" width="50">
+                            <div class="ml-2"><span class="font-weight-bold d-block">Macbook Air M2</span>
+                                <span class="small text-muted" name="spac">รายละเอียด</span>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row align-items-center ">
+                            <span class="d-block fs-5">x</span>
+                            <span class="d-block">2</span>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded-2 ">
+                        <div class="d-flex flex-row">
+                            <img class="rounded me-2" src="/static/california.png" width="50">
+                            <div class="ml-2"><span class="font-weight-bold d-block">Macbook Air M2</span>
+                                <span class="small text-muted" name="spac">รายละเอียด</span>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row align-items-center ">
+                            <span class="d-block fs-5">x</span>
+                            <span class="d-block">2</span>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded-2 ">
+                        <div class="d-flex flex-row">
+                            <img class="rounded me-2" src="/static/california.png" width="50">
+                            <div class="ml-2"><span class="font-weight-bold d-block">Macbook Air M2</span>
+                                <span class="small text-muted" name="spac">รายละเอียด</span>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row align-items-center ">
+                            <span class="d-block fs-5">x</span>
+                            <span class="d-block">2</span>
+                        </div>
+                    </div>
+                    <hr>
+
+                </div>
+            </div>
+
+
+            <div class="col-md-4">
+                <div class="">
+                    <div class="d-flex justify-content-between align-items-center my-3">
+                        <span class="fw-bold">ทำรายการ</span>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span>ผู้ยืม</span>
+                            <span class="text-muted">นายวรพล สุนทร</span>
+                        </div>
+                        <div class="col-md-6"><span>วันที่ยืม</span> &nbsp <span class="text-muted">14/9/2001</span>
+                        </div>
+                        <div class="col-md-6"><span>วันที่คืน</span> &nbsp <span>22/9/2001</span></div>
+                    </div>
+                    <div class="col">
+                        <span>รายละเอียดการยืม</span><br>
+                        <span class="text-muted">เหตุผลในการยืม ต้องการยืมเพราะ เอาไปทำอะไร</span>
+
+
+                        </p>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between ">
+                        <span>ทั้งหมด</span>
+                        <span>8 ชิ้น</span>
+                    </div>
+                    <div class="d-grid gap-2 d-md-block m-4">
+                        <button class="btn btn-warning rounded-pill" type="button" data-bs-toggle="modal"
+                            data-bs-target="#disapproved">ไม่อนุมัติ</button>
+                        <button class="btn btn-success rounded-pill" type="button" data-bs-toggle="modal"
+                            data-bs-target="#approved">อนุมัติ</button>
+                    </div>
+                    <!-- ไม่อนุมัติ -->
+                    <div class="modal fade" id="disapproved" tabindex="-1" aria-labelledby="disapprovedModal"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="disapprovedModal">หมายเหตุ</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-floating">
+                                        <textarea class="form-control" placeholder="Leave a comment here"
+                                            id="floatingTextarea2" style="height: 100px"></textarea>
+                                        <label for="floatingTextarea2">เหตุผลในการไม่อนุมัติ</label>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary rounded-pill"
+                                        data-bs-dismiss="modal">ยกเลิก</button>
+                                    <button type="button" class="btn btn-warning rounded-pill">ยืนยัน</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- อนุมัติ -->
+                    <div class="modal fade" id="approved" tabindex="-1" aria-labelledby="approvedModal"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="approvedModal">ยืนยันการอนุมัติการยืม </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <span>กรุณาเลือกวันเวลานัดรับพัสดุอุปกรณ์</span>
+                                    <div class="col-md-6">
+                                        <label class="credit-card-label">เลือกวันที่</label>
+                                        <input type="date" class="form-control credit-inputs">
+                                    </div>
+                                    <div>
+                                        <label for="timepicker-placeholder">เลือกเวลา</label>
+                                        <b-form-timepicker id="timepicker-placeholder" placeholder="Choose a time"
+                                            locale="en"></b-form-timepicker>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary rounded-pill"
+                                        data-bs-dismiss="modal">ยกเลิก</button>
+                                    <button type="button" class="btn btn-warning rounded-pill">ยืนยัน</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {% endblock %} 
