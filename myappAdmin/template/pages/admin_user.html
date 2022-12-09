@@ -61,7 +61,7 @@
                             <tbody id="xTable">
                                 {% for All_user in All_user %}
                                 <tr class="qrow text-center">
-                                    <td><i href="#" class="fa fa-trash" value="Delete" data-bs-toggle="modal"
+                                    <td><i class="fa fa-trash" value="Delete" data-bs-toggle="modal"
                                             data-bs-target="#Delete"></i></td>
                                     <td>
                                         <p>{{ All_user.email }}</p>
@@ -77,7 +77,7 @@
                                     </td>
                                     <td><a class="btn btn-warning rounded-pill badge" href="/admin_detail/">รายละเอียด</a></td>
                                 </tr>
-                                {% endfor %}
+                                
 
                                 <!-- ลบข้อมูล -->
                                 <div class="modal fade" id="Delete" tabindex="-1" aria-labelledby="DeleteuserModal"
@@ -112,12 +112,12 @@
                                                 <button type="cancer" class="btn btn-secondary rounded-pill"
                                                     data-bs-dismiss="modal">ยกเลิก</button>
                                                 <button type="submit"
-                                                    class="btn btn-warning rounded-pill">ยืนยัน</button>
+                                                    class="btn btn-warning rounded-pill" href="DeleteUser/<int:id>">ยืนยัน</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
+                                {% endfor %}
                             </tbody>
                         </table>
                         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
