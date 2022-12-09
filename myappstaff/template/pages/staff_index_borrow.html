@@ -1,0 +1,145 @@
+{% extends 'homestaff.html' %}
+{% block main %}
+
+<div class=" container">
+    <div class="bg-white rounded-2 mb-4 px-5 py-3">
+        <div class="d-flex justify-content-between ">
+            <div>
+                <h5 class="fw-bold">รายการอนุมัติการยืม</h5>
+            </div>
+        </div>
+        <div class="d-flex row rounded-2 small fw-bold justify-content-between">
+            <div class="d-flex col-sm-12 col-md-12 col-lg-6">
+                <div class="align-items-center">
+                    <span>เรียงโดย</span>
+                    <div class="px-2 me-2 btn btn-outline-dark border-0 rounded-pill">ล่าสุด</div>
+                    <div class="px-2 me-2 btn btn-outline-dark border-0 rounded-pill">ผู้ยืม</div>
+                </div>
+                <div class="align-items-center">
+                    <div class="d-flex flex-row align-items-center">
+                        <label class="fw-bold me-2" id="dropdownMenu">หมวดหมู่</label>
+                        <select class="form-select border-0" aria-label="dropdownMenu">
+                            <option selected>เลือก</option>
+                            <option value="1">อุปกรณ์สื่อสาร</option>
+                            <option value="2">โดรน</option>
+                            <option value="3">คอมพิวเตอร์</option>
+                            <option value="4">IoT</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="align-items-center">
+                    <div class="d-flex flex-row align-items-center">
+                        <label class="fw-bold me-2" id="dropdownMenu">รายการ</label>
+                        <select class="form-select border-0" aria-label="dropdownMenu">
+                            <option selected>ทั้งหมด</option>
+                            <option value="1">พัสดุ</option>
+                            <option value="2">ครุภัณฑ์</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6">
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2 border-dark" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-dark" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+        <div class="container mt-3 p-3 rounded-2 border cart bg-white">
+            <div class="row ">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <span class="">ผู้ยืม นายวรพล สุนทร</span>
+                            <div class="d-flex "><a>กำหนดวันคืน</a> &nbsp <a>22/9/2022</a></div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div class="ms-4 text-muted">
+                                <span>Macbook Air M2</span><br>
+                                <span>Macbook Air M2</span><br>
+                                <span>Macbook Air M2</span>
+                            </div>
+                            <div class="small text-muted fs-6">
+                                <span>X 2</span><br>
+                                <span>X 2</span><br>
+                                <span>X 2</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="/staff_borrow_detail" class="stretched-link" aria-hidden="true"></a>
+                    <hr>
+                    <div class="ms-3 mb-3">
+                        <span>เหตุผลในการยืม</span><br>
+                        <span class="text-muted">เหตุผลในการยืม ต้องการยืมเพราะ เอาไปทำอะไร</span>
+                    </div>
+                    
+                </div>
+                <hr>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button class="btn btn-warning rounded-pill" type="button" data-bs-toggle="modal"
+                        data-bs-target="#disapproved">ไม่อนุมัติ</button>
+                    <button class="btn btn-success rounded-pill" type="button" data-bs-toggle="modal"
+                        data-bs-target="#approved">อนุมัติ</button>
+                </div>
+            </div>
+            <!-- ไม่อนุมัติ -->
+            <div class="modal fade" id="disapproved" tabindex="-1" aria-labelledby="disapprovedModal"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="disapprovedModal">หมายเหตุ</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-floating">
+                                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                                    style="height: 100px"></textarea>
+                                <label for="floatingTextarea2">เหตุผลในการไม่อนุมัติ</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary rounded-pill"
+                                data-bs-dismiss="modal">ยกเลิก</button>
+                            <button type="button" class="btn btn-warning rounded-pill">ยืนยัน</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- อนุมัติ -->
+            <div class="modal fade" id="approved" tabindex="-1" aria-labelledby="approvedModal" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="approvedModal">ยืนยันการอนุมัติการยืม </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <span>กรุณาเลือกวันเวลานัดรับพัสดุอุปกรณ์</span>
+                            <div class="col-md-6">
+                                <label class="credit-card-label">เลือกวันที่</label>
+                                <input type="date" class="form-control credit-inputs">
+                            </div>
+                            <div>
+                                <label for="timepicker-placeholder">เลือกเวลา</label>
+                                <b-form-timepicker id="timepicker-placeholder" placeholder="Choose a time" locale="en">
+                                </b-form-timepicker>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary rounded-pill"
+                                data-bs-dismiss="modal">ยกเลิก</button>
+                            <button type="button" class="btn btn-warning rounded-pill">ยืนยัน</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+{% endblock %}

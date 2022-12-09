@@ -1,0 +1,84 @@
+<nav class="navbar navbar-expand-lg bg-white shadow-lg ">
+    <div class="container-fluid">
+        <a class="navbar-brand text-black fw-bold fs-4 px-5" href="{% url 'user_index' %}">U BORROW U</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+            aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                <li class="nav-item ">
+                    <a class="nav-link fs-6 {% block class_user_index %}inactive{% endblock %}" aria-current="page" href="{% url 'user_index' %}">หน้าหลัก</a>
+                </li>
+                <li class="nav-item px-2">
+                    <a class="nav-link fs-6 {% block class_user_durable_articles %}inactive{% endblock %}" href="{% url 'user_durable_articles' %}">รายการ</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        ยืม-คืน
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'user_borrow' %}">ยืม</a></li>
+                        <li><a class="dropdown-item" href="{% url 'user_borrowed' %}">คืน</a></li>
+                        <li><a class="dropdown-item" href="{% url 'user_history' %}">ประวัติ</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item px-2">
+                    <a class="nav-link fs-6" href="{% url 'user_recommend' %}">แนะนำรายการเข้าระบบ</a>
+                </li>
+            </ul>
+
+            <form class="nav-item d-flex p-1 my-1 border rounded-pill" role="search">
+                <input class="form-control bg-none border-0 rounded-pill" type="search" placeholder="Search"
+                    aria-label="Search">
+                <button class="btn btn-outline-secondary rounded-pill" type="submit">Search</button>
+            </form>
+            {% if user.is_authenticated %}
+            
+            <div class="nav-item  mx-2">
+                <a class="" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img class="rounded-circle" style="width: 40px;"
+                        src="https://img.icons8.com/color/48/000000/shopping-cart--v1.png" alt="cart">
+                </a>
+            </div>
+            <div class="nav-item dropdown mx-2 ">
+                <a class="" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img class="rounded-circle" style="width: 40px;"
+                        src="https://img.icons8.com/fluency/48/000000/appointment-reminders.png"
+                        alt="Notifications">
+                </a>
+                <ul class="dropdown-menu dropdown-menu-lg-end">
+                    <li>
+                        <a class="dropdown-item" href="{% url 'user_notifications' %}">
+                            <p class="card-title" style="font-size:16px">อีก 2 วัน
+                                จะสิ้นสุดการยืม</p>
+                            <p class="card-subtitle" style="font-size:12px">รายละเอียด</p>
+                            <p class="text-muted " style="font-size:8px">17/09/2022 8.00 am</p>
+                        </a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                </ul>
+            </div>
+            <div class="nav-item dropdown me-5 ms-3 "> 
+                <a class="text-black" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{user.first_name}} </a>
+                <ul class="dropdown-menu dropdown-menu-lg-end my-2">
+                    <li><a class="dropdown-item" href="{% url 'user_personal_info' %}">ข้อมูลส่วนตัว</a></li>
+                    <li><a class="dropdown-item" href="{% url 'user_notifications' %}">จัดการการแจ้งเตือน</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="{% url 'logout' %}">ออกจากระบบ</a></li>
+                </ul>
+                {% else %} 
+               <a class="text-black mx-2 btn btn-success text-white" href="{% url 'login' %}" >
+                เข้าสู่ระบบ </a>
+            {% endif %}
+            </div>
+
+        </div>
+    </div>
+</nav>

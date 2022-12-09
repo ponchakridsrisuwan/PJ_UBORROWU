@@ -1,0 +1,87 @@
+{% extends 'homestaff.html' %}
+{% block main %}
+
+<div class=" container">
+    <div class="bg-white rounded-2 mb-4 px-5 py-3">
+        <div class="d-flex justify-content-between ">
+            <div>
+                <h5 class="fw-bold">รายการกำลังยืม</h5>
+            </div>
+        </div>
+        <div class="d-flex row rounded-2 small fw-bold justify-content-between">
+            <div class="d-flex col-sm-12 col-md-12 col-lg-6">
+                <div class="align-items-center">
+                    <span>เรียงโดย</span>
+                    <div class="px-2 me-2 btn btn-outline-dark border-0 rounded-pill">ล่าสุด</div>
+                    <div class="px-2 me-2 btn btn-outline-dark border-0 rounded-pill">ผู้ยืม</div>
+                </div>
+                <div class="align-items-center">
+                    <div class="d-flex flex-row align-items-center">
+                        <label class="fw-bold me-2" id="dropdownMenu">หมวดหมู่</label>
+                        <select class="form-select border-0" aria-label="dropdownMenu">
+                            <option selected>เลือก</option>
+                            <option value="1">อุปกรณ์สื่อสาร</option>
+                            <option value="2">โดรน</option>
+                            <option value="3">คอมพิวเตอร์</option>
+                            <option value="4">IoT</option>
+                          </select>
+                    </div>
+                </div>
+                <div class="align-items-center">
+                    <div class="d-flex flex-row align-items-center">
+                        <label class="fw-bold me-2" id="dropdownMenu">รายการ</label>
+                        <select class="form-select border-0" aria-label="dropdownMenu">
+                            <option selected >ทั้งหมด</option>
+                            <option value="1">พัสดุ</option>
+                            <option value="2">ครุภัณฑ์</option>
+                          </select>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6">
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2 border-dark" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-dark" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="col-md-3" scope="col">ผู้ยืม</th>
+                    <th class="col-md-3" scope="col">รายการ</th>
+                    <th class="col-md-1 text-center" scope="col">วันที่ยืม</th>
+                    <th class="col-md-1 text-center" scope="col">วันที่คืน</th>
+                    <th class="col-md-4 " scope="col">เหตุผลในการยืม</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="xTable">
+                {% for AllRecList in AllRecList %}
+                <tr class="qrow text-center card-body">
+                    <a href="/staff_introduction_detail" class="stretched-link" aria-hidden="true"></a>
+                    <td>
+                        <p class="text-start">{{ AllRecList.username.first_name }}&nbsp{{ AllRecList.username.last_name }}</p>
+                    </td>
+                    <td>
+                        <p class="text-start">{{ AllRecList.name }}</p>
+                    </td>
+                    <td>
+                        <p>{{ AllRecList.brand }}</p>
+                    </td>
+                    <td>
+                        <p>{{ AllRecList.quantity }}</p>
+                    </td>
+                    <td>
+                        <p>{{ AllRecList.price }}</p>
+                    </td>
+                    <td><a class="btn btn-success rounded-pill badge"
+                            href="/staff_introduction_detail">รายละเอียด</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
