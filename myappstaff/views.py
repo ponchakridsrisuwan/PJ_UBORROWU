@@ -26,13 +26,19 @@ def staff_setting(req):
         "All_CategoryType": CategoryType.objects.all(),
         "page" : page
     }
-    print(CategoryType.objects.all())
     return render(req, 'pages/staff_setting.html', context)    
 
-def deleteCategoryType(id):
+def deleteCategoryType(req, id):
     obj = CategoryType.objects.get(id=id)
     obj.delete()
     return redirect('/staff_setting')
+
+def edit_staff_setting(req,id):
+    obj = CategoryType.objects.get(id=id)
+    obj.name_CategoryType = req.POST['name_CategoryType']
+    obj.save()
+    return redirect('/staff_setting')
+    
 
 # การตั้งค่าสถานะ
 @login_required
@@ -58,9 +64,15 @@ def staff_setting_status(req):
     }
     return render(req, 'pages/staff_setting_status.html', context)    
 
-def DeleteCategoryStatus(id):
+def DeleteCategoryStatus(req, id):
     obj = CategoryStatus.objects.get(id=id)
     obj.delete()
+    return redirect('/staff_setting_status')
+
+def edit_staff_setting_status(req,id):
+    obj = CategoryStatus.objects.get(id=id)
+    obj.name_CategoryStatus = req.POST['name_CategoryStatus']
+    obj.save()
     return redirect('/staff_setting_status')
 
 # การแนะนำพัสดุเข้าสู่ระบบ    

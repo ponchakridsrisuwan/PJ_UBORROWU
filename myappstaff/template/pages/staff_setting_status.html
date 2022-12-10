@@ -27,13 +27,61 @@
                                 <li><a class="dropdown-item btn-0 btn-sm" data-bs-toggle="modal"
                                         data-bs-target="#edititemcategory">แก้ไข</a>
                                 </li>
-                                <li><a href="/DeleteCategoryStatus/{{ All_CategoryStatus.id }}" data-bs-toggle="modal"
+                                <li><a  data-bs-toggle="modal"
                                     data-bs-target="#deleteitemcategory"
                                         class="dropdown-item btn-0 btn-sm">ลบ</a>
                                 </li>
                             </ul>
                         </td>
                     </tr>
+                    <div class="modal fade" id="deleteitemcategory" tabindex="-1" aria-labelledby="deleteitemModal" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="edititemModal">ยืนยันการลบข้อมูล</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">ยกเลิก</button>
+                                    <a href="/DeleteCategoryStatus/{{ All_CategoryStatus.id }}" type="submit" class="btn btn-warning rounded-pill" >ยืนยัน</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <!-- moal แก้ไขรายการ -->
+                     <div class="modal fade" id="edititemcategory" tabindex="-1"
+                     aria-labelledby="edititemModal" aria-hidden="true">
+                     <div class="modal-dialog modal-lg
+                         modal-fullscreen-lg-down">
+                         <form action="/edit_staff_setting_status/{{All_CategoryStatus.id }}"  method="POST" enctype="multipart/form-data">
+                             {% csrf_token %}
+                         <div class="modal-content">
+                             <div class="modal-header">
+                                 <h5 class="modal-title" id="edititemModal">แก้ไขสถานะ</h5>
+                                 <button type="button" class="btn-close"
+                                     data-bs-dismiss="modal"
+                                     aria-label="Close"></button>
+                             </div>
+
+                             <div class="modal-body">
+                                 <div class="mb-3">
+                                     <div class="col">
+                                         <input type="text" class="form-control rounded-pill" name="name_CategoryStatus" id="name_CategoryStatus" placeholder="{{ All_CategoryStatus.name_CategoryStatus }}">
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="modal-footer">
+                                 <button type="button" class="btn
+                                     btn-secondary rounded-pill"
+                                     data-bs-dismiss="modal">ยกเลิก</button>
+                                 <button type="submit"  class="btn btn-warning rounded-pill">ยืนยัน</button>
+                             </div>
+                         </div>
+                         </form>
+                     </div>
+                 </div>
+
                     {% endfor %}
                 </tbody>
                 <p class="btn btn-outline-dark rounded-pill mt-2" data-bs-toggle="modal"
@@ -77,49 +125,6 @@
             </form>
         </div>
     </div>
-    <!-- moal แก้ไขสถานะ -->
-    <div class="modal fade" id="edititemcategory" tabindex="-1" aria-labelledby="edititemModal" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="edititemModal">แก้ไขสถานะ</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <div class="col">
-                            <input type="number" class="form-control rounded-pill" id="#"
-                                placeholder="สถานะ เช่น พัสดุ ครุภัณฑ์">
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">ยกเลิก</button>
-                    <button type="submit" class="btn btn-warning rounded-pill">ยืนยัน</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="deleteitemcategory" tabindex="-1" aria-labelledby="deleteitemModal" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
-            <form >
-                {% csrf_token %}
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="edititemModal">ยืนยันการลบข้อมูล</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">ยกเลิก</button>
-                    <button type="submit" class="btn btn-warning rounded-pill" >ยืนยัน</button>
-                </div>
-            </div>
-            </form>
-        </div>
-    </div>
-
 </div>
 
 {% endblock %}
