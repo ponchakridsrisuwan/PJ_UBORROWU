@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'django_extensions', 
     'myapp',
     'myappstaff',
-    'myappAdmin',
+    'myappSuper',
 ]
 
 MIDDLEWARE = [
@@ -65,7 +65,7 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [BASE_DIR/"templates",os.path.join(BASE_DIR, 'myapp/template'), os.path.join(BASE_DIR, 'myappstaff/template')
-                 , os.path.join(BASE_DIR, 'myappAdmin/template')],
+                 , os.path.join(BASE_DIR, 'myappSuper/template')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [

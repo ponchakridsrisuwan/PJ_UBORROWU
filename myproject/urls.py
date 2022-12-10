@@ -17,10 +17,10 @@ from django.contrib import admin
 from django.urls import path, include # new
 from myapp.views import *
 from myappstaff.views import *
-from myappAdmin.views import *
-from myappstaff.models import *
+from myappSuper.views import *
 from myapp.models import *
-from myappAdmin.models import *
+from myappstaff.models import *
+from myappSuper.models import *
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -29,7 +29,7 @@ urlpatterns = [
     #path('', views.user_index, name='user_index'), 
     path('',include('myapp.urls')),
     path('',include('myappstaff.urls')),
-    path('',include('myappAdmin.urls')),
+    path('',include('myappSuper.urls')),
     path('login/', auth_views.LoginView.as_view(template_name = 'pages/login.html'),name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name = 'pages/logout.html'),name='logout'),
     

@@ -83,7 +83,7 @@
                             <div class="col">
                                 <select class="form-select rounded-pill" aria-label="Default select example">
                                     {% for durable_category in All_CategoryType%}
-                                    <option class="text-black" placeholder="{{ durable_category.id }}" id="{{ durable_category.id }}">{{ durable_category.name_CategoryType }}</option>
+                                    <option class="text-black" value="{{ durable_category.id }}" placeholder="{{ durable_category.id }}" id="{{ durable_category.id }}">{{ durable_category.name_CategoryType }}</option>
                                     {% endfor %}
                                 </select>
                             </div>

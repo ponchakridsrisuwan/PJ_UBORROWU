@@ -29,6 +29,7 @@ urlpatterns = [
     #path staff_setting
     path('staff_setting',views.staff_setting, name="staff_setting"), 
     path('deleteCategoryType/<int:id>',views.deleteCategoryType, name="deleteCategoryType"),
+    path('edit_staff_setting/<int:id>',views.edit_staff_setting, name="edit_staff_setting"),
     
     #path manage parcel durable
     path('staff_manage_detail/', staff_manage_detail),
@@ -37,5 +38,6 @@ urlpatterns = [
     
     path('staff_setting_status',views.staff_setting_status, name='staff_setting_status'),
     path('DeleteCategoryStatus/<int:id>',views.DeleteCategoryStatus, name="DeleteCategoryStatus"),
+    path('edit_staff_setting_status/<int:id>',views.edit_staff_setting_status, name="edit_staff_setting_status"),
     
 ]
