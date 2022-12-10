@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from myappstaff.forms import *
 from django.utils import timezone
 from django.core.paginator import Paginator
+from myappstaff.models import *
 
 # การตั้งค่าหมวดหมุ่
 @login_required
@@ -171,37 +172,55 @@ def staff_manage_detail(req):
 
 # จัดการพัสดุ
 @login_required
-def staff_manage_parcel(req):
-    if req.method == "POST":
-        username = req.user
-        name = req.POST.get('name')
-        name_CategoryType = CategoryType.objects.get(id = req.POST.get('name_CategoryType'))
-        quantity = req.POST.get('quantity')
-        numdate = req.POST.get('numdate')
-        description = req.POST.get('description')
-        image = req.POST.get('image')
-        date = timezone.now()
-        obj = Add_Parcel(username=username, name=name, name_CategoryType=name_CategoryType, quantity=quantity, 
-                          numdate=numdate, image=image, description=description, date=date)
-        obj.save()
-        return redirect('/staff_manage_parcel')   
+def staff_manage_parcel(request):
+    form = ParcelForm()
+
+    if request.method == 'POST':
+        form = ParcelForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('/staff_manage_parcel/')
     else:
-        obj = Add_Parcel()   
-    obj = Add_Parcel.objects.all()   
-    AllParcel = Add_Parcel.objects.all()
-    page_num = req.GET.get('page', 1)
-    p = Paginator(AllParcel, 10)
-    try:
-        page = p.page(page_num)
-    except:
-        page = p.page(1)        
+        form = ParcelForm()
+
     context = {
-        "AllParcel": Add_Parcel.objects.all(),
-        "All_CategoryType": CategoryType.objects.all(),
-        "page" : page,
+        "form":form
     }
-    print(Add_Parcel.objects.all())
-    return render(req, 'pages/staff_manage_parcel.html', context)  
+
+    return render(request, 'pages/staff_manage_parcel.html', context)  
+
+
+# def staff_manage_parcel(req):
+#     if req.method == "POST":
+#         username = req.user
+#         name = req.POST.get('name')
+#         name_CategoryType = CategoryType.objects.get(id = req.POST.get('name_CategoryType'))
+#         quantity = req.POST.get('quantity')
+#         numdate = req.POST.get('numdate')
+#         description = req.POST.get('description')
+#         image = req.POST.get('image')
+#         date = timezone.now()
+#         obj = Add_Parcel(username=username, name=name, name_CategoryType=name_CategoryType, quantity=quantity, 
+#                           numdate=numdate, image=image, description=description, date=date)
+#         obj.save()
+#         return redirect('/staff_manage_parcel/')   
+#     else:
+#         obj = Add_Parcel()   
+#     obj = Add_Parcel.objects.all()   
+#     AllParcel = Add_Parcel.objects.all()
+#     page_num = req.GET.get('page', 1)
+#     p = Paginator(AllParcel, 10)
+#     try:
+#         page = p.page(page_num)
+#     except:
+#         page = p.page(1)        
+#     context = {
+#         "AllParcel": Add_Parcel.objects.all(),
+#         "All_CategoryType": CategoryType.objects.all(),
+#         "page" : page,
+#     }
+#     print(Add_Parcel.objects.all())
+#     return render(req, 'pages/staff_manage_parcel.html', context)  
 
 # จัดการครุภัณฑ์
 @login_required

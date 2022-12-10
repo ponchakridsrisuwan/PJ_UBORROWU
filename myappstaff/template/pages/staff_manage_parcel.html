@@ -66,7 +66,8 @@
         </div>
         <div class="modal fade" id="additem" tabindex="-1" aria-labelledby="additemModal" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
-                <form method="post" action="/staff_manage_parcel" >
+                <form action="" method="post" enctype="multipart/form-data">
+
                     {% csrf_token %}
                 <div class="modal-content">
                     <div class="modal-header">
@@ -74,7 +75,12 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="mb-3">
+                            {{ form.as_p }}
+                            <!-- <input type="submit" name="Submit"> -->
+                  
+                        <!-- </form> -->
+
+                        <!-- <div class="mb-3">
                             <div class="col">
                                 <input type="text" class="form-control rounded-pill" id="#" placeholder="ชื่อ">
                             </div>
@@ -103,12 +109,12 @@
                         <div>
                             <label for="formFileMultiple" class="form-label" for="image">เพิ่มรูปภาพ</label>
                             <input  id="image" name="image" class="form-control rounded-pill" type="file" id="formFileMultiple" accept="image/*" multiple />
-                        </div>
+                        </div> -->
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary rounded-pill"
                             data-bs-dismiss="modal">ยกเลิก</button>
-                        <button type="submit" class="btn btn-warning rounded-pill">ยืนยัน</button>
+                        <button type="submit" name="Submit" class="btn btn-warning rounded-pill">ยืนยัน</button>
                     </div>
                 </div>
             </form>
