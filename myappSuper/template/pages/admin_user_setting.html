@@ -125,6 +125,9 @@
                                     <td>
                                         <p>{{ All_user.email_user }}</p>
                                     </td>
+                                    <td>
+                                        <p>{{ All_user.id }}</p>
+                                    </td>
                                 </tr>
                                 <!-- ลบข้อมูล -->
                                 <div
@@ -153,7 +156,7 @@
                                                     data-bs-dismiss="modal">
                                                     ยกเลิก
                                                 </button>
-                                                <a class="btn btn-warning rounded-pill" href="/deleteUser/{{AllUser.id }}" type="submit" >ยืนยัน</a>
+                                                <a class="btn btn-warning rounded-pill" href="/deleteUser/{{ All_user.id }}" type="submit" >ยืนยัน</a>
                                             </div>
                                         </div>
                                     </div>

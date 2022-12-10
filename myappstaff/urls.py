@@ -33,7 +33,7 @@ urlpatterns = [
     
     #path manage parcel durable
     path('staff_manage_detail/', staff_manage_detail),
-    path('staff_manage_parcel', views.staff_manage_parcel, name="staff_manage_parcel"), #add parcel
+    path('staff_manage_parcel/', views.staff_manage_parcel, name="staff_manage_parcel"), #add parcel
     path('staff_manage_durable/', views.staff_manage_parcel, name="staff_manage_durable"),#add durable
     
     path('staff_setting_status',views.staff_setting_status, name='staff_setting_status'),

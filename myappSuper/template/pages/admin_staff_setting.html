@@ -86,6 +86,9 @@
                                     <td>
                                         <p>{{ All_satff.email_staff }}</p>
                                     </td>
+                                    <td>
+                                        <p>{{ All_satff.id }}</p>
+                                    </td>
                                 </tr>
                                  <!-- ลบข้อมูล -->
                                  <div class="modal fade" id="Delete" tabindex="-1" aria-labelledby="DeleteuserModal"
@@ -102,7 +105,7 @@
                                              <button type="cancer" class="btn btn-secondary rounded-pill"
                                                  data-bs-dismiss="modal">ยกเลิก</button>
                                              <a type="submit" class="btn btn-warning rounded-pill"
-                                                 href="/deleteStaff/{{ AllStaff.id }}">ยืนยัน</a>
+                                                 href="/deleteStaff/{{ All_satff.id }}">ยืนยัน</a>
                                          </div>
                                      </div>
                                  </div>
