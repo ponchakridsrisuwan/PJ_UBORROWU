@@ -14,6 +14,6 @@ urlpatterns = [
     path('SearchStaff',views.SearchStaff),
     path('SearchUser',views.SearchUser),
 
-    path('deleteUser/<int:id>',views.deleteUser, name="deleteUser"),
+    path('deleteUser/<str:email_user>',views.deleteUser, name="deleteUser"),
     path('deleteStaff/<int:id>', views.deleteStaff, name="deleteStaff"),
 ]

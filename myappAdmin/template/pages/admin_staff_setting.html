@@ -79,12 +79,15 @@
                                 </tr>
                             </thead>
                             <tbody id="xTable">
-                                {% for All_satff in page.object_list %}
+                                {% for AllStaff in page.object_list %}
                                 <tr class="qrow ">
                                     <td><span href="#" class="btn fa fa-trash" value="Delete" data-bs-toggle="modal"
                                             data-bs-target="#Delete"></span></td>
                                     <td>
-                                        <p>{{ All_satff.email_staff }}</p>
+                                        <p>{{ AllStaff.email_staff }}</p>
+                                    </td>
+                                    <td>
+                                        <p>{{ AllStaff.id }}</p>
                                     </td>
                                 </tr>
                                  <!-- ลบข้อมูล -->

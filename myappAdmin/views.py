@@ -34,8 +34,8 @@ def admin_staff_setting(req):
     }
     return render(req, 'pages/admin_staff_setting.html', context)   
 
-def deleteStaff(req, id):
-    obj = Add_Staff.objects.get(id=id)
+def deleteStaff(req, email_user):
+    obj = Add_Staff.objects.get(email_user=email_user)
     obj.delete()
     return redirect('/')
 
@@ -61,8 +61,8 @@ def admin_user_setting(req):
     }
     return render(req, 'pages/admin_user_setting.html', context)   
 
-def deleteUser(req, id):
-    obj = Add_User.objects.get(id=id)
+def deleteUser(req, email_user):
+    obj = Add_User.objects.get(email_user=email_user)
     obj.delete()
     return redirect('/admin_user_setting') 
 
