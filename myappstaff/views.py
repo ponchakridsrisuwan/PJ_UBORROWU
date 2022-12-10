@@ -29,7 +29,7 @@ def staff_setting(req):
     print(CategoryType.objects.all())
     return render(req, 'pages/staff_setting.html', context)    
 
-def deleteCategoryType(id):
+def deleteCategoryType(req, id):
     obj = CategoryType.objects.get(id=id)
     obj.delete()
     return redirect('/staff_setting')
@@ -58,7 +58,7 @@ def staff_setting_status(req):
     }
     return render(req, 'pages/staff_setting_status.html', context)    
 
-def DeleteCategoryStatus(id):
+def DeleteCategoryStatus(req, id):
     obj = CategoryStatus.objects.get(id=id)
     obj.delete()
     return redirect('/staff_setting_status')

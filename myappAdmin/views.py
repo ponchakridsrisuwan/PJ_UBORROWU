@@ -34,10 +34,10 @@ def admin_staff_setting(req):
     }
     return render(req, 'pages/admin_staff_setting.html', context)   
 
-def deleteStaff(id):
+def deleteStaff(req, id):
     obj = Add_Staff.objects.get(id=id)
     obj.delete()
-    return redirect('/admin_staff_setting')
+    return redirect('/')
 
 def admin_user_setting(req):
     if req.method == "POST":
@@ -61,7 +61,7 @@ def admin_user_setting(req):
     }
     return render(req, 'pages/admin_user_setting.html', context)   
 
-def deleteUser(id):
+def deleteUser(req, id):
     obj = Add_User.objects.get(id=id)
     obj.delete()
     return redirect('/admin_user_setting') 

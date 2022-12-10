@@ -87,27 +87,26 @@
                                         <p>{{ All_satff.email_staff }}</p>
                                     </td>
                                 </tr>
-
-                                <!-- ลบข้อมูล -->
-                                <div class="modal fade" id="Delete" tabindex="-1" aria-labelledby="DeleteuserModal"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="DeleteuserModal">ยืนยันการลบข้อมูล
-                                                </h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="cancer" class="btn btn-secondary rounded-pill"
-                                                    data-bs-dismiss="modal">ยกเลิก</button>
-                                                <a type="submit" class="btn btn-warning rounded-pill"
-                                                    href="/DeleteStaff/{{ All_staff.id }}">ยืนยัน</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                 <!-- ลบข้อมูล -->
+                                 <div class="modal fade" id="Delete" tabindex="-1" aria-labelledby="DeleteuserModal"
+                                 aria-hidden="true">
+                                 <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
+                                     <div class="modal-content">
+                                         <div class="modal-header">
+                                             <h5 class="modal-title" id="DeleteuserModal">ยืนยันการลบข้อมูล
+                                             </h5>
+                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                 aria-label="Close"></button>
+                                         </div>
+                                         <div class="modal-footer">
+                                             <button type="cancer" class="btn btn-secondary rounded-pill"
+                                                 data-bs-dismiss="modal">ยกเลิก</button>
+                                             <a type="submit" class="btn btn-warning rounded-pill"
+                                                 href="/deleteStaff/{{ AllStaff.id }}">ยืนยัน</a>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
                                 {% endfor %}
                             </tbody>
                         </table>

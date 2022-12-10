@@ -13,7 +13,7 @@ urlpatterns = [
     
     path('SearchStaff',views.SearchStaff),
     path('SearchUser',views.SearchUser),
-    
-    path('deleteStaff/<int:id>',views.deleteStaff, name="deleteStaff"),
+
     path('deleteUser/<int:id>',views.deleteUser, name="deleteUser"),
+    path('deleteStaff/<int:id>', views.deleteStaff, name="deleteStaff"),
 ]
