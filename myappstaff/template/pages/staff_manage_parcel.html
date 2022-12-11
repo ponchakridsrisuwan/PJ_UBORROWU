@@ -17,7 +17,8 @@
                     </button>
                     <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1">
                         <div class="nav">
-                            <li><a class="fa fa-th dropdown-item active ps-4 " data-bs-toggle="tab" href="#matrix"></a></li>
+                            <li><a class="fa fa-th dropdown-item active ps-4 " data-bs-toggle="tab" href="#matrix"></a>
+                            </li>
                             <li><a class="fa fa-list dropdown-item" data-bs-toggle="tab" href="#list"></a></li>
                             <li><a class="fa fa-table dropdown-item pe-4" data-bs-toggle="tab" href="#table"></a></li>
                         </div>
@@ -69,55 +70,21 @@
                 <form action="" method="post" enctype="multipart/form-data">
 
                     {% csrf_token %}
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="additemModal">เพิ่มรายการพัสดุ </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="additemModal">เพิ่มรายการพัสดุ </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
                             {{ form.as_p }}
-                            <!-- <input type="submit" name="Submit"> -->
-                  
-                        <!-- </form> -->
-
-                        <!-- <div class="mb-3">
-                            <div class="col">
-                                <input type="text" class="form-control rounded-pill" id="#" placeholder="ชื่อ">
-                            </div>
                         </div>
-                        <div class="mb-3 row">
-                            <div class="col">
-                                <select class="form-select rounded-pill" aria-label="Default select example">
-                                    {% for durable_category in All_CategoryType%}
-                                    <option class="text-black" value="{{ durable_category.id }}" placeholder="{{ durable_category.id }}" id="{{ durable_category.id }}">{{ durable_category.name_CategoryType }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary rounded-pill"
+                                data-bs-dismiss="modal">ยกเลิก</button>
+                            <button type="submit" name="Submit" class="btn btn-warning rounded-pill">ยืนยัน</button>
                         </div>
-                        <div class="mb-3">
-                            <input type="number" class="form-control rounded-pill" placeholder="จำนวน">
-                        </div>
-                        <div class="col" for="numdate">
-                            <input type="number" class="col form-control rounded-pill" id="numdate" name="numdate"
-                                placeholder="กำหนดระยะเวลาในการยืม (วัน)">
-                        </div>
-                        <div class="col-md-12">
-                            <label class="labels" for="description">รายละเอียด</label>
-                            <textarea id="description" name="description" class="form-control rounded-4" id="exampleFormControlTextarea1"
-                                rows="3"></textarea>
-                        </div>
-                        <div>
-                            <label for="formFileMultiple" class="form-label" for="image">เพิ่มรูปภาพ</label>
-                            <input  id="image" name="image" class="form-control rounded-pill" type="file" id="formFileMultiple" accept="image/*" multiple />
-                        </div> -->
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary rounded-pill"
-                            data-bs-dismiss="modal">ยกเลิก</button>
-                        <button type="submit" name="Submit" class="btn btn-warning rounded-pill">ยืนยัน</button>
-                    </div>
-                </div>
-            </form>
+                </form>
             </div>
         </div>
         <div class="tab-content">
@@ -221,7 +188,7 @@
                         </div>
                     </div>
                 </div>
-            </div>    
+            </div>
             <div class="tab-pane  active" id="matrix">
                 <div class="row small">
                     <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
