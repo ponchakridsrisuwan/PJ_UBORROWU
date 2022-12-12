@@ -46,6 +46,7 @@ class Add_Durable(models.Model):
 
     def __str__(self):
         return self.name    
+
 class Status_Rec(models.Model):
     PRODUCT_CATEGORIES=[
         ('RECEIVE', 'รับเรื่อง'),
