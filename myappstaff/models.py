@@ -46,3 +46,12 @@ class Add_Durable(models.Model):
 
     def __str__(self):
         return self.name    
+class Status_Rec(models.Model):
+    PRODUCT_CATEGORIES=[
+        ('RECEIVE', 'รับเรื่อง'),
+        ('INPROGRESS', 'กำลังดำเนินการ'),
+        ('FINISH', 'ดำเนินการเสร็จสิ้น'),
+    ]
+    username = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
+    status = models.CharField(max_length=40, verbose_name='Status', choices=PRODUCT_CATEGORIES)
+    date = models.DateField(auto_now_add=True)
