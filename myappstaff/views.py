@@ -172,22 +172,33 @@ def staff_manage_detail(req):
 
 # จัดการพัสดุ
 @login_required
-def staff_manage_parcel(request):
+def staff_manage_parcel(req):
     form = ParcelForm()
 
-    if request.method == 'POST':
-        form = ParcelForm(request.POST, request.FILES)
+    if req.method == 'POST':
+        form = ParcelForm(req.POST, req.FILES)
         if form.is_valid():
             form.save()
             return redirect('/staff_manage_parcel/')
     else:
         form = ParcelForm()
-
+    AllParcel = Add_Parcel.objects.all()
+    page_num = req.GET.get('page', 1)
+    p = Paginator(AllParcel, 10)
+    try:
+        page = p.page(page_num)
+    except:
+        page = p.page(1)        
     context = {
-        "form":form
+        "page" : page,
+        "form" : form
     }
+    return render(req, 'pages/staff_manage_parcel.html', context)  
 
-    return render(request, 'pages/staff_manage_parcel.html', context)  
+def delete_staff_manage_parcel(req, id):
+    obj = Add_Parcel.objects.get(id=id)
+    obj.delete()
+    return redirect('staff_manage_parcel')
 
 
 # def staff_manage_parcel(req):

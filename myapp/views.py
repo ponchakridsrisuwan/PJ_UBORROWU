@@ -68,7 +68,12 @@ def user_personal_info_edit(req):
         "Contact": Contact.objects.all(),
     }
     return render(req, 'pages/user_personal_info_edit.html', context)    
-    
+
+"""def user_personal_info_edit(req,id):
+    obj = Contact.objects.get(id=id)
+    obj.contact_user = req.POST['contact_user']
+    obj.save()
+    return redirect('/user_personal_info_edit')"""
 
 #หน้าข้อมูลส่วนตัว
 @login_required

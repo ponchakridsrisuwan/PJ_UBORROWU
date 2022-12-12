@@ -14,10 +14,8 @@ urlpatterns = [
     path('user_notifications/',user_notifications, name="user_notifications"), 
    
     path('deleteRecList/<int:id>', views.deleteRecList, name="deleteRecList"),
-    path('user_recommend',views.user_recommend, name="user_recommend"), 
-    
-    path('user_personal_info_edit',views.user_personal_info_edit, name="user_personal_info_edit"), 
-    path('user_personal_info',views.user_personal_info, name="user_personal_info"), 
+    path('user_recommend/',views.user_recommend, name="user_recommend"), 
+    path('user_personal_info/',views.user_personal_info, name="user_personal_info"), 
     
     
 ]
