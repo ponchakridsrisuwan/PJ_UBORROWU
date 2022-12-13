@@ -22,6 +22,17 @@ from myapp.models import *
 from myappstaff.models import *
 from myappSuper.models import *
 from django.contrib.auth import views as auth_views
+from myproject.settings import AUTHENTICATION_BACKENDS
+
+def login(req):
+    if req.method == 'POST':
+        user = AUTHENTICATION_BACKENDS
+        if user is not AUTHENTICATION_BACKENDS:
+            login(req, user)
+            return redirect('/')
+        else:
+            return render(req, 'pages/login.html')
+    return render(req, 'pages/login.html')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,7 +41,8 @@ urlpatterns = [
     path('',include('myapp.urls')),
     path('',include('myappstaff.urls')),
     path('',include('myappSuper.urls')),
-    path('login/', auth_views.LoginView.as_view(template_name = 'pages/login.html'),name='login'),
+    path('login/', login,name='login'),
+    #path('login/', auth_views.LoginView.as_view(template_name = 'pages/login.html'),name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name = 'pages/logout.html'),name='logout'),
     
 ]

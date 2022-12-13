@@ -29,11 +29,13 @@ def staff_setting(req):
     }
     return render(req, 'pages/staff_setting.html', context)    
 
+@login_required
 def deleteCategoryType(req, id):
     obj = CategoryType.objects.get(id=id)
     obj.delete()
     return redirect('/staff_setting')
 
+@login_required
 def edit_staff_setting(req,id):
     obj = CategoryType.objects.get(id=id)
     obj.name_CategoryType = req.POST['name_CategoryType']
@@ -65,11 +67,13 @@ def staff_setting_status(req):
     }
     return render(req, 'pages/staff_setting_status.html', context)    
 
+@login_required
 def DeleteCategoryStatus(req, id):
     obj = CategoryStatus.objects.get(id=id)
     obj.delete()
     return redirect('/staff_setting_status')
 
+@login_required
 def edit_staff_setting_status(req,id):
     obj = CategoryStatus.objects.get(id=id)
     obj.name_CategoryStatus = req.POST['name_CategoryStatus']
@@ -195,6 +199,7 @@ def staff_manage_parcel(req):
     }
     return render(req, 'pages/staff_manage_parcel.html', context)  
 
+@login_required
 def delete_staff_manage_parcel(req, id):
     obj = Add_Parcel.objects.get(id=id)
     obj.delete()
@@ -289,6 +294,7 @@ def staff_manage_durable(request):
 def staff_personal_info(req):
     return render(req, 'pages/staff_personal_info.html')  
 
+@login_required
 def staff_personal_info_edit(req):
     return render(req, 'pages/staff_personal_info_edit.html')
 
