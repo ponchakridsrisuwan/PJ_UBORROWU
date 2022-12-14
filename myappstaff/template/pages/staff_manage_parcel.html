@@ -295,9 +295,9 @@
                 <div class="row small">
                     {% for parcel in page.object_list %}
                     <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
-                        <div class="card border">
-                            <div class="bg-image" data-mdb-ripple-color="light">
-                                <img src="{{ parcel.image.url }}" class="w-100">
+                        <div class="card border bg-gray" >
+                            <div class="text-center" >
+                                <img src="{{ parcel.image.url | safe }}" class="thumb-post" width="250">
                             </div>
                             <div class="card-body">
                                 <div class="d-flex justify-content-between">
