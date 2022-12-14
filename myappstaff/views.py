@@ -234,9 +234,19 @@ def staff_manage_durable(request):
             return redirect('/staff_manage_durable/')
     else:
         form = DurableForm()
+    # form = DurableForm.objects.all()   
+    DurableAll = DurableForm.objects.all()
+    # page_num = request.GET.get('page', 1)
+    # p = Paginator(DurableAll, 10)
+    # try:
+    #     page = p.page(page_num)
+    # except:
+    #     page = p.page(1) 
 
     context = {
-        "form":form
+        "form":form,
+        "DurableAll":DurableAll.objects.all(),
+        # "page" : page,
     }
 
     return render(request, 'pages/staff_manage_durable.html', context)  
