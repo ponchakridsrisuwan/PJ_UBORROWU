@@ -205,89 +205,38 @@ def delete_staff_manage_parcel(req, id):
     obj.delete()
     return redirect('staff_manage_parcel')
 
-
-# def staff_manage_parcel(req):
-#     if req.method == "POST":
-#         username = req.user
-#         name = req.POST.get('name')
-#         name_CategoryType = CategoryType.objects.get(id = req.POST.get('name_CategoryType'))
-#         quantity = req.POST.get('quantity')
-#         numdate = req.POST.get('numdate')
-#         description = req.POST.get('description')
-#         image = req.POST.get('image')
-#         date = timezone.now()
-#         obj = Add_Parcel(username=username, name=name, name_CategoryType=name_CategoryType, quantity=quantity, 
-#                           numdate=numdate, image=image, description=description, date=date)
-#         obj.save()
-#         return redirect('/staff_manage_parcel/')   
-#     else:
-#         obj = Add_Parcel()   
-#     obj = Add_Parcel.objects.all()   
-#     AllParcel = Add_Parcel.objects.all()
-#     page_num = req.GET.get('page', 1)
-#     p = Paginator(AllParcel, 10)
-#     try:
-#         page = p.page(page_num)
-#     except:
-#         page = p.page(1)        
-#     context = {
-#         "AllParcel": Add_Parcel.objects.all(),
-#         "All_CategoryType": CategoryType.objects.all(),
-#         "page" : page,
-#     }
-#     print(Add_Parcel.objects.all())
-#     return render(req, 'pages/staff_manage_parcel.html', context)  
-
 # จัดการครุภัณฑ์
 @login_required
-def staff_manage_durable(request):
+def staff_manage_durable(req):
     form = DurableForm()
 
-    if request.method == 'POST':
-        form = DurableForm(request.POST, request.FILES)
+    if req.method == 'POST':
+        form = DurableForm(req.POST, req.FILES)
         if form.is_valid():
             form.save()
             return redirect('/staff_manage_durable/')
     else:
         form = DurableForm()
+    AllDurable = Add_Durable.objects.all()
+    page_num = req.GET.get('page', 1)
+    p = Paginator(AllDurable, 10)
+    try:
+        page = p.page(page_num)
+    except:
+        page = p.page(1)   
 
     context = {
+        "page" : page,
         "form":form
     }
 
-    return render(request, 'pages/staff_manage_durable.html', context)  
+    return render(req, 'pages/staff_manage_durable.html', context)  
 
-
-# def staff_manage_durable(req):
-#     if req.method == "POST":
-#         username = req.user
-#         name = req.POST.get('name')
-#         name_CategoryType = CategoryType.objects.get(id = req.POST.get('name_CategoryType'))
-#         #name_CategoryType = CategoryType(queryset=CategoryType.objects.all(), required=False)
-#         quantity = req.POST.get('quantity')
-#         numdate = req.POST.get('numdate')
-#         description = req.POST.get('description')
-#         image = req.POST.get('image')
-#         date = timezone.now()
-#         obj = Add_Durable(username=username, name=name, name_CategoryType=name_CategoryType, quantity=quantity, 
-#                           numdate=numdate, image=image, description=description, date=date)
-#         obj.save()
-#         return redirect('/staff_manage_durable')   
-#     else:
-#         obj = Add_Durable()   
-#     obj = Add_Durable.objects.all()   
-#     AllDurable = Add_Durable.objects.all()
-#     page_num = req.GET.get('page', 1)
-#     p = Paginator(AllDurable, 10)
-#     try:
-#         page = p.page(page_num)
-#     except:
-#         page = p.page(1)        
-#     context = {
-#         "AllDurable": Add_Durable.objects.all(),
-#         "page" : page,
-#     }
-#     return render(req, 'pages/staff_manage_durable.html', context)  
+@login_required
+def delete_staff_manage_durable(req, id):
+    obj = Add_Durable.objects.get(id=id)
+    obj.delete()
+    return redirect('staff_manage_durable') 
 
 # แก่ไขข้อมูลส่วนตัว และจัดการข้อมูลส่วนตัว
 @login_required
