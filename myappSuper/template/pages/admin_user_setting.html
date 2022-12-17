@@ -11,8 +11,7 @@
                     <div class="d-flex flex-row col-md-12 col-lg-6
                         justify-content-end">
                         <div>
-                            <a class="btn btn-outline-dark rounded-pill ms-2"
-                                data-bs-toggle="modal"
+                            <a class="btn btn-outline-dark rounded-pill ms-2" data-bs-toggle="modal"
                                 data-bs-target="#adduser">เพิ่มผู้ใช้ทั่วไป
                             </a>
                             <label class="btn btn-outline-dark rounded-pill">
@@ -24,46 +23,26 @@
                         </div>
                     </div>
                     <!-- เพิ่มเเจ้าหน้าที่ -->
-                    <div
-                        class="modal fade"
-                        id="adduser"
-                        tabindex="-1"
-                        aria-labelledby="adduserModal"
+                    <div class="modal fade" id="adduser" tabindex="-1" aria-labelledby="adduserModal"
                         aria-hidden="true">
                         <div class="modal-dialog modal-lg
                             modal-fullscreen-lg-down">
                             <div class="modal-content">
-                                <form method="post"
-                                    action="/admin_user_setting">
+                                <form method="post" action="/admin_user_setting">
                                     {% csrf_token %}
                                     <div class="modal-header">
-                                        <h5 class="modal-title"
-                                            id="adduserModal">
-                                            เพิ่มผู้ใช้ทั่วไป
+                                        <h5 class="modal-title" id="adduserModal">
+                                            เพิ่มผู้ใช้
                                         </h5>
-                                        <button
-                                            type="button"
-                                            class="btn-close"
-                                            data-bs-dismiss="modal"
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <div class="mb-3">
-                                            <div class="col" for="email_user">
-                                                <input
-                                                    type="email"
-                                                    class="form-control
-                                                    rounded-pill"
-                                                    id="email_user"
-                                                    name="email_user"
-                                                    placeholder="Email">
-                                            </div>
-                                        </div>
+                                        {{ form.as_p }}
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn
-                                            btn-secondary rounded-pill"
-                                            data-bs-dismiss="modal">
+                                            btn-secondary rounded-pill" data-bs-dismiss="modal">
                                             ยกเลิก
                                         </button>
                                         <button type="submit" class="btn
@@ -89,13 +68,8 @@
                     </div>
                     <div class="col-sm-12 col-md-12 col-lg-6">
                         <form class="d-flex" role="search" action="SearchUser/">
-                            <input
-                                class="form-control me-2 border-dark"
-                                type="search"
-                                placeholder="Search"
-                                aria-label="Search"
-                                name="query"
-                                id="query">
+                            <input class="form-control me-2 border-dark" type="search" placeholder="Search"
+                                aria-label="Search" name="query" id="query">
                             <button class="btn btn-outline-dark" type="submit">Search</button>
                         </form>
                     </div>
@@ -108,6 +82,8 @@
                                 <tr>
                                     <th class="col-md-1 text-start" scope="col"></th>
                                     <th class="col" scope="col">อีเมลล์</th>
+                                    <th class="col">หมายเลขโทรศัพท์</th>
+                                    <th class="col">สถานะ</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -115,48 +91,68 @@
                                 {% for All_user in page.object_list %}
                                 <tr class="qrow">
                                     <td>
-                                        <span
-                                            href="#"
-                                            class="btn fa fa-trash"
-                                            value="Delete"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#Delete"></span>
+                                        <span href="#" class="btn" value="Delete" data-bs-toggle="modal"
+                                            data-bs-target="#Delete"><i class="fas fa-trash"></i></span>
                                     </td>
                                     <td>
                                         <p>{{ All_user.email_user }}</p>
                                     </td>
                                     <td>
-                                        <p>{{ All_user.id }}</p>
+                                        <p>{{ All_user.phone }}</p>
                                     </td>
+                                    <td>
+                                        <p>{{ All_user.position }}</p>
+                                    </td>
+                                    <td><a class="btn btn-warning rounded-pill badge"
+                                            href="#" value="Edit" data-bs-toggle="modal"
+                                            data-bs-target="#Edit">แก้ไข</a></td>
                                 </tr>
                                 <!-- ลบข้อมูล -->
-                                <div
-                                    class="modal fade"
-                                    id="Delete"
-                                    tabindex="-1"
-                                    aria-labelledby="DeleteuserModal"
+                                <div class="modal fade" id="Delete" tabindex="-1" aria-labelledby="DeleteuserModal"
                                     aria-hidden="true">
                                     <div class="modal-dialog modal-lg
                                         modal-fullscreen-lg-down">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title"
-                                                    id="DeleteuserModal">
+                                                <h5 class="modal-title" id="DeleteuserModal">
                                                     ยืนยันการลบข้อมูล
                                                 </h5>
-                                                <button
-                                                    type="button"
-                                                    class="btn-close"
-                                                    data-bs-dismiss="modal"
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="cancer" class="btn
-                                                    btn-secondary rounded-pill"
+                                                    btn-secondary rounded-pill" data-bs-dismiss="modal">
+                                                    ยกเลิก
+                                                </button>
+                                                <a class="btn btn-warning rounded-pill"
+                                                    href="/deleteUser/{{ All_user.id }}" type="submit">ยืนยัน</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- แก้ไข -->
+                                <div class="modal fade" id="Edit" tabindex="-1" aria-labelledby="EdituserModal"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="EdituserModal">
+                                                    แก้ไขข้อมูล
+                                                </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                    {{ form.as_p }}
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="cancer" class="btn btn-secondary rounded-pill"
                                                     data-bs-dismiss="modal">
                                                     ยกเลิก
                                                 </button>
-                                                <a class="btn btn-warning rounded-pill" href="/deleteUser/{{ All_user.id }}" type="submit" >ยืนยัน</a>
+                                                <a class="btn btn-warning rounded-pill"
+                                                    href="/editUser/{{ All_user.id }}" type="submit">ยืนยัน</a>
                                             </div>
                                         </div>
                                     </div>

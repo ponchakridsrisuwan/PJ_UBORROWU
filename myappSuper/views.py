@@ -9,11 +9,31 @@ def admin_detail(req):
 
 @login_required
 def admin_staff(req):
-    return render(req, "pages/admin_staff.html")
+    AllUser = Add_User.objects.all()
+    page_num = req.GET.get('page', 1)
+    p = Paginator(AllUser, 10)
+    try:
+        page = p.page(page_num)
+    except:
+        page = p.page(1)        
+    context = {
+        "page" : page,
+    }
+    return render(req, "pages/admin_staff.html", context)
 
 @login_required
 def admin_user(req):
-    return render(req, "pages/admin_user.html")
+    AllUser = Add_User.objects.all()
+    page_num = req.GET.get('page', 1)
+    p = Paginator(AllUser, 10)
+    try:
+        page = p.page(page_num)
+    except:
+        page = p.page(1)        
+    context = {
+        "page" : page,
+    }
+    return render(req, "pages/admin_user.html", context)
 
 @login_required
 def admin_staff_setting(req):
@@ -44,17 +64,23 @@ def deleteStaff(req, id):
     obj.delete()
     return redirect('/admin_staff_setting')
 
+<<<<<<< HEAD
+#DEW เองงง
+
+=======
+>>>>>>> develop
 @login_required
 def admin_user_setting(req):
-    if req.method == "POST":
-        email_user = req.POST.get('email_user')
-        obj = Add_User_Email_User(email_user=email_user)
-        obj.save()
-        return redirect('/admin_user_setting')   
+    form = CreateUserForm()
+
+    if req.method == 'POST':
+        form = CreateUserForm(req.POST, req.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('/admin_user_setting')
     else:
-        obj = Add_User_Email_User()   
-    obj = Add_User_Email_User.objects.all()   
-    AllUser = Add_User_Email_User.objects.all()
+        form = CreateUserForm()
+    AllUser = Add_User.objects.all()
     page_num = req.GET.get('page', 1)
     p = Paginator(AllUser, 10)
     try:
@@ -62,14 +88,40 @@ def admin_user_setting(req):
     except:
         page = p.page(1)        
     context = {
-        "AllUser": Add_User_Email_User.objects.all(),
         "page" : page,
+        "form" : form
     }
-    return render(req, 'pages/admin_user_setting.html', context)   
+    return render(req, 'pages/admin_user_setting.html', context)  
 
+<<<<<<< HEAD
+
+# def admin_user_setting(req):
+#     if req.method == "POST":
+#         email_user = req.POST.get('email_user')
+#         obj = Add_User_Email_User(email_user=email_user)
+#         obj.save()
+#         return redirect('/admin_user_setting')   
+#     else:
+#         obj = Add_User_Email_User()   
+#     obj = Add_User_Email_User.objects.all()   
+#     AllUser = Add_User_Email_User.objects.all()
+#     page_num = req.GET.get('page', 1)
+#     p = Paginator(AllUser, 10)
+#     try:
+#         page = p.page(page_num)
+#     except:
+#         page = p.page(1)        
+#     context = {
+#         "AllUser": Add_User_Email_User.objects.all(),
+#         "page" : page,
+#     }
+#     return render(req, 'pages/admin_user_setting.html', context)   
+
+=======
+>>>>>>> develop
 @login_required
 def deleteUser(req, id):
-    obj = Add_User_Email_User.objects.get(id=id)
+    obj = Add_User.objects.get(id=id)
     obj.delete()
     return redirect('/admin_user_setting') 
 
