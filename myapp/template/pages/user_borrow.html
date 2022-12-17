@@ -5,42 +5,59 @@
         <div class="d-flex flex-row align-items-center">
             <span  class="ml-2 fw-bold fs-5">รายการยืม</span>
         </div>
-    </div>
-    <div class="container mt-3 p-3 rounded-2 cart bg-white" href="#">
-        <div class="row">
-            <div class="">
-                <div class="small">
-                    <div class="d-flex justify-content-between">
-                        <h5 class="d-flex text-warning fw-bold  ">รอดำเนินการ</h5>
-                        <div class="d-flex "><a>วันเริ่มต้นยืม</a> &nbsp <a>22/9/2001</a></div>
-                    </div>
-                    
-                    <div class="d-flex justify-content-between">
-                        <div><span>เลขที่ทำรายการ</span>&nbsp &nbsp<span>00001</span></div>
-                        <div class="d-flex "><a>กำหนดวันคืน</a> &nbsp <a>22/9/2001</a></div>
-                    </div>
-                    
-                    <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded-2 ">
-                        <div class="d-flex flex-row">
-                            <img class="rounded me-2" src="/static/california.png" width="80" height="80">
-                            <div class="ml-2"><span class="font-weight-bold d-block h6">Macbook Air M2</span>
-                                <span class="small text-muted" name="spac">รายละเอียด</span><br/>
-                                <span class="small text-muted" name="spac">วันที่คืน</span><br/>
-                            </div>
+        <div class="d-flex row rounded-2 small fw-bold justify-content-between">
+            <div class="d-flex col-sm-12 col-md-12 col-lg-6">
+                <div class="align-items-center">
+                    <span>เรียงโดย</span>
+                    <div class="px-2 me-2 btn btn-outline-dark border-0 rounded-pill">ล่าสุด</div>
+                </div>
+
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6">
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2 border-dark" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-dark" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+        <div class="container mt-3 p-3 rounded-2 border cart bg-white">
+            <div class="row ">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h5 class="d-flex text-warning fw-bold  ">รอดำเนินการ</h5>
+                            <div class="d-flex "><a>กำหนดวันคืน</a> &nbsp <a>22/9/2022</a></div>
                         </div>
-                        <div class="d-flex flex-row align-items-center ">
-                            <span class="fs-6 small text-muted" name="spac">X</span><br />
-                            <span class="d-block pe-3">2</span>
+                        <div class="d-flex justify-content-between">
+                            <div class="ms-4 text-muted">
+                                <span>Macbook Air M2</span><br>
+                                <span>Macbook Air M2</span><br>
+                                <span>Macbook Air M2</span>
+                            </div>
+                            <div class="small text-muted fs-6">
+                                <span>X 2</span><br>
+                                <span>X 2</span><br>
+                                <span>X 2</span>
+                            </div>
                         </div>
                     </div>
                     <hr>
-                    <div class="text-center">
-                        <a href="/user_cart_detail_del" class="text-muted">ดูรายการเพิ่มเติม</a>
+                    <div class="ms-3 mb-3">
+                        <span>เหตุผลในการยืม</span><br>
+                        <span class="text-muted">เหตุผลในการยืม ต้องการยืมเพราะ เอาไปทำอะไร</span>
                     </div>
+                    
+                </div>
+                <hr>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button class="btn btn-warning rounded-pill" type="button" data-bs-toggle="modal"
+                        data-bs-target="#">ยกเลิก</button>
                 </div>
             </div>
         </div>
-    </div><br><br>
+    </div>
+</div>
+    <br><br>
 
 
 {% endblock %}

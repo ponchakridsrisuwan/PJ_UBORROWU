@@ -9,24 +9,24 @@
                 </div>
             </div>
             <hr>
-            {% for AllRecList in AllRecList %}
+            {% for AllRecList in page.object_list %}
             <div class="row">
                 <div class="d-flex col-md-5 ">
-                    <div class="d-flex"><span>ผู้แนะนำ</span> &nbsp <span class="text-muted">{{ AllRecList.username }}</span></div>
+                    <div class="d-flex"><span>ผู้แนะนำ</span> &nbsp <span class="text-muted">{{ AllRecList.username.first_name }}&nbsp{{ AllRecList.username.last_name }}</span></div>
                 </div>
                 <div class="d-flex col-md-5 ">
                     <div class="d-flex"><span>วันที่แนะนำ</span> &nbsp <span class="text-muted">{{ AllRecList.datetime }}</span></div>
                 </div>
                 <div class="d-flex col-md-5 ">
-                    <div class="d-flex"><span>ลิงก์พัสดุ</span> &nbsp <span
-                            class="text-muted" href="{{ AllRecList.username }}">{{ AllRecList.link }}</span></div>
-                </div>
-                <div class="d-flex col-md-5 ">
-                    <div class="d-flex "><span>รายละเอียด</span> &nbsp <span class="text-muted">{{ AllRecList.description }}</span></div>
+                    <div class="d-flex "><span>เหตุผล</span> &nbsp <span class="text-muted">{{ AllRecList.description }}</span></div>
                 </div>
                 <div class="d-flex col-md-5 ">
                     <div class="d-flex "><span>อีเมลล์</span> &nbsp <span
-                            class="text-muted">somchai.sa.63@ubu.ac.th</span></div>
+                            class="text-muted">{{ AllRecList.username.email }}</span></div>
+                </div>
+                <div class="d-flex col-md-5 ">
+                    <div class="d-flex "><span>สถานะ</span> &nbsp <span
+                            class="text-muted">{{ AllRecList.username.email }}</span></div>
                 </div>
             </div>
             {% endfor %}
@@ -38,17 +38,19 @@
             </div>
             <hr>
             <div class="row mt-3  mx-2">
-                <table id="example" class="table table-striped">
+                <table class="table table-striped">
                     <thead class="table-dark">
                         <tr>
-                            <th class="col-md-4" scope="col">ชื่อรายการ</th>
+                            <th class="col-md-2" scope="col">ชื่อรายการ</th>
                             <th class="col-md-1 text-center" scope="col">ยี่ห้อ</th>
                             <th class="col-md-1 text-center" scope="col">จำนวน</th>
-                            <th class="col-md-1 text-center" scope="col">ราคา</th>
+                            <th class="col-md-1 text-center" scope="col">ราคาชิ้นละ</th>
+                            <th class="col-md-1 text-center" scope="col">ราคารวม</th>
+                            <th class="col-md-2 text-center" scope="col">ลิงก์รายการ</th>
                         </tr>
                     </thead>
                     <tbody id="xTable">
-                        {% for AllRecList in AllRecList %}
+                        {% for AllRecList in page.object_list %}
                         <tr class="qrow text-center">
                             <td>
                                 <p class="text-start">{{ AllRecList.name }}</p>
@@ -62,18 +64,16 @@
                             <td>
                                 <p>{{ AllRecList.price }}</p>
                             </td>
+                            <td>
+                                <p>{{ AllRecList.price }}</p>
+                            </td>
+                            <td>
+                                <a href="{{ AllRecList.link }}">{{ AllRecList.link }}</a>
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
-                <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-                <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-                <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
-                <script>
-                  $(document).ready(function () {
-                    $('#example').DataTable();
-                  });
-                </script>
             </div>
             <form class="row align-items-center">
                 <div class="mb-3">
@@ -91,4 +91,13 @@
                 </div>
             </form>
         </div>
+        <div class="page-links">
+            {% if page.has_previous %}
+            <a href="?page={{ page.previous_page_number }}">หน้าก่อนหน้า</a>
+            {% endif %}
+            {% if page.has_next %}
+            <a href="?page={{ page.next_page_number }}">หน้าถัดไป</a>
+            {% endif %}
+        </div>
+    </div>
         {% endblock %} 

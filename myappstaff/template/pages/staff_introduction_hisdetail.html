@@ -61,5 +61,14 @@
                     </tbody>
                 </table>
             </div>
-        </div>    
+        </div>
+        <div class="page-links">
+            {% if page.has_previous %}
+            <a href="?page={{ page.previous_page_number }}">หน้าก่อนหน้า</a>
+            {% endif %}
+            {% if page.has_next %}
+            <a href="?page={{ page.next_page_number }}">หน้าถัดไป</a>
+            {% endif %}
+        </div>
+    </div>    
         {% endblock %} 

@@ -1,281 +1,295 @@
-from django.contrib.auth.models import User
 from django.shortcuts import HttpResponseRedirect, render, redirect
 from django.contrib.auth.decorators import login_required
-from myapp.models import *
-from django.forms import ModelForm
-from myappstaff.models import *
+from myappstaff.forms import *
 from django.utils import timezone
-
-# ล็อคอิน
-def staff_login(req):
-    return render(req,'pages/staff_login.html')
-
-class All_CategoryTypeForm(ModelForm):
-    class Meta:
-        model = CategoryType
-        fields = ['name_CategoryType']
-        
-class All_CategoryMenuForm(ModelForm):
-    class Meta:
-        model = CategoryMenu
-        fields = ['name_CategoryMenu']     
-
-class All_CategoryDisplayForm(ModelForm):
-    class Meta:
-        model = CategoryDisplay
-        fields = ['name_CategoryDisplay']
-        
-class All_CategoryStatusForm(ModelForm):
-    class Meta:
-        model = CategoryStatus
-        fields = ['name_CategoryStatus']              
-
-class All_PhoneForm(ModelForm):
-    class Meta:
-        model = Add_Phone
-        fields = ['num_phone']                 
+from django.core.paginator import Paginator
+from myappstaff.models import *
 
 # การตั้งค่าหมวดหมุ่
-def All_CategoryType(req):
-    return render(req, 'pages/staff_setting.html', {
-        'All_CategoryType': CategoryType.objects.all()
-    })  
+@login_required
+def staff_setting(req):
+    if req.method == "POST":
+        name_CategoryType = req.POST.get('name_CategoryType')
+        obj = CategoryType(name_CategoryType=name_CategoryType)
+        obj.save()
+        return redirect('/staff_setting')   
+    else:
+        obj = CategoryType()   
+    obj = CategoryType.objects.all()   
+    AllCategoryType = CategoryType.objects.all()
+    page_num = req.GET.get('page', 1)
+    p = Paginator(AllCategoryType, 10)
+    try:
+        page = p.page(page_num)
+    except:
+        page = p.page(1)        
+    context = {
+        "All_CategoryType": CategoryType.objects.all(),
+        "page" : page
+    }
+    return render(req, 'pages/staff_setting.html', context)    
 
-def Add_CategoryType(req):
-    obj = CategoryType()
-    obj.name_CategoryType = req.GET.get('name_CategoryType')
-    obj.save()
-    mydictionary = {
-            "All_CategoryType": CategoryType.objects.all()
-        }
-    return render(req, 'pages/staff_setting.html', context=mydictionary)
-
-def DeleteCategoryType(req,id):
+@login_required
+def deleteCategoryType(req, id):
     obj = CategoryType.objects.get(id=id)
     obj.delete()
-    mydictionary = {
-        "All_CategoryType" : CategoryType.objects.all()
-    }
-    return render(req, 'pages/staff_setting.html', context=mydictionary)
+    return redirect('/staff_setting')
 
-# การตั้งค่ารายการ
-def All_CategoryMenu(req):
-    return render(req, 'pages/staff_setting_menu.html', {
-        'All_CategoryMenu': CategoryMenu.objects.all()
-    })  
-
-def Add_CategoryMenu(req):
-    obj = CategoryMenu()
-    obj.name_CategoryMenu = req.GET.get('name_CategoryMenu')
+@login_required
+def edit_staff_setting(req,id):
+    obj = CategoryType.objects.get(id=id)
+    obj.name_CategoryType = req.POST['name_CategoryType']
     obj.save()
-    mydictionary = {
-            "All_CategoryMenu": CategoryMenu.objects.all()
-        }
-    return render(req, 'pages/staff_setting_menu.html', context=mydictionary)
-
-def DeleteCategoryMenu(req,id):
-    obj = CategoryMenu.objects.get(id=id)
-    obj.delete()
-    mydictionary = {
-        "All_CategoryMenu" : CategoryMenu.objects.all()
-    }
-    return render(req, 'pages/staff_setting_menu.html', context=mydictionary) 
-
-# การตั้งค่าแสดงผล
-def All_CategoryDisplay(req):
-    return render(req, 'pages/staff_setting_display.html', {
-        'All_CategoryDisplay': CategoryDisplay.objects.all()
-    })  
-
-def Add_CategoryDisplay(req):
-    obj = CategoryDisplay()
-    obj.name_CategoryDisplay = req.GET.get('name_CategoryDisplay')
-    obj.save()
-    mydictionary = {
-            "All_CategoryDisplay": CategoryDisplay.objects.all()
-        }
-    return render(req, 'pages/staff_setting_display.html', context=mydictionary)
-
-def DeleteCategoryDisplay(req,id):
-    obj = CategoryDisplay.objects.get(id=id)
-    obj.delete()
-    mydictionary = {
-        "All_CategoryDisplay" : CategoryDisplay.objects.all()
-    }
-    return render(req, 'pages/staff_setting_display.html', context=mydictionary) 
+    return redirect('/staff_setting')
+    
 
 # การตั้งค่าสถานะ
-def All_CategoryStatus(req):
-    return render(req, 'pages/staff_setting_status.html', {
-        'All_CategoryStatus': CategoryStatus.objects.all()
-    })  
+@login_required
+def staff_setting_status(req):
+    if req.method == "POST":
+        name_CategoryStatus = req.POST.get('name_CategoryStatus')
+        obj = CategoryStatus(name_CategoryStatus=name_CategoryStatus)
+        obj.save()
+        return redirect('/staff_setting_status')   
+    else:
+        obj = CategoryStatus()   
+    obj = CategoryStatus.objects.all()   
+    AllCategoryStatus = CategoryStatus.objects.all()
+    page_num = req.GET.get('page', 1)
+    p = Paginator(AllCategoryStatus, 10)
+    try:
+        page = p.page(page_num)
+    except:
+        page = p.page(1)        
+    context = {
+        "All_CategoryStatus": CategoryStatus.objects.all(),
+        "page" : page
+    }
+    return render(req, 'pages/staff_setting_status.html', context)    
 
-def Add_CategoryStatus(req):
-    obj = CategoryStatus()
-    obj.name_CategoryStatus = req.GET.get('name_CategoryStatus')
-    obj.save()
-    mydictionary = {
-            "All_CategoryStatus": CategoryStatus.objects.all()
-        }
-    return render(req, 'pages/staff_setting_status.html', context=mydictionary)
-
-def DeleteCategoryStatus(req,id):
+@login_required
+def DeleteCategoryStatus(req, id):
     obj = CategoryStatus.objects.get(id=id)
     obj.delete()
-    mydictionary = {
-        "All_CategoryStatus" : CategoryStatus.objects.all()
-    }
-    return render(req, 'pages/staff_setting_status.html', context=mydictionary) 
+    return redirect('/staff_setting_status')
+
+@login_required
+def edit_staff_setting_status(req,id):
+    obj = CategoryStatus.objects.get(id=id)
+    obj.name_CategoryStatus = req.POST['name_CategoryStatus']
+    obj.save()
+    return redirect('/staff_setting_status')
 
 # การแนะนำพัสดุเข้าสู่ระบบ    
+@login_required
 def staff_introduction(req):
-    return render(req, 'pages/staff_introduction.html', {
-        'AllRecList': ListFromRec.objects.all()
-    })  
+    AllRecList = ListFromRec.objects.all()
+    AllRecList_count = AllRecList.count()
+    page_num = req.GET.get('page', 1)
+    p = Paginator(AllRecList, 10)
+    try:
+        page = p.page(page_num)
+    except:
+        page = p.page(1)            
+    context = {
+        'page' :page,
+        "AllRecList_count" : AllRecList_count
+    }
+    return render( req, 'pages/staff_introduction.html', context)
+
+@login_required
+def staff_introduction_history(req):
+    AllRecList = ListFromRec.objects.all()
+    page_num = req.GET.get('page', 1)
+    p = Paginator(AllRecList, 10)
+    try:
+        page = p.page(page_num)
+    except:
+        page = p.page(1)            
+    context = {
+        'page' :page
+    }
+    return render( req, 'pages/staff_introduction_history.html', context)
 
 # รายละเอียดการยืม
+@login_required
 def staff_borrow_detail(req):
     return render(req,'pages/staff_borrow_detail.html')
 
 # ประวัติการยืม
+@login_required
 def staff_borrowing_history_detail(req):
     return render(req,'pages/staff_borrowing_history_detail.html')
 
 # ข้อมูลการคืนพัสดุ-ครุภัณฑ์
+@login_required
 def staff_borrowing_history(req):
     return render(req,'pages/staff_borrowing_history.html')
 
 # จัดการรายการยืม
+@login_required
 def staff_index_borrow(req):
     return render(req,'pages/staff_index_borrow.html')
 
 # จัดการรายการยืม
+@login_required
 def staff_index_borrownow(req):
     return render(req,'pages/staff_index_borrownow.html')
 
 # จัดการรายการคืน
+@login_required
 def staff_index_return(req):
     return render(req,'pages/staff_index_return.html')
 
 # จัดการข้อมูลการแนะนำพัสดุเข้าสู่ระบบ
+@login_required
 def staff_introduction_detail(req):
-    return render(req,'pages/staff_introduction_detail.html')
+    AllRecList = ListFromRec.objects.all()
+    page_num = req.GET.get('page', 1)
+    p = Paginator(AllRecList, 10)
+    try:
+        page = p.page(page_num)
+    except:
+        page = p.page(1)            
+    context = {
+        'page' :page
+    }
+    return render( req, 'pages/staff_introduction_detail.html', context)
 
 # ข้อมูลการแนะนำพัสดุเข้าสู่ระบบ
+@login_required
 def staff_introduction_hisdetail(req):
-    return render(req,'pages/staff_introduction_hisdetail.html')
+    AllRecList = ListFromRec.objects.all()
+    page_num = req.GET.get('page', 1)
+    p = Paginator(AllRecList, 10)
+    try:
+        page = p.page(page_num)
+    except:
+        page = p.page(1)            
+    context = {
+        'page' :page
+    }
+    return render( req, 'pages/staff_introduction_hisdetail.html', context)
 
 # รายละเอียดจัดการพัสดุ-ครุภัณฑ์
+@login_required
 def staff_manage_detail(req):
     return render(req,'pages/staff_manage_detail.html')
 
 # จัดการพัสดุ
+@login_required
 def staff_manage_parcel(req):
-    return render(req, 'pages/staff_manage_parcel.html', {
-        'Add_Parcel': Add_Parcel.objects.all()
-    })  
+    form = ParcelForm()
 
-def staff_manage_parcel(req):
-    parcel_category = CategoryType.objects.all()
-    parcel_menu = CategoryMenu.objects.all()
     if req.method == 'POST':
-        obj = Add_Parcel()
-        obj.name = req.GET.get('name')
-        obj.category = CategoryType.objects.get(id = req.GET.get('category'))
-        obj.menu = CategoryMenu.objects.get(id = req.GET.get('menu'))
-        obj.quantity = req.GET.get('quantity')
-        obj.numdate = req.GET.get('numdate')
-        obj.description = req.GET.get('description')
-        obj.image = req.GET.get('image')
-        obj.date = timezone.now()
-        obj.save()
-
-        return HttpResponseRedirect('/staff_manage_parcel')
+        form = ParcelForm(req.POST, req.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('/staff_manage_parcel/')
     else:
-        form = Add_Parcel()
-        
-    return render(req, 'pages/staff_manage_parcel.html', {'form': form, 'parcel_category':parcel_category,  'parcel_menu':parcel_menu})
+        form = ParcelForm()
+    AllParcel = Add_Parcel.objects.all()
+    page_num = req.GET.get('page', 1)
+    p = Paginator(AllParcel, 10)
+    try:
+        page = p.page(page_num)
+    except:
+        page = p.page(1)        
+    context = {
+        "page" : page,
+        "form" : form
+    }
+    return render(req, 'pages/staff_manage_parcel.html', context)  
 
-def Deletestaff_manage_parcel(req,id):
+@login_required
+def delete_staff_manage_parcel(req, id):
     obj = Add_Parcel.objects.get(id=id)
     obj.delete()
-    mydictionary = {
-        "staff_manage_parcel" : Add_Parcel.objects.all()
-    }
-    return render(req, 'pages/staff_manage_parcel.html', context=mydictionary)     
+    return redirect('staff_manage_parcel')
 
 # จัดการครุภัณฑ์
+@login_required
 def staff_manage_durable(req):
-    return render(req, 'pages/staff_manage_parcel.html', {
-        'staff_manage_durable': Add_Durable.objects.all()
-    })  
+    form = DurableForm()
 
-def staff_manage_durable(req):
-    durable_category = CategoryType.objects.all()
-    durable_menu = CategoryMenu.objects.all()
     if req.method == 'POST':
-        obj = Add_Durable()
-        obj.name = req.GET.get('name')
-        obj.category = CategoryType.objects.get(id = req.GET.get('category'))
-        obj.menu = CategoryMenu.objects.get(id = req.GET.get('menu'))
-        obj.quantity = req.GET.get('quantity')
-        obj.numdate = req.GET.get('numdate')
-        obj.description = req.GET.get('description')
-        obj.image = req.GET.get('image')
-        obj.date = timezone.now()
-        obj.save()
-
-        return HttpResponseRedirect('/staff_manage_durable')
+        form = DurableForm(req.POST, req.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('/staff_manage_durable/')
     else:
-        form = Add_Durable()
-        
-    return render(req, 'pages/staff_manage_durable.html', {'form': form, 'durable_category':durable_category,  'durable_menu':durable_menu})
+        form = DurableForm()
+    AllDurable = Add_Durable.objects.all()
+    page_num = req.GET.get('page', 1)
+    p = Paginator(AllDurable, 10)
+    try:
+        page = p.page(page_num)
+    except:
+        page = p.page(1)   
 
-def Deletestaff_manage_durable(req,id):
+    context = {
+        "page" : page,
+        "form":form
+    }
+
+    return render(req, 'pages/staff_manage_durable.html', context)  
+
+@login_required
+def delete_staff_manage_durable(req, id):
     obj = Add_Durable.objects.get(id=id)
     obj.delete()
-    mydictionary = {
-        "staff_manage_durable" : Add_Durable.objects.all()
-    }
-    return render(req, 'pages/staff_manage_durable.html', context=mydictionary)    
+    return redirect('staff_manage_durable') 
 
 # แก่ไขข้อมูลส่วนตัว และจัดการข้อมูลส่วนตัว
+@login_required
 def staff_personal_info(req):
-    return render(req, 'pages/staff_personal_info.html', {
-        'All_Phone': Add_Phone.objects.all()
-    })  
+    return render(req, 'pages/staff_personal_info.html')  
 
+@login_required
 def staff_personal_info_edit(req):
-    obj = Add_Phone()
-    obj.num_phone = req.GET.get('num_phone')
-    obj.save()
-    mydictionary = {
-            "All_Phone": Add_Phone.objects.all()
-        }
-    return render(req, 'pages/staff_personal_info_edit.html', context=mydictionary)
+    return render(req, 'pages/staff_personal_info_edit.html')
 
+@login_required
 def staff_personal_info_edit(req):
     return render(req,'pages/staff_personal_info_edit.html')
 
+@login_required
 def staff_personal_info(req):
     return render(req,'pages/staff_personal_info.html')
 
 # รายละเอียดรายงานการยืมพัสดุ
+@login_required
 def staff_report_borrowReport(req):
     return render(req,'pages/staff_report_borrowReport.html')
 
 # รายงานจำนวนรายการพัสดุที่จำหน่ายทิ้ง
+@login_required
 def staff_report_dispose(req):
     return render(req,'pages/staff_report_dispose.html')
 
 # รายงานภาพรวมพัสดุ
 def staff_report(req):
-    return render(req,'pages/staff_report.html')
+    AllRecList = ListFromRec.objects.all()
+    AllRecList_count = AllRecList.count()
+    page_num = req.GET.get('page', 1)
+    p = Paginator(AllRecList, 10)
+    try:
+        page = p.page(page_num)
+    except:
+        page = p.page(1)            
+    context = {
+        'page' :page,
+        "AllRecList_count" : AllRecList_count
+    }
+    return render( req, 'pages/staff_report.html', context)
+
 
 # รายงานจำนวนรายการพัสดุที่คงเหลือในระบบ
+@login_required
 def staff_report_remaining(req):
     return render(req,'pages/staff_report_remaining.html')
 
 # รายงานการยืมทั้งหมด
+@login_required
 def staff_Including_borrowing(req):
     return render(req,'pages/staff_Including_borrowing.html')

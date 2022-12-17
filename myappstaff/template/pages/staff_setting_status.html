@@ -8,7 +8,7 @@
 
     <div class="tab-pane container active" id="status">
         <table class="table table-xs mb-0">
-            <table id="example" class="table table-striped">
+            <table  class="table table-striped">
                 <thead class="table-dark">
                     <tr>
                         <th class="col-12">สถานะ</th>
@@ -16,7 +16,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for All_CategoryStatus in All_CategoryStatus %}
+                    {% for All_CategoryStatus in page.object_list %}
                     <tr>
                         <td>
                             <span>{{ All_CategoryStatus.name_CategoryStatus }}</span>
@@ -27,30 +27,79 @@
                                 <li><a class="dropdown-item btn-0 btn-sm" data-bs-toggle="modal"
                                         data-bs-target="#edititemcategory">แก้ไข</a>
                                 </li>
-                                <li><a href="/DeleteCategoryStatus/{{ All_CategoryStatus.id }}"
+                                <li><a  data-bs-toggle="modal"
+                                    data-bs-target="#deleteitemcategory"
                                         class="dropdown-item btn-0 btn-sm">ลบ</a>
                                 </li>
                             </ul>
                         </td>
                     </tr>
+                    <div class="modal fade" id="deleteitemcategory" tabindex="-1" aria-labelledby="deleteitemModal" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="edititemModal">ยืนยันการลบข้อมูล</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">ยกเลิก</button>
+                                    <a href="/DeleteCategoryStatus/{{ All_CategoryStatus.id }}" type="submit" class="btn btn-warning rounded-pill" >ยืนยัน</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <!-- moal แก้ไขรายการ -->
+                     <div class="modal fade" id="edititemcategory" tabindex="-1"
+                     aria-labelledby="edititemModal" aria-hidden="true">
+                     <div class="modal-dialog modal-lg
+                         modal-fullscreen-lg-down">
+                         <form action="/edit_staff_setting_status/{{All_CategoryStatus.id }}"  method="POST" enctype="multipart/form-data">
+                             {% csrf_token %}
+                         <div class="modal-content">
+                             <div class="modal-header">
+                                 <h5 class="modal-title" id="edititemModal">แก้ไขสถานะ</h5>
+                                 <button type="button" class="btn-close"
+                                     data-bs-dismiss="modal"
+                                     aria-label="Close"></button>
+                             </div>
+
+                             <div class="modal-body">
+                                 <div class="mb-3">
+                                     <div class="col">
+                                         <input type="text" class="form-control rounded-pill" name="name_CategoryStatus" id="name_CategoryStatus" placeholder="{{ All_CategoryStatus.name_CategoryStatus }}">
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="modal-footer">
+                                 <button type="button" class="btn
+                                     btn-secondary rounded-pill"
+                                     data-bs-dismiss="modal">ยกเลิก</button>
+                                 <button type="submit"  class="btn btn-warning rounded-pill">ยืนยัน</button>
+                             </div>
+                         </div>
+                         </form>
+                     </div>
+                 </div>
+
                     {% endfor %}
                 </tbody>
                 <p class="btn btn-outline-dark rounded-pill mt-2" data-bs-toggle="modal"
-                    data-bs-target="#additemcatecory">เพิ่มสถานะ</p>
+                    data-bs-target="#additemcategory">เพิ่มสถานะ</p>
             </table>
-            <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-            <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-            <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
-            <script>
-                $(document).ready(function () {
-                    $('#example').DataTable();
-                });
-            </script>
+    </div>
+    <div class="page-links">
+        {% if page.has_previous %}
+        <a href="?page={{ page.previous_page_number }}">หน้าก่อนหน้า</a>
+        {% endif %}
+        {% if page.has_next %}
+        <a href="?page={{ page.next_page_number }}">หน้าถัดไป</a>
+        {% endif %}
     </div>
     <!-- moal เพิ่มสถานะ -->
-    <div class="modal fade" id="additemcatecory" tabindex="-1" aria-labelledby="additemModal" aria-hidden="true">
+    <div class="modal fade" id="additemcategory" tabindex="-1" aria-labelledby="additemModal" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
-            <form action="">
+            <form method="post" action="/staff_setting_status">
                 {% csrf_token %}
                 <div class="modal-content">
                     <div class="modal-header">
@@ -76,31 +125,6 @@
             </form>
         </div>
     </div>
-    <!-- moal แก้ไขสถานะ -->
-    <div class="modal fade" id="edititemcatecory" tabindex="-1" aria-labelledby="edititemModal" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="edititemModal">แก้ไขสถานะ</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <div class="col">
-                            <input type="number" class="form-control rounded-pill" id="#"
-                                placeholder="สถานะ เช่น พัสดุ ครุภัณฑ์">
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">ยกเลิก</button>
-                    <button type="button" class="btn btn-warning rounded-pill">ยืนยัน</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </div>
 
 {% endblock %}

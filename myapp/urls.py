@@ -10,15 +10,12 @@ urlpatterns = [
     path('user_history/',user_history, name="user_history"), 
     path('user_cart/',user_cart, name="user_cart"), 
     path('user_detail/',user_detail, name="user_detail"), 
-    path('user_cart_detail_del/',user_cart_detail_del, name="user_cart_detail_del"),
     path('user_durable_articles/',user_durable_articles, name="user_durable_articles"), 
     path('user_notifications/',user_notifications, name="user_notifications"), 
-    path('user_personal_info_edit/',user_personal_info_edit, name="user_personal_info_edit"), 
-    path('user_personal_info/',user_personal_info, name="user_personal_info"), 
-    path('user_return_parcel_detail/',user_return_parcel_detail, name="user_return_parcel_detail"), 
-    
-    path('deleteRecList/<str:pk>',views.deleteRecList, name="deleteRecList"),
-    path('user_recommend',views.user_recommend, name="user_recommend"), 
+   
+    path('deleteRecList/<int:id>', views.deleteRecList, name="deleteRecList"),
+    path('user_recommend/',views.user_recommend, name="user_recommend"), 
+    path('user_personal_info/',views.user_personal_info, name="user_personal_info"), 
     
     
 ]

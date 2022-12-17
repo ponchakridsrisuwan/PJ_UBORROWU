@@ -43,10 +43,10 @@ INSTALLED_APPS = [
     'allauth.account', #new
     'allauth.socialaccount', #new
     'allauth.socialaccount.providers.google', #new
-    'django_extensions',
+    'django_extensions', 
     'myapp',
     'myappstaff',
-    'myappAdmin',
+    'myappSuper',
 ]
 
 MIDDLEWARE = [
@@ -65,7 +65,7 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [BASE_DIR/"templates",os.path.join(BASE_DIR, 'myapp/template'), os.path.join(BASE_DIR, 'myappstaff/template')
-                 , os.path.join(BASE_DIR, 'myappAdmin/template')],
+                 , os.path.join(BASE_DIR, 'myappSuper/template')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -84,14 +84,14 @@ WSGI_APPLICATION = "myproject.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-"""DATABASES = {
+DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
     }
-}"""
+}
 
-DATABASES = {
+"""DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
         "NAME": 'mydb',
@@ -100,7 +100,7 @@ DATABASES = {
         "PORT": '3306',
         "PASSWORD": 'admin',
     }
-}
+}"""
 
 
 # Password validation
@@ -132,8 +132,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -164,8 +164,18 @@ AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
 )
+
 SITE_ID = 1
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'user_index'
 LOGOUT_REDIRECT_URL = 'login'
+SOCIALACCOUNT_LOGIN_ON_GET = True
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+APPEND_SLASH=False
+
+SOCIALACCOUNT_QUERY_EMAIL=True
+SOCIALACCOUNT_EMAIL_VERIFICATION=True

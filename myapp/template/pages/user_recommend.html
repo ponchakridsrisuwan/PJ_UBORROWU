@@ -13,7 +13,7 @@
     </div>
     <!-- เพิ่มรายการ -->
     <div class="modal fade" id="additem" tabindex="-1" aria-labelledby="additemModal" aria-hidden="true">
-      <form action="/user_recommend">
+      <form method="post" action="user_recommend">
         {% csrf_token %}
         <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
           <div class="modal-content">
@@ -24,30 +24,31 @@
             <div class="modal-body">
               <div class="col-md-12">
                 <label class="labels" for="name">ชื่อ</label>
-                <input id="name" name="name" type="text" class="form-control rounded-pill" />
+                <input id="name" name="name" type="text" class="form-control rounded-pill">
               </div>
               <div class="row mt-2">
                 <div class="col-md-6">
                   <label class="labels" for="brand">ยี่ห้อ</label>
-                  <input id="brand" name="brand" type="text" class="form-control rounded-pill" />
+                  <input id="brand" name="brand" type="text" class="form-control rounded-pill">
                 </div>
                 <div class="col-md-6">
                   <label class="labels" for="link">ลิงก์พัสดุ</label>
-                  <input id="link" name="link" type="text" class="form-control rounded-pill" />
+                  <input id="link" name="link" type="text" class="form-control rounded-pill">
                 </div>
               </div>
               <div class="row mt-2">
                 <div class="col-md-6">
                   <label class="labels" for="quantity">จำนวน</label>
-                  <input id="quantity" name="quantity" type="text" class="form-control rounded-pill" />
+                  <input id="quantity" name="quantity" type="text" class="form-control rounded-pill">
                 </div>
                 <div class="col-md-6">
-                  <label class="labels" for="price">ราคา</label>
-                  <input id="price" name="price" type="text" class="form-control rounded-pill" />
+                  <label class="labels" for="price">ราคาต่อชิ้น</label>
+                  <input id="price" name="price" type="text" class="form-control rounded-pill">
                 </div>
               </div>
               <div class="col-md-12">
-                <label class="labels ps-2" for="description">รายละเอียด</label>
+                <label class="labels ps-2" for="description">เหตุผลการแนะนำรายการเข้าระบบ
+                </label>
                 <textarea id="description" name="description" class="form-control rounded-4"
                   id="exampleFormControlTextarea1" rows="3"></textarea>
               </div>
@@ -61,7 +62,7 @@
     </div>
   </div>
   <div class="row mt-3">
-    <table id="example" class="table table-striped">
+    <table class="table table-striped">
       <thead class="table-dark">
         <tr>
           <td></td>
@@ -71,16 +72,17 @@
           <th class="col-md-2 text-center" scope="col">ราคาต่อชิ้น</th>
           <th class="col-md-3 text-center" scope="col">ลิงก์รายการ</th>
           <th class="col-md-4 text-center" scope="col">เหตุผล</th>
-          <th class="col-md-2" scope="col">สถานะ</th>
+          <th class="col-md-2 text-center" scope="col">สถานะ</th>
         </tr>
       </thead>
       <tbody id="xTable">
-        {% for AllRecList in AllRecList %}
+        {% for AllRecList in page.object_list %}
         <tr class="qrow text-center">
           <td>
-            <a data-bs-toggle="modal" data-bs-target="#Delete"><i class="fa fa-trash" value="DeleteRecList"></i></a>
+            <a data-bs-toggle="modal" data-bs-target="#Delete">
+              <i class="fa fa-trash" value="DeleteRecList"></i>
+            </a>
           </td>
-
           <td>
             <p class="text-start">{{ AllRecList.name }}</p>
           </td>
@@ -100,39 +102,40 @@
             <p>{{ AllRecList.description }}</p>
           </td>
           <td>
-            <p>{{ AllRecList.description }}</p>
+            <p class="text-center">TT</p>
           </td>
         </tr>
+
+        <!-- ลบข้อมูล -->
+        <div class="modal fade" name="Delete" id="Delete" tabindex="-1" aria-labelledby="DeleteuserModal"
+          aria-hidden="true">
+          <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="DeleteuserModal">ยืนยันการลบข้อมูล</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-footer">
+                <button type="cancer" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">ยกเลิก</button>
+                <a type="submit" value="ยืนยัน" class="btn btn-warning rounded-pill"
+                  href="{% url 'deleteRecList' AllRecList.id %}">ยืนยัน</a>
+              </div>
+            </div>
+          </div>
+        </div>
         {% endfor %}
       </tbody>
     </table>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
-    <script>
-      $(document).ready(function () {
-        $('#example').DataTable();
-      });
-    </script>
-  </div>
 
-  <!-- ลบข้อมูล -->
-  <div class="modal fade" name="Delete" id="Delete" tabindex="-1" aria-labelledby="DeleteuserModal" aria-hidden="true">
-    <form method="post" action="">
-      {% csrf_token %}
-      <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="DeleteuserModal">ยืนยันการลบข้อมูล </h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-footer">
-            <button type="cancer" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">ยกเลิก</button>
-            <input type="submit" value="ยืนยัน" class="btn btn-warning rounded-pill" href="/user_recommend">
-          </div>
-        </div>
-      </div>
-    </form>
+    <div class="page-links">
+      {% if page.has_previous %}
+      <a href="?page={{ page.previous_page_number }}">หน้าก่อนหน้า</a>
+      {% endif %}
+      {% if page.has_next %}
+      <a href="?page={{ page.next_page_number }}">หน้าถัดไป</a>
+      {% endif %}
+    </div>
+
   </div>
 </div>
 {% endblock %}

@@ -5,36 +5,70 @@
         <div class="d-flex flex-row align-items-center">
             <span  class="ml-2 fw-bold fs-5">รายการคืน</span>
         </div>
-    </div>
-    <div class="container mt-3 p-3 rounded-2 cart bg-white" href="#">
-        <div class="row">
-            <div class="">
-                <div class="small">
-                    <h5 class="d-flex text-warning fw-bold  ">กำลังยืม</h5>
-                    <div class="d-flex justify-content-between">
-                        <div><span>เลขที่ทำรายการ</span>&nbsp &nbsp<span>00001</span></div>
-                        <div class="d-flex fw-bold"><span>กำหนดวันคืน</span> &nbsp <span>22 / 9 / 2001</span></div>
+        <div class="bg-white rounded-2 mb-4 px-5 py-3">
+            <div class="d-flex justify-content-between ">
+            </div>
+            <div class="d-flex row rounded-2 small fw-bold justify-content-between">
+                <div class="d-flex col-sm-12 col-md-12 col-lg-6">
+                    <div class="align-items-center">
+                        <span>เรียงโดย</span>
+                        <div class="px-2 me-2 btn btn-outline-dark border-0 rounded-pill">ล่าสุด</div>
+                        <div class="px-2 me-2 btn btn-outline-dark border-0 rounded-pill">ยังไม่คืน</div>
+                    </div>
+                    <div class="align-items-center">
+                        <div class="d-flex flex-row align-items-center">
+                            <label class="fw-bold me-2" id="dropdownMenu">หมวดหมู่</label>
+                            <select class="form-select border-0" aria-label="dropdownMenu">
+                                <option selected>เลือก</option>
+                                <option value="1">อุปกรณ์สื่อสาร</option>
+                                <option value="2">โดรน</option>
+                                <option value="3">คอมพิวเตอร์</option>
+                                <option value="4">IoT</option>
+                              </select>
+                        </div>
                     </div>
                     
-                    <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded-2 ">
-                        <div class="d-flex flex-row">
-                            <img class="rounded me-2" src="/static/california.png" width="80" height="80">
-                            <div class="ml-2"><span class="font-weight-bold d-block">Macbook Air M2</span>
-                                <span class="small text-muted" name="spac">รายละเอียด</span><br/>
-                                <span class="small text-muted" name="spac">วันที่คืน</span><br/>
-                            </div>
-                        </div>
-                        <div class="d-flex flex-row align-items-center ">
-                            <span class="fs-6 small text-muted" name="spac">X</span><br />
-                            <span class="d-block pe-3">2</span>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="text-center">
-                        <a href="/user_return_parcel_detail" class="text-muted">ดูรายการเพิ่มเติม</a>
-                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-6">
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2 border-dark" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-dark" type="submit">Search</button>
+                    </form>
                 </div>
             </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="col-md-4" scope="col">รายการ</th>
+                        <th class="col-md-2 " scope="col">หมวดหมู่</th>
+                        <th class="col-md-2 text-center" scope="col">จำนวน</th>
+                        <th class="col-md-2 text-center" scope="col">วันที่ยืม</th>
+                        <th class="col-md-2 text-center" scope="col">กำหนดคืน</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="xTable">
+                    <tr class="qrow text-center card-body">
+                        <td>
+                            <p class="text-start">ทดสอบ</p>
+                        </td>
+                        <td>
+                            <p class="text-start">หมวดหมู่</p>
+                        </td>
+                        <td>
+                            <p class="">ทดสอบ</p>
+                        </td>
+                        <td>
+                            <p class="">ทดสอบ</p>
+                        </td>
+                        <td>
+                            <p class="">ทดสอบ</p>
+                        </td>
+                        <td><a class="btn btn-warning rounded-pill badge"
+                                href="#">คืน</a></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 {% endblock %}

@@ -1,48 +1,48 @@
-{% extends 'homestaff.html' %}
-{% block main %}
-
-
-<div class=" container">
+{% extends 'homestaff.html' %} {% block main %}
+<div class="container">
     <div class="bg-white rounded-2 mb-4 px-5 py-3">
         <!-- จัดการพัสดุ-ครุภัณฑ์ -->
-        <div class="d-flex justify-content-between rounded-2 align-items-center">
+        <div class="d-flex justify-content-between rounded-2
+            align-items-center">
             <div>
                 <h5 class="fw-bold">จัดการพัสดุ</h5>
             </div>
             <div class="d-flex flex-row">
                 <div class="dropdown">
-                    <button class="btn border-0 dropdown-toggle" type="button" id="dropdownMenuButton1"
-                        data-bs-toggle="dropdown" aria-expanded="false">
+                    <button
+                        class="btn border-0 dropdown-toggle"
+                        type="button"
+                        id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                    >
                         ตัวเลือกการแสดงผล
                     </button>
                     <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1">
                         <div class="nav">
-                            <li><a class="fa fa-th dropdown-item active ps-4 " data-bs-toggle="tab" href="#matrix"></a></li>
-                            <li><a class="fa fa-list dropdown-item" data-bs-toggle="tab" href="#list"></a></li>
-                            <li><a class="fa fa-table dropdown-item pe-4" data-bs-toggle="tab" href="#table"></a></li>
+                            <li>
+                                <a class="fa fa-th dropdown-item active ps-4" data-bs-toggle="tab" href="#matrix"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-list dropdown-item" data-bs-toggle="tab" href="#list"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-table dropdown-item pe-4" data-bs-toggle="tab" href="#table"></a>
+                            </li>
                         </div>
                     </ul>
                 </div>
-                <a class="btn btn-outline-dark rounded-pill ms-2" data-bs-toggle="modal"
-                    data-bs-target="#additem">เพิ่มรายการ</a>
+                <a class="btn btn-outline-dark rounded-pill ms-2" data-bs-toggle="modal" data-bs-target="#additem">เพิ่มรายการ</a>
             </div>
         </div>
-        <div class="d-flex row rounded-2 small fw-bold justify-content-between mt-1">
+        <div class="d-flex row rounded-2 small fw-bold justify-content-between
+            mt-1">
             <div class="d-flex col-sm-12 col-md-12 col-lg-6">
                 <div class="align-items-center">
                     <span>เรียงโดย</span>
-                    <div class="px-2 me-2 btn btn-outline-dark border-0 rounded-pill">ล่าสุด</div>
-                </div>
-                <div class="align-items-center">
-                    <div class="d-flex flex-row align-items-center">
-                        <label class="fw-bold me-2" id="dropdownMenu">แสดง</label>
-                        <select class="form-select border-0" aria-label="dropdownMenu">
-                            <option selected value="1">20</option>
-                            <option value="2">28</option>
-                            <option value="3">36</option>
-                            <option value="4">52</option>
-                            <option value="5">100</option>
-                        </select>
+                    <div class="px-2 me-2 btn btn-outline-dark border-0
+                        rounded-pill">
+                        ล่าสุด
                     </div>
                 </div>
                 <div class="align-items-center">
@@ -67,218 +67,328 @@
                         </select>
                     </div>
                 </div>
-
             </div>
             <div class="col-sm-12 col-md-12 col-lg-6">
                 <form class="d-flex" role="search">
-                    <input class="form-control me-2 border-dark" type="search" placeholder="Search" aria-label="Search">
+                    <input
+                        class="form-control me-2 border-dark"
+                        type="search"
+                        placeholder="Search"
+                        aria-label="Search"
+                    >
                     <button class="btn btn-outline-dark" type="submit">Search</button>
                 </form>
             </div>
         </div>
-        <!-- เพิ่มรายการ -->
-        <div class="modal fade" id="additem" tabindex="-1" aria-labelledby="additemModal" aria-hidden="true">
+        <div
+            class="modal fade"
+            id="additem"
+            tabindex="-1"
+            aria-labelledby="additemModal"
+            aria-hidden="true"
+        >
             <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
-                <form action="" >
+                <form action="" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="additemModal">เพิ่มรายการ</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="additemModal">เพิ่มรายการพัสดุ</h5>
+                            <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                            ></button>
+                        </div>
+                        <div class="modal-body">{{ form.as_p }}</div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">
+                                ยกเลิก
+                            </button>
+                            <button type="submit" name="Submit" class="btn btn-warning rounded-pill">
+                                ยืนยัน
+                            </button>
+                        </div>
                     </div>
-
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <div class="col">
-                                <input type="text" class="form-control rounded-pill" id="#" placeholder="">
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <div class="col">
-                                <select class="form-select rounded-pill" aria-label="Default select example">
-                                    {% for durable_category in Add_Parcel %}
-                                    <option class="text-black" id="{{ durable_category.id }}"></option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <div class="col">
-                                <select class="form-select rounded-pill">
-                                    {% for durable_menu in durable_menu.menu_parcel %}
-                                    <option value="{{ durable_menu.id }}"></option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <input type="number" class="form-control rounded-pill" placeholder="จำนวน">
-                        </div>
-                        <div class="col" for="numdate">
-                            <input type="number" class="col form-control rounded-pill" id="numdate" name="numdate"
-                                placeholder="กำหนดระยะเวลาในการยืม(วัน)">
-                        </div>
-                        <div class="col-md-12">
-                            <label class="labels"for="description">รายละเอียด</label>
-                            <textarea id="description" name="description" class="form-control rounded-4" id="exampleFormControlTextarea1"
-                                rows="3"></textarea>
-                        </div>
-                        <div>
-                            <label for="formFileMultiple" class="form-label" for="image">เพิ่มรูปภาพ</label>
-                            <input id="image" name="image" class="form-control rounded-pill" type="file" id="formFileMultiple" accept="image/*" multiple />
-                        </div>
-
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary rounded-pill"
-                            data-bs-dismiss="modal">ยกเลิก</button>
-                        <button type="submit" class="btn btn-warning rounded-pill">ยืนยัน</button>
-                    </div>
-                </div>
-            </form>
+                </form>
             </div>
         </div>
         <div class="tab-content">
-            <div class="tab-pane  fade" id="table">
+            <div class="tab-pane fade" id="table">
                 <!-- แบบtable -->
-                <table id="example" class="table table-striped">
+                <table class="table table-striped">
                     <thead class="table-dark">
                         <tr>
                             <th></th>
                             <th class="col-md-4" scope="col">รายการ</th>
                             <th class="col-md-2 text-center" scope="col">หมวดหมู่</th>
-                            <th class="col-md-2 text-center" scope="col">ประเภท</th>
-                            <th class="col-md-2 text-center" scope="col">วันที่เพิ่มเข้าสู่ระบบ</th>
+                            <th class="col-md-2 text-center" scope="col">สถานะ</th>
+                            <th class="col-md-2 text-center" scope="col">
+                                จำนวนวันที่อนุญาตให้ยืม
+                            </th>
+                            <th class="col-md-2 text-center" scope="col">
+                                วันที่เพิ่มเข้าสู่ระบบ
+                            </th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody id="xTable">
+                        {% for parcel in page.object_list %}
                         <tr class="qrow text-center">
                             <td>
-                                <a class="rounded-pill align-items-center p-2" href="#"><i
-                                        class="bi bi-trash text-black"></i></a>
+                                <a class="rounded-pill align-items-center p-2" data-bs-toggle="modal" data-bs-target="#DeleteTable">
+                                    <i class="bi bi-trash text-black"></i>
+                                </a>
                             </td>
                             <td>
-                                <p class="text-start">MacBook Air M1</p>
+                                <p class="text-start">{{ parcel.name }}</p>
                             </td>
                             <td>
-                                <p>คอมพิวเตอร์</p>
+                                <p>{{ parcel.category }}</p>
                             </td>
                             <td>
-                                <p>ต้องคืน</p>
+                                <p>{{ parcel.status }}</p>
                             </td>
                             <td>
-                                <p class="">12/06/2022</p>
+                                <p>{{ parcel.numdate }}</p>
                             </td>
                             <td>
-                                <a class="rounded-pill align-items-center p-2" href="#"><i
-                                        class="bi bi-pencil-square text-black"></i></a>
+                                <p class="">{{ parcel.date }}</p>
+                            </td>
+                            <td>
+                                <a class="rounded-pill align-items-center p-2" href="#">
+                                    <i class="bi bi-pencil-square
+                                        text-black"></i>
+                                </a>
                             </td>
                         </tr>
+                        <!-- ลบข้อมูล -->
+                        <div
+                            class="modal fade"
+                            name="DeleteTable"
+                            id="DeleteTable"
+                            tabindex="-1"
+                            aria-labelledby="DeleteTableModal"
+                            aria-hidden="true"
+                        >
+                            <div class="modal-dialog modal-lg
+                                modal-fullscreen-lg-down">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="DeleteTableModal">
+                                            ยืนยันการลบข้อมูล
+                                        </h5>
+                                        <button
+                                            type="button"
+                                            class="btn-close"
+                                            data-bs-dismiss="modal"
+                                            aria-label="Close"
+                                        ></button>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="cancer" class="btn btn-secondary
+                                            rounded-pill" data-bs-dismiss="modal">
+                                            ยกเลิก
+                                        </button>
+                                        <a
+                                            type="submit"
+                                            value="ยืนยัน"
+                                            class="btn btn-warning rounded-pill"
+                                            href="{% url 'delete_staff_manage_parcel' parcel.id %}"
+                                        >ยืนยัน</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
                     </tbody>
                 </table>
-                <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-                <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-                <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
-                <script>
-                  $(document).ready(function () {
-                    $('#example').DataTable();
-                  });
-                </script>
             </div>
-
-            <div class="tab-pane  fade" id="list">
+            <div class="tab-pane fade" id="list">
                 <!-- แบบยาว -->
-                <div class="container mt-3 p-3 mb-2 rounded-2 border cart bg-white">
+                {% for parcel in page.object_list %}
+                <div class="container mt-3 p-3 mb-2 rounded-2 border cart
+                    bg-white">
                     <div class="d-flex align-items-center p-2">
                         <div class="d-flex flex-row">
-                            <img class="rounded me-4" src="/static/california.png" width="150" height="150">
+                            <img alt="image"
+                                class="rounded me-4 thumb-post"
+                                src="{{ parcel.image.url | safe }}" 
+                                width="150"
+                                height="150"
+                            >
                             <div class="">
-                                <div class="fs-5">Macbook Air M2</div>
-                                <div class="text-success">พร้อมยืม</div>
+                                <div class="fs-5">{{ parcel.name }}</div>
+                                <div class="text-success">{{ parcel.status }}</div>
                                 <div class="small">
                                     <div class="d-flex">
-                                        <span>วันที่เพิ่มเข้าระบบ</span><span class="ms-2">12/06/2022</span>
+                                        <span>หมวดหมู่</span>
+                                        <span class="ms-2">
+                                            {{ parcel.category }}
+                                        </span>
                                     </div>
                                     <div class="d-flex">
-                                        <span>หมวดหมู่</span><span class="ms-2">คอมพิวเตอร์</span>
+                                        <span>วันที่เพิ่มเข้าระบบ</span>
+                                        <span class="ms-2">{{ parcel.date }}</span>
                                     </div>
                                     <div class="d-flex">
-                                        <span>ประเภท</span><span class="ms-2">ต้องคืน</span>
+                                        <span>จำนวนวันที่อนุญาตให้ยืม</span>
+                                        <span class="ms-2">
+                                            {{ parcel.numdate }} วัน
+                                        </span>
                                     </div>
                                     <div>
-                                        <a class="rounded-pill align-items-center p-2" href="#"><i
-                                                class="bi bi-trash text-black"></i></a>
-                                        <a class="rounded-pill align-items-center p-2" href="#"><i
-                                                class="bi bi-pencil-square text-black"></i></a>
+                                        <a class="rounded-pill
+                                            align-items-center p-2" data-bs-toggle="modal" data-bs-target="#DeleteLong">
+                                            <i class="bi bi-trash text-black"></i>
+                                        </a>
+                                        <a class="rounded-pill
+                                            align-items-center p-2" href="#">
+                                            <i class="bi bi-pencil-square
+                                                text-black"></i>
+                                        </a>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="container mt-3 p-3 mb-2 rounded-2 border cart bg-white">
-                    <div class="d-flex align-items-center p-2">
-                        <div class="d-flex flex-row">
-                            <img class="rounded me-4" src="/static/california.png" width="150" height="150">
-                            <div class="">
-                                <div class="fs-5">Macbook Air M2</div>
-                                <div class="text-success">พร้อมยืม</div>
-                                <div class="small">
-                                    <div class="d-flex">
-                                        <span>วันที่เพิ่มเข้าระบบ</span><span class="ms-2">12/06/2022</span>
-                                    </div>
-                                    <div class="d-flex">
-                                        <span>หมวดหมู่</span><span class="ms-2">คอมพิวเตอร์</span>
-                                    </div>
-                                    <div class="d-flex">
-                                        <span>ประเภท</span><span class="ms-2">ต้องคืน</span>
-                                    </div>
-                                    <div>
-                                        <a class="rounded-pill align-items-center p-2" href="#"><i
-                                                class="bi bi-trash text-black"></i></a>
-                                        <a class="rounded-pill align-items-center p-2" href="#"><i
-                                                class="bi bi-pencil-square text-black"></i></a>
-                                    </div>
-                                </div>
-
+                <!-- ลบข้อมูล -->
+                <div
+                    class="modal fade"
+                    name="DeleteLong"
+                    id="DeleteLong"
+                    tabindex="-1"
+                    aria-labelledby="DeleteLongModal"
+                    aria-hidden="true"
+                >
+                    <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="DeleteLongModal">
+                                    ยืนยันการลบข้อมูล
+                                </h5>
+                                <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                ></button>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="cancer" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">
+                                    ยกเลิก
+                                </button>
+                                <a
+                                    type="submit"
+                                    value="ยืนยัน"
+                                    class="btn btn-warning rounded-pill"
+                                    href="{% url 'delete_staff_manage_parcel' parcel.id %}"
+                                >ยืนยัน</a>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>    
-            <div class="tab-pane  active" id="matrix">
+                {% endfor %}
+            </div>
+            <div class="tab-pane active" id="matrix">
                 <div class="row small">
+                    {% for parcel in page.object_list %}
                     <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
-                        <div class=" card border">
-                            <div class="bg-image" data-mdb-ripple-color="light">
-                                <img src="/static/california.png" class="w-100" />
+                        <div class="card border bg-gray" >
+                            <div class="text-center" >
+                                <img src="{{ parcel.image.url | safe }}" class="thumb-post" width="250">
                             </div>
                             <div class="card-body">
                                 <div class="d-flex justify-content-between">
-                                    <a class=" rounded-pill align-items-center p-2" href="#"><i
-                                            class="bi bi-trash text-black"></i></a>
-                                    <a class=" rounded-pill align-items-center p-2" href="#"><i
-                                            class="bi bi-pencil-square text-black"></i></a>
+                                    <a class="rounded-pill align-items-center
+                                        p-2" data-bs-toggle="modal" data-bs-target="#DeleteMatrix">
+                                        <i class="bi bi-trash
+                                            text-black"></i>
+                                    </a>
+                                    <a class="rounded-pill align-items-center
+                                        p-2" href="#">
+                                        <i class="bi
+                                            bi-pencil-square text-black"></i>
+                                    </a>
                                 </div>
                                 <div class="text-center">
-                                    <span class="card-title fs-5">Macbook Air M2</span><br>
-                                    <span class="mb-4 text-success">พร้อมยืม</span>
-                                </div>
-                                <div class="d-flex justify-content-between ">
-                                    <span>วันที่เพิ่มเข้าระบบ</span><span>12/06/2022</span>
+                                    <span class="card-title fs-5">
+                                        {{ parcel.name }}
+                                    </span>
+                                    <br>
+                                    <span class="mb-4 text-success">
+                                        {{ parcel.status }}
+                                    </span>
                                 </div>
                                 <div class="d-flex justify-content-between">
-                                    <span>หมวดหมู่</span><span>คอมพิวเตอร์</span>
+                                    <span>หมวดหมู่</span>
+                                    <span>
+                                        {{ parcel.category }}
+                                    </span>
                                 </div>
                                 <div class="d-flex justify-content-between">
-                                    <span>ประเภท</span><span>ต้องคืน</span>
+                                    <span>วันที่เพิ่มเข้าระบบ</span>
+                                    <span>
+                                        {{ parcel.date }}
+                                    </span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span>จำนวนวันที่อนุญาตให้ยืม</span>
+                                    <span>
+                                        {{ parcel.numdate }} วัน
+                                    </span>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!-- ลบข้อมูล -->
+                    <div
+                        class="modal fade"
+                        name="DeleteMatrix"
+                        id="DeleteMatrix"
+                        tabindex="-1"
+                        aria-labelledby="DeleteMatrixModal"
+                        aria-hidden="true"
+                    >
+                        <div class="modal-dialog modal-lg
+                            modal-fullscreen-lg-down">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="DeleteMatrixModal">
+                                        ยืนยันการลบข้อมูล
+                                    </h5>
+                                    <button
+                                        type="button"
+                                        class="btn-close"
+                                        data-bs-dismiss="modal"
+                                        aria-label="Close"
+                                    ></button>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="cancer" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">
+                                        ยกเลิก
+                                    </button>
+                                    <a
+                                        type="submit"
+                                        value="ยืนยัน"
+                                        class="btn btn-warning rounded-pill"
+                                        href="{% url 'delete_staff_manage_parcel' parcel.id %}"
+                                    >ยืนยัน</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
+        </div>
+        <div class="page-links">
+            {% if page.has_previous %}
+            <a href="?page={{ page.previous_page_number }}">หน้าก่อนหน้า</a>
+            {% endif %} {% if page.has_next %}
+            <a href="?page={{ page.next_page_number }}">หน้าถัดไป</a>
+            {% endif %}
         </div>
     </div>
 </div>
