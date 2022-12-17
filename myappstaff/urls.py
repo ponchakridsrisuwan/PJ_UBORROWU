@@ -5,15 +5,15 @@ from .views import *
 urlpatterns = [
     # staff
     path('staff_borrow_detail/', staff_borrow_detail),
-    path('staff_borrowing_history_detail/', staff_borrowing_history_detail),
+    path('staff_borrowing_history_detail', staff_borrowing_history_detail),
     path('staff_borrowing_history/', staff_borrowing_history),
-    path('staff_index_borrow/', staff_index_borrow),
-    path('staff_index_borrownow/', staff_index_borrownow),
-    path('staff_index_return/', staff_index_return),
+    path('staff_index_borrow', staff_index_borrow),
+    path('staff_index_borrownow', staff_index_borrownow),
+    path('staff_index_return', staff_index_return),
     path('staff_introduction_detail', staff_introduction_detail),
-    path('staff_introduction_hisdetail/', staff_introduction_hisdetail),
+    path('staff_introduction_hisdetail', staff_introduction_hisdetail),
     path('staff_introduction/', staff_introduction),
-    path('staff_introduction_history/', staff_introduction_history),
+    path('staff_introduction_history', staff_introduction_history),
     
     path('staff_personal_info_edit/', staff_personal_info_edit),
     path('staff_personal_info/', staff_personal_info),
