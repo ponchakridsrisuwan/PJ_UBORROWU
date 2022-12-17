@@ -64,8 +64,11 @@ def deleteStaff(req, id):
     obj.delete()
     return redirect('/admin_staff_setting')
 
+<<<<<<< HEAD
 #DEW เองงง
 
+=======
+>>>>>>> develop
 @login_required
 def admin_user_setting(req):
     form = CreateUserForm()
@@ -90,6 +93,7 @@ def admin_user_setting(req):
     }
     return render(req, 'pages/admin_user_setting.html', context)  
 
+<<<<<<< HEAD
 
 # def admin_user_setting(req):
 #     if req.method == "POST":
@@ -113,6 +117,8 @@ def admin_user_setting(req):
 #     }
 #     return render(req, 'pages/admin_user_setting.html', context)   
 
+=======
+>>>>>>> develop
 @login_required
 def deleteUser(req, id):
     obj = Add_User.objects.get(id=id)

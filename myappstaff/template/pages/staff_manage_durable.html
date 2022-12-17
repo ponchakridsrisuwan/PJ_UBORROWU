@@ -113,73 +113,141 @@
                 </form>
             </div>
         </div>
-    </div>
-
-    <div class="tab-content">
-        <div class="tab-pane  fade" id="table">
-            <!-- แบบtable -->
-            <table class="table table-striped">
-                <thead class="table-dark">
-                    <tr>
-                        <th></th>
-                        <th class="col-md-4" scope="col">รายการ</th>
-                        <th class="col-md-2 text-center" scope="col">หมวดหมู่</th>
-                        <th class="col-md-2 text-center" scope="col">ประเภท</th>
-                        <th class="col-md-2 text-center" scope="col">วันที่เพิ่มเข้าสู่ระบบ</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody id="xTable">
-                    <tr class="qrow text-center">
-                        <td>
-                            <a class="rounded-pill align-items-center p-2" href="#"><i
-                                    class="bi bi-trash text-black"></i></a>
-                        </td>
-                        <td>
-                            <p class="text-start">MacBook Air M1</p>
-                        </td>
-                        <td>
-                            <p>คอมพิวเตอร์</p>
-                        </td>
-                        <td>
-                            <p>ไม่ต้องคืน</p>
-                        </td>
-                        <td>
-                            <p class="">12/06/2022</p>
-                        </td>
-                        <td>
-                            <a class="rounded-pill align-items-center p-2" href="#"><i
-                                    class="bi bi-pencil-square text-black"></i></a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div class="tab-pane  fade" id="list">
-            <!-- แบบยาว -->
-            <div class="container mt-3 p-3 mb-2 rounded-2 border cart bg-white">
-                <div class="d-flex align-items-center p-2">
-                    <div class="d-flex flex-row">
-                        <img class="rounded me-4" src="/static/california.png" width="150" height="150">
-                        <div class="">
-                            <div class="fs-5">Macbook Air M2</div>
-                            <div class="text-success">พร้อมยืม</div>
-                            <div class="small">
-                                <div class="d-flex">
-                                    <span>วันที่เพิ่มเข้าระบบ</span><span class="ms-2">12/06/2022</span>
+        <div class="tab-content">
+            <div class="tab-pane fade" id="table">
+                <!-- แบบtable -->
+                <table class="table table-striped">
+                    <thead class="table-dark">
+                        <tr>
+                            <th></th>
+                            <th class="col-md-4" scope="col">รายการ</th>
+                            <th class="col-md-2 text-center" scope="col">หมวดหมู่</th>
+                            <th class="col-md-2 text-center" scope="col">สถานะ</th>
+                            <th class="col-md-2 text-center" scope="col">
+                                จำนวนวันที่อนุญาตให้ยืม
+                            </th>
+                            <th class="col-md-2 text-center" scope="col">
+                                วันที่เพิ่มเข้าสู่ระบบ
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="xTable">
+                        {% for durable in page.object_list %}
+                        <tr class="qrow text-center">
+                            <td>
+                                <a class="rounded-pill align-items-center p-2" data-bs-toggle="modal" data-bs-target="#DeleteTable">
+                                    <i class="bi bi-trash text-black"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <p class="text-start">{{ durable.name }}</p>
+                            </td>
+                            <td>
+                                <p>{{ durable.category }}</p>
+                            </td>
+                            <td>
+                                <p>{{ durable.status }}</p>
+                            </td>
+                            <td>
+                                <p>{{ durable.numdate }}</p>
+                            </td>
+                            <td>
+                                <p class="">{{ durable.date }}</p>
+                            </td>
+                            <td>
+                                <a class="rounded-pill align-items-center p-2" href="#">
+                                    <i class="bi bi-pencil-square
+                                        text-black"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <!-- ลบข้อมูล -->
+                        <div
+                            class="modal fade"
+                            name="DeleteTable"
+                            id="DeleteTable"
+                            tabindex="-1"
+                            aria-labelledby="DeleteTableModal"
+                            aria-hidden="true"
+                        >
+                            <div class="modal-dialog modal-lg
+                                modal-fullscreen-lg-down">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="DeleteTableModal">
+                                            ยืนยันการลบข้อมูล
+                                        </h5>
+                                        <button
+                                            type="button"
+                                            class="btn-close"
+                                            data-bs-dismiss="modal"
+                                            aria-label="Close"
+                                        ></button>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="cancer" class="btn btn-secondary
+                                            rounded-pill" data-bs-dismiss="modal">
+                                            ยกเลิก
+                                        </button>
+                                        <a
+                                            type="submit"
+                                            value="ยืนยัน"
+                                            class="btn btn-warning rounded-pill"
+                                            href="{% url 'delete_staff_manage_durable' durable.id %}"
+                                        >ยืนยัน</a>
+                                    </div>
                                 </div>
-                                <div class="d-flex">
-                                    <span>หมวดหมู่</span><span class="ms-2">คอมพิวเตอร์</span>
-                                </div>
-                                <div class="d-flex">
-                                    <span>ประเภท</span><span class="ms-2">ไม่ต้องคืน</span>
-                                </div>
-                                <div>
-                                    <a class="rounded-pill align-items-center p-2" href="#"><i
-                                            class="bi bi-trash text-black"></i></a>
-                                    <a class="rounded-pill align-items-center p-2" href="#"><i
-                                            class="bi bi-pencil-square text-black"></i></a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="list">
+                <!-- แบบยาว -->
+                {% for durable in page.object_list %}
+                <div class="container mt-3 p-3 mb-2 rounded-2 border cart
+                    bg-white">
+                    <div class="d-flex align-items-center p-2">
+                        <div class="d-flex flex-row">
+                            <img alt="image"
+                                class="rounded me-4 thumb-post"
+                                src="{{ durable.image.url | safe }}" 
+                                width="150"
+                                height="150"
+                            >
+                            <div class="">
+                                <div class="fs-5">{{ durable.name }}</div>
+                                <div class="text-success">{{ durable.status }}</div>
+                                <div class="small">
+                                    <div class="d-flex">
+                                        <span>หมวดหมู่</span>
+                                        <span class="ms-2">
+                                            {{ durable.category }}
+                                        </span>
+                                    </div>
+                                    <div class="d-flex">
+                                        <span>วันที่เพิ่มเข้าระบบ</span>
+                                        <span class="ms-2">{{ durable.date }}</span>
+                                    </div>
+                                    <div class="d-flex">
+                                        <span>จำนวนวันที่อนุญาตให้ยืม</span>
+                                        <span class="ms-2">
+                                            {{ durable.numdate }} วัน
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <a class="rounded-pill
+                                            align-items-center p-2" data-bs-toggle="modal" data-bs-target="#DeleteLong">
+                                            <i class="bi bi-trash text-black"></i>
+                                        </a>
+                                        <a class="rounded-pill
+                                            align-items-center p-2" href="#">
+                                            <i class="bi bi-pencil-square
+                                                text-black"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -217,6 +285,63 @@
                                     class="btn btn-warning rounded-pill"
                                     href="{% url 'delete_staff_manage_durable' durable.id %}"
                                 >ยืนยัน</a>
+<<<<<<< HEAD
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="tab-pane active" id="matrix">
+                <div class="row small">
+                    {% for durable in page.object_list %}
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
+                        <div class="card border bg-gray" >
+                            <div class="text-center" >
+                                <img src="{{ durable.image.url | safe }}" class="thumb-post" width="250">
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <a class="rounded-pill align-items-center
+                                        p-2" data-bs-toggle="modal" data-bs-target="#DeleteMatrix">
+                                        <i class="bi bi-trash
+                                            text-black"></i>
+                                    </a>
+                                    <a class="rounded-pill align-items-center
+                                        p-2" href="#">
+                                        <i class="bi
+                                            bi-pencil-square text-black"></i>
+                                    </a>
+                                </div>
+                                <div class="text-center">
+                                    <span class="card-title fs-5">
+                                        {{ durable.name }}
+                                    </span>
+                                    <br>
+                                    <span class="mb-4 text-success">
+                                        {{ durable.status }}
+                                    </span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span>หมวดหมู่</span>
+                                    <span>
+                                        {{ durable.category }}
+                                    </span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span>วันที่เพิ่มเข้าระบบ</span>
+                                    <span>
+                                        {{ durable.date }}
+                                    </span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span>จำนวนวันที่อนุญาตให้ยืม</span>
+                                    <span>
+                                        {{ durable.numdate }} วัน
+                                    </span>
+                                </div>
+=======
+>>>>>>> develop
                             </div>
                         </div>
                     </div>
@@ -274,40 +399,53 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="tab-pane  active" id="matrix">
-            <div class="row small">
-                <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
-                    <div class=" card border">
-                        <div class="bg-image" data-mdb-ripple-color="light">
-                            <img src="/static/california.png" class="w-100" />
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <a class=" rounded-pill align-items-center p-2" href="#"><i
-                                        class="bi bi-trash text-black"></i></a>
-                                <a class=" rounded-pill align-items-center p-2" href="#"><i
-                                        class="bi bi-pencil-square text-black"></i></a>
-                            </div>
-                            <div class="text-center">
-                                <span class="card-title fs-5">Macbook Air M2</span><br>
-                                <span class="mb-4 text-success">พร้อมยืม</span>
-                            </div>
-                            <div class="d-flex justify-content-between ">
-                                <span>วันที่เพิ่มเข้าระบบ</span><span>12/06/2022</span>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <span>หมวดหมู่</span><span>คอมพิวเตอร์</span>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <span>ประเภท</span><span>ไม่ต้องคืน</span>
+                    <!-- ลบข้อมูล -->
+                    <div
+                        class="modal fade"
+                        name="DeleteMatrix"
+                        id="DeleteMatrix"
+                        tabindex="-1"
+                        aria-labelledby="DeleteMatrixModal"
+                        aria-hidden="true"
+                    >
+                        <div class="modal-dialog modal-lg
+                            modal-fullscreen-lg-down">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="DeleteMatrixModal">
+                                        ยืนยันการลบข้อมูล
+                                    </h5>
+                                    <button
+                                        type="button"
+                                        class="btn-close"
+                                        data-bs-dismiss="modal"
+                                        aria-label="Close"
+                                    ></button>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="cancer" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">
+                                        ยกเลิก
+                                    </button>
+                                    <a
+                                        type="submit"
+                                        value="ยืนยัน"
+                                        class="btn btn-warning rounded-pill"
+                                        href="{% url 'delete_staff_manage_durable' durable.id %}"
+                                    >ยืนยัน</a>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
             </div>
+        </div>
+        <div class="page-links">
+            {% if page.has_previous %}
+            <a href="?page={{ page.previous_page_number }}">หน้าก่อนหน้า</a>
+            {% endif %} {% if page.has_next %}
+            <a href="?page={{ page.next_page_number }}">หน้าถัดไป</a>
+            {% endif %}
         </div>
         <div class="page-links">
             {% if page.has_previous %}

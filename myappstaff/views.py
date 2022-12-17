@@ -217,8 +217,16 @@ def staff_manage_durable(req):
             return redirect('/staff_manage_durable/')
     else:
         form = DurableForm()
+    AllDurable = Add_Durable.objects.all()
+    page_num = req.GET.get('page', 1)
+    p = Paginator(AllDurable, 10)
+    try:
+        page = p.page(page_num)
+    except:
+        page = p.page(1)   
 
     context = {
+        "page" : page,
         "form":form
     }
 
