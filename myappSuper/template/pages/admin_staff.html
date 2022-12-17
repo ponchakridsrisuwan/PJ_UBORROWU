@@ -47,21 +47,21 @@
                                 </tr>
                             </thead>
                             <tbody id="xTable">
-                                {% for All_user in page.object_list %}
+                                {% for AllUser in page.object_list %}
                                 <tr class="qrow text-center">
-                                    <td><span href="#" class="btn fa fa-trash" value="Delete" data-bs-toggle="modal"
-                                            data-bs-target="#Delete"></span></td>
+                                    <td><span href="#" class="btn" value="Delete" data-bs-toggle="modal"
+                                            data-bs-target="#Delete"><i class="fa fa-trash"></i></span></td>
                                     <td>
-                                        <p>{{ All_user.email }}</p>
+                                        <p>{{ AllUser.email }}</p>
                                     </td>
                                     <td>
-                                        <p>{{ All_user.email }}</p>
+                                        <p>{{ AllUser.phone }}</p>
                                     </td>
                                     <td>
-                                        <p>{{ All_user.email }}</p>
+                                        <p>{{ AllUser.email }}</p>
                                     </td>
                                     <td>
-                                        <p>{{ All_user.email }}</p>
+                                        <p>{{ AllUser.email_user }}</p>
                                     </td>
                                     <td><a class="btn btn-warning rounded-pill badge" href="/admin_detail/">รายละเอียด</a></td>
                                 </tr>
