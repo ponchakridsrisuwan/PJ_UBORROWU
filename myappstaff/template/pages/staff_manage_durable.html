@@ -1,38 +1,49 @@
-{% extends 'homestaff.html' %}
-{% block main %}
-
-
-<div class=" container">
+{% extends 'homestaff.html' %} {% block main %}
+<div class="container">
     <div class="bg-white rounded-2 mb-4 px-5 py-3">
-        <!-- จัดการพัสดุ-ครุภัณฑ์ -->
-        <div class="d-flex justify-content-between rounded-2 align-items-center">
+        <!-- จัดการครุภัณฑ์-ครุภัณฑ์ -->
+        <div class="d-flex justify-content-between rounded-2
+            align-items-center">
             <div>
                 <h5 class="fw-bold">จัดการครุภัณฑ์</h5>
             </div>
             <div class="d-flex flex-row">
                 <div class="dropdown">
-                    <button class="btn border-0 dropdown-toggle" type="button" id="dropdownMenuButton1"
-                        data-bs-toggle="dropdown" aria-expanded="false">
+                    <button
+                        class="btn border-0 dropdown-toggle"
+                        type="button"
+                        id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                    >
                         ตัวเลือกการแสดงผล
                     </button>
                     <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1">
                         <div class="nav">
-                            <li><a class="fa fa-th dropdown-item active ps-4 " data-bs-toggle="tab" href="#matrix"></a>
+                            <li>
+                                <a class="fa fa-th dropdown-item active ps-4" data-bs-toggle="tab" href="#matrix"></a>
                             </li>
-                            <li><a class="fa fa-list dropdown-item" data-bs-toggle="tab" href="#list"></a></li>
-                            <li><a class="fa fa-table dropdown-item pe-4" data-bs-toggle="tab" href="#table"></a></li>
+                            <li>
+                                <a class="fa fa-list dropdown-item" data-bs-toggle="tab" href="#list"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-table dropdown-item pe-4" data-bs-toggle="tab" href="#table"></a>
+                            </li>
                         </div>
                     </ul>
                 </div>
-                <a class="btn btn-outline-dark rounded-pill ms-2" data-bs-toggle="modal"
-                    data-bs-target="#additem">เพิ่มรายการ</a>
+                <a class="btn btn-outline-dark rounded-pill ms-2" data-bs-toggle="modal" data-bs-target="#additem">เพิ่มรายการ</a>
             </div>
         </div>
-        <div class="d-flex row rounded-2 small fw-bold justify-content-between mt-1">
+        <div class="d-flex row rounded-2 small fw-bold justify-content-between
+            mt-1">
             <div class="d-flex col-sm-12 col-md-12 col-lg-6">
                 <div class="align-items-center">
                     <span>เรียงโดย</span>
-                    <div class="px-2 me-2 btn btn-outline-dark border-0 rounded-pill">ล่าสุด</div>
+                    <div class="px-2 me-2 btn btn-outline-dark border-0
+                        rounded-pill">
+                        ล่าสุด
+                    </div>
                 </div>
                 <div class="align-items-center">
                     <div class="d-flex flex-row align-items-center">
@@ -56,32 +67,47 @@
                         </select>
                     </div>
                 </div>
-
             </div>
             <div class="col-sm-12 col-md-12 col-lg-6">
                 <form class="d-flex" role="search">
-                    <input class="form-control me-2 border-dark" type="search" placeholder="Search" aria-label="Search">
+                    <input
+                        class="form-control me-2 border-dark"
+                        type="search"
+                        placeholder="Search"
+                        aria-label="Search"
+                    >
                     <button class="btn btn-outline-dark" type="submit">Search</button>
                 </form>
             </div>
         </div>
-        <div class="modal fade" id="additem" tabindex="-1" aria-labelledby="additemModal" aria-hidden="true">
+        <div
+            class="modal fade"
+            id="additem"
+            tabindex="-1"
+            aria-labelledby="additemModal"
+            aria-hidden="true"
+        >
             <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
                 <form action="" method="post" enctype="multipart/form-data">
-
                     {% csrf_token %}
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="additemModal">เพิ่มรายการครุภัณฑ์ </h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <h5 class="modal-title" id="additemModal">เพิ่มรายการครุภัณฑ์</h5>
+                            <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                            ></button>
                         </div>
-                        <div class="modal-body">
-                            {{ form.as_p }}
-                        </div>
+                        <div class="modal-body">{{ form.as_p }}</div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary rounded-pill"
-                                data-bs-dismiss="modal">ยกเลิก</button>
-                            <button type="submit" name="Submit" class="btn btn-warning rounded-pill">ยืนยัน</button>
+                            <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">
+                                ยกเลิก
+                            </button>
+                            <button type="submit" name="Submit" class="btn btn-warning rounded-pill">
+                                ยืนยัน
+                            </button>
                         </div>
                     </div>
                 </form>
@@ -92,7 +118,6 @@
     <div class="tab-content">
         <div class="tab-pane  fade" id="table">
             <!-- แบบtable -->
-            {% for product in products %}
             <table class="table table-striped">
                 <thead class="table-dark">
                     <tr>
@@ -129,7 +154,6 @@
                     </tr>
                 </tbody>
             </table>
-            {% endfor %}
         </div>
 
         <div class="tab-pane  fade" id="list">
@@ -158,49 +182,107 @@
                                             class="bi bi-pencil-square text-black"></i></a>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
+                <!-- ลบข้อมูล -->
+                <div
+                    class="modal fade"
+                    name="DeleteLong"
+                    id="DeleteLong"
+                    tabindex="-1"
+                    aria-labelledby="DeleteLongModal"
+                    aria-hidden="true"
+                >
+                    <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="DeleteLongModal">
+                                    ยืนยันการลบข้อมูล
+                                </h5>
+                                <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                ></button>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="cancer" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">
+                                    ยกเลิก
+                                </button>
+                                <a
+                                    type="submit"
+                                    value="ยืนยัน"
+                                    class="btn btn-warning rounded-pill"
+                                    href="{% url 'delete_staff_manage_durable' durable.id %}"
+                                >ยืนยัน</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
-            <div class="container mt-3 p-3 mb-2 rounded-2 border cart bg-white">
-                <div class="d-flex align-items-center p-2">
-                    <div class="d-flex flex-row">
-                        <img class="rounded me-4" src="/static/california.png" width="150" height="150">
-                        <div class="">
-                            <div class="fs-5">Macbook Air M2</div>
-                            <div class="text-success">พร้อมยืม</div>
-                            <div class="small">
-                                <div class="d-flex">
-                                    <span>วันที่เพิ่มเข้าระบบ</span><span class="ms-2">12/06/2022</span>
+            <div class="tab-pane active" id="matrix">
+                <div class="row small">
+                    {% for durable in page.object_list %}
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
+                        <div class="card border bg-gray" >
+                            <div class="text-center" >
+                                <img src="{{ durable.image.url | safe }}" class="thumb-post" width="250">
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <a class="rounded-pill align-items-center
+                                        p-2" data-bs-toggle="modal" data-bs-target="#DeleteMatrix">
+                                        <i class="bi bi-trash
+                                            text-black"></i>
+                                    </a>
+                                    <a class="rounded-pill align-items-center
+                                        p-2" href="#">
+                                        <i class="bi
+                                            bi-pencil-square text-black"></i>
+                                    </a>
                                 </div>
-                                <div class="d-flex">
-                                    <span>หมวดหมู่</span><span class="ms-2">คอมพิวเตอร์</span>
+                                <div class="text-center">
+                                    <span class="card-title fs-5">
+                                        {{ durable.name }}
+                                    </span>
+                                    <br>
+                                    <span class="mb-4 text-success">
+                                        {{ durable.status }}
+                                    </span>
                                 </div>
-                                <div class="d-flex">
-                                    <span>ประเภท</span><span class="ms-2">ไม่ต้องคืน</span>
+                                <div class="d-flex justify-content-between">
+                                    <span>หมวดหมู่</span>
+                                    <span>
+                                        {{ durable.category }}
+                                    </span>
                                 </div>
-                                <div>
-                                    <a class="rounded-pill align-items-center p-2" href="#"><i
-                                            class="bi bi-trash text-black"></i></a>
-                                    <a class="rounded-pill align-items-center p-2" href="#"><i
-                                            class="bi bi-pencil-square text-black"></i></a>
+                                <div class="d-flex justify-content-between">
+                                    <span>วันที่เพิ่มเข้าระบบ</span>
+                                    <span>
+                                        {{ durable.date }}
+                                    </span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span>จำนวนวันที่อนุญาตให้ยืม</span>
+                                    <span>
+                                        {{ durable.numdate }} วัน
+                                    </span>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="tab-pane  active" id="matrix">
             <div class="row small">
                 <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
-                    {% for DurableAll in page.object_list %}
                     <div class=" card border">
                         <div class="bg-image" data-mdb-ripple-color="light">
-                            <img src="{{ DurableAll.image }}" class="w-100" />
+                            <img src="/static/california.png" class="w-100" />
                         </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
@@ -210,25 +292,30 @@
                                         class="bi bi-pencil-square text-black"></i></a>
                             </div>
                             <div class="text-center">
-                                <span class="card-title fs-5">{{ DurableAll.name}}</span><br>
+                                <span class="card-title fs-5">Macbook Air M2</span><br>
                                 <span class="mb-4 text-success">พร้อมยืม</span>
                             </div>
                             <div class="d-flex justify-content-between ">
                                 <span>วันที่เพิ่มเข้าระบบ</span><span>12/06/2022</span>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <span>หมวดหมู่</span><span>{{ DurableAll.category}}</span>
+                                <span>หมวดหมู่</span><span>คอมพิวเตอร์</span>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <span>ประเภท</span><span>ไม่ต้องคืน</span>
                             </div>
                         </div>
                     </div>
-                    {% endfor %}
                 </div>
             </div>
         </div>
+        <div class="page-links">
+            {% if page.has_previous %}
+            <a href="?page={{ page.previous_page_number }}">หน้าก่อนหน้า</a>
+            {% endif %} {% if page.has_next %}
+            <a href="?page={{ page.next_page_number }}">หน้าถัดไป</a>
+            {% endif %}
+        </div>
     </div>
 </div>
-
 {% endblock %}

@@ -13,6 +13,9 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
 from django.urls import path, include # new
 from myapp.views import *
@@ -22,6 +25,17 @@ from myapp.models import *
 from myappstaff.models import *
 from myappSuper.models import *
 from django.contrib.auth import views as auth_views
+from myproject.settings import AUTHENTICATION_BACKENDS
+
+def login(req):
+    if req.method == 'POST':
+        user = AUTHENTICATION_BACKENDS
+        if user is not AUTHENTICATION_BACKENDS:
+            login(req, user)
+            return redirect('/')
+        else:
+            return render(req, 'pages/login.html')
+    return render(req, 'pages/login.html')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,7 +44,14 @@ urlpatterns = [
     path('',include('myapp.urls')),
     path('',include('myappstaff.urls')),
     path('',include('myappSuper.urls')),
-    path('login/', auth_views.LoginView.as_view(template_name = 'pages/login.html'),name='login'),
+    path('login/', login,name='login'),
+    #path('login/', auth_views.LoginView.as_view(template_name = 'pages/login.html'),name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name = 'pages/logout.html'),name='logout'),
     
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+else:
+    urlpatterns += staticfiles_urlpatterns()

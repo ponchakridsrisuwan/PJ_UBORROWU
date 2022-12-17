@@ -10,7 +10,7 @@ urlpatterns = [
     path('staff_index_borrow/', staff_index_borrow),
     path('staff_index_borrownow/', staff_index_borrownow),
     path('staff_index_return/', staff_index_return),
-    path('staff_introduction_detail/', staff_introduction_detail),
+    path('staff_introduction_detail', staff_introduction_detail),
     path('staff_introduction_hisdetail/', staff_introduction_hisdetail),
     path('staff_introduction/', staff_introduction),
     path('staff_introduction_history/', staff_introduction_history),
@@ -34,8 +34,11 @@ urlpatterns = [
     #path manage parcel durable
     path('staff_manage_detail/', staff_manage_detail),
     path('staff_manage_parcel/', views.staff_manage_parcel, name="staff_manage_parcel"), #add parcel
-    path('staff_manage_durable/', views.staff_manage_durable, name="staff_manage_durable"),#add durable
+    path('delete_staff_manage_parcel/<int:id>',views.delete_staff_manage_parcel, name="delete_staff_manage_parcel"),
     
+    path('staff_manage_durable/', views.staff_manage_durable, name="staff_manage_durable"),#add durable
+    path('delete_staff_manage_durable/<int:id>',views.delete_staff_manage_durable, name="delete_staff_manage_durable"),
+
     path('staff_setting_status',views.staff_setting_status, name='staff_setting_status'),
     path('DeleteCategoryStatus/<int:id>',views.DeleteCategoryStatus, name="DeleteCategoryStatus"),
     path('edit_staff_setting_status/<int:id>',views.edit_staff_setting_status, name="edit_staff_setting_status"),

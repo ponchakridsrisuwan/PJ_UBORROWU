@@ -22,6 +22,7 @@ class Add_Parcel(models.Model):
     username = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=200, null=True, blank=True)
     category = models.ForeignKey(CategoryType, on_delete=models.CASCADE, null=True, related_name="category_parcel")
+    status = models.ForeignKey(CategoryStatus, on_delete=models.CASCADE, null=True, related_name="status_parcel")
     quantity = models.CharField(max_length=200, null=True, blank=True)
     numdate = models.CharField(max_length=200, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
@@ -38,6 +39,7 @@ class Add_Durable(models.Model):
     username = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=200, null=True, blank=True)
     category = models.ForeignKey(CategoryType, on_delete=models.CASCADE, null=True, related_name="category_durable")
+    status = models.ForeignKey(CategoryStatus, on_delete=models.CASCADE, null=True, related_name="status_durable")
     quantity = models.CharField(max_length=200, null=True, blank=True)
     numdate = models.CharField(max_length=200, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
@@ -46,3 +48,13 @@ class Add_Durable(models.Model):
 
     def __str__(self):
         return self.name    
+
+class Status_Rec(models.Model):
+    PRODUCT_CATEGORIES=[
+        ('RECEIVE', 'รับเรื่อง'),
+        ('INPROGRESS', 'กำลังดำเนินการ'),
+        ('FINISH', 'ดำเนินการเสร็จสิ้น'),
+    ]
+    username = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
+    status = models.CharField(max_length=40, verbose_name='Status', choices=PRODUCT_CATEGORIES)
+    date = models.DateField(auto_now_add=True)
