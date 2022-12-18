@@ -1,16 +1,28 @@
 from django.shortcuts import HttpResponseRedirect, get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
 from myapp.admin import *
+from myappstaff.forms import *
 from django.utils import timezone
 from django.core.paginator import Paginator
 from myapp.forms import *
 from django.contrib import messages
 from django.urls import reverse
-from django.db.models import Sum
+from django.db.models import *
 
 #หน้าหลัก
+
 def HomePage(req):
-    return render(req, 'pages/user_index.html' )
+    AllDurable = Add_Durable.objects.all()
+    page_num = req.GET.get('page', 1)
+    p = Paginator(AllDurable, 10)
+    try:
+        page = p.page(page_num)
+    except:
+        page = p.page(1)            
+    context = {
+        'page' :page,
+    }
+    return render( req, 'pages/user_index.html', context)
 
 #หน้าลงทะเบียน
 @login_required
@@ -101,6 +113,7 @@ def user_recommend(req):
         obj = ListFromRec()   
     obj = ListFromRec.objects.all()   
     AllRecList = ListFromRec.objects.all()
+    AllcList_count = AllRecList.count()
     page_num = req.GET.get('page', 1)
     p = Paginator(AllRecList, 10)
     try:
@@ -110,6 +123,7 @@ def user_recommend(req):
     context = {
         "AllRecList": ListFromRec.objects.all(),
         "page" : page,
+        "AllcList_count" : AllcList_count
     }
     return render(req, 'pages/user_recommend.html', context)    
 
