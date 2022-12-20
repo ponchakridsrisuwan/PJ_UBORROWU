@@ -41,8 +41,21 @@ def user_cart(req):
 
 #หน้ารายละเอียดพัสดุ
 @login_required
-def user_detail(req):
-    return render(req,'pages/user_detail.html')
+def user_detail(req, id):
+    # if req.user.is_authenticated:
+    #     cart = Add_Durable.objects.get_or_create(User = User, completed = False)
+    product = Add_Durable.objects.get(id=id)
+    context = {
+        "name" : product.name,
+        "category" : product.category,
+        "status" : product.status,
+        "quantity" : product.quantity,
+        "description" : product.description,
+        "image" : product.image,
+        "id" : product.id,
+        # "cart" : cart
+    }
+    return render(req,'pages/user_detail.html',context)
 
 #หน้ารายการพัสดุ
 def user_durable_articles(req):
