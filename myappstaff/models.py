@@ -24,7 +24,6 @@ class Add_Parcel(models.Model):
     category = models.ForeignKey(CategoryType, on_delete=models.CASCADE, null=True, related_name="category_parcel")
     status = models.ForeignKey(CategoryStatus, on_delete=models.CASCADE, null=True, related_name="status_parcel")
     quantity = models.CharField(max_length=200, null=True, blank=True)
-    numdate = models.CharField(max_length=200, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='Parcel')
     date = models.DateField(auto_now_add=True)
@@ -32,7 +31,6 @@ class Add_Parcel(models.Model):
 
     def __str__(self):
         return self.name
-    
     
 class Add_Durable(models.Model):
     # id
@@ -48,11 +46,3 @@ class Add_Durable(models.Model):
 
     def __str__(self):
         return self.name    
-
-"""class Status_rec(models.Model):
-    username = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
-    status = models.CharField(max_length=300, null=True)
-    date = models.DateField(auto_now_add=True)
-    
-    def __str__(self):
-        return self.status    """

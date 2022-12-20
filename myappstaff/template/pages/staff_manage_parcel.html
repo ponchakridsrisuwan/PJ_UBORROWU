@@ -124,9 +124,6 @@
                             <th class="col-md-2 text-center" scope="col">หมวดหมู่</th>
                             <th class="col-md-2 text-center" scope="col">สถานะ</th>
                             <th class="col-md-2 text-center" scope="col">
-                                จำนวนวันที่อนุญาตให้ยืม
-                            </th>
-                            <th class="col-md-2 text-center" scope="col">
                                 วันที่เพิ่มเข้าสู่ระบบ
                             </th>
                             <th></th>
@@ -148,9 +145,6 @@
                             </td>
                             <td>
                                 <p>{{ parcel.status }}</p>
-                            </td>
-                            <td>
-                                <p>{{ parcel.numdate }}</p>
                             </td>
                             <td>
                                 <p class="">{{ parcel.date }}</p>
@@ -230,12 +224,6 @@
                                     <div class="d-flex">
                                         <span>วันที่เพิ่มเข้าระบบ</span>
                                         <span class="ms-2">{{ parcel.date }}</span>
-                                    </div>
-                                    <div class="d-flex">
-                                        <span>จำนวนวันที่อนุญาตให้ยืม</span>
-                                        <span class="ms-2">
-                                            {{ parcel.numdate }} วัน
-                                        </span>
                                     </div>
                                     <div>
                                         <a class="rounded-pill
@@ -331,12 +319,6 @@
                                     <span>วันที่เพิ่มเข้าระบบ</span>
                                     <span>
                                         {{ parcel.date }}
-                                    </span>
-                                </div>
-                                <div class="d-flex justify-content-between">
-                                    <span>จำนวนวันที่อนุญาตให้ยืม</span>
-                                    <span>
-                                        {{ parcel.numdate }} วัน
                                     </span>
                                 </div>
                             </div>
