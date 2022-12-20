@@ -10,10 +10,11 @@ urlpatterns = [
     path('staff_index_borrow', staff_index_borrow),
     path('staff_index_borrownow', staff_index_borrownow),
     path('staff_index_return', staff_index_return),
-    path('staff_introduction_detail', staff_introduction_detail),
-    path('staff_introduction_hisdetail', staff_introduction_hisdetail),
-    path('staff_introduction/', staff_introduction),
-    path('staff_introduction_history', staff_introduction_history),
+    
+    path('staff_introduction_detail/<int:id>', views.staff_introduction_detail, name="staff_introduction_detail"),
+    path('staff_introduction', views.staff_introduction, name="staff_introduction"),
+    path('staff_introduction_update/<int:id>', views.staff_introduction_update, name="staff_introduction_update"),
+    path('staff_introduction_history', views.staff_introduction_history, name="staff_introduction_history"),
     
     path('staff_personal_info_edit/', staff_personal_info_edit),
     path('staff_personal_info/', staff_personal_info),
@@ -23,8 +24,9 @@ urlpatterns = [
     path('staff_report_remaining/', staff_report_remaining),
     path('staff_Including_borrowing/', staff_Including_borrowing),
     
+    path('staff_notifications/',views.staff_notifications, name="staff_notifications"),
+    
     path('staff_report/', views.staff_report, name="staff_report"),
-   
     
     #path staff_setting
     path('staff_setting',views.staff_setting, name="staff_setting"), 

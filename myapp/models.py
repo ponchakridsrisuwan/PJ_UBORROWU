@@ -10,6 +10,7 @@ class ListFromRec(models.Model):
     link = models.URLField(max_length=200, null=True)
     description = models.TextField(max_length=500, null=True)
     datetime = models.DateField(auto_now_add=True, null=True)
+    status = models.CharField(max_length=300, null=True)
 
     def __str__(self):
         return self.name

@@ -7,6 +7,7 @@ from myapp.forms import *
 from django.contrib import messages
 from django.urls import reverse
 from django.db.models import Sum
+from myappstaff.models import *
 
 #หน้าหลัก
 def HomePage(req):
@@ -79,7 +80,20 @@ def user_personal_info_edit(req):
 @login_required
 def user_personal_info(req):
     return render(req, 'pages/user_personal_info.html')     
-      
+
+@login_required
+def user_recommend_history(req):
+    AllRecList = ListFromRec.objects.all()
+    page_num = req.GET.get('page', 1)
+    p = Paginator(AllRecList, 10)
+    try:
+        page = p.page(page_num)
+    except:
+        page = p.page(1)        
+    context = {
+        "page" : page,
+    }
+    return render(req, 'pages/user_recommend_history.html', context)     
 
 #หน้าแนะนำพัสดุ
 @login_required
@@ -108,10 +122,32 @@ def user_recommend(req):
     except:
         page = p.page(1)        
     context = {
-        "AllRecList": ListFromRec.objects.all(),
+        "AllRecList" : ListFromRec.objects.all(),
         "page" : page,
     }
-    return render(req, 'pages/user_recommend.html', context)    
+    return render(req, 'pages/user_recommend.html', context)   
+
+@login_required
+def user_recommend_edit(req,id):
+    obj = ListFromRec.objects.get(id=id)
+    obj.name = req.POST['name']
+    obj.brand = req.POST['brand']
+    obj.quantity = req.POST['quantity']
+    obj.price = req.POST['price']
+    obj.link = req.POST['link']
+    obj.description = req.POST['description']
+    obj.datetime = timezone.now()
+    obj.save()
+    return redirect('/user_recommend') 
+
+# รายงานสถานะข้อมูลการแนะนำพัสดุเข้าสู่ระบบ
+@login_required
+def user_recommend_detail(req, id):
+    AllRecList = ListFromRec.objects.filter(id=id).first()
+    context = {
+        "AllRecList" : AllRecList,
+    }
+    return render( req, 'pages/user_recommend_detail.html', context)
 
 def deleteRecList(req, id):
     obj = ListFromRec.objects.get(id=id)

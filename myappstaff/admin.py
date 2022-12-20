@@ -7,4 +7,3 @@ admin.site.register(Add_Durable)
 admin.site.register(CategoryType)
 admin.site.register(CategoryStatus)
 
-admin.site.register(Status_Rec)

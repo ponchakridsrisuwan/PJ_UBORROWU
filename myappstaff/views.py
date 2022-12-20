@@ -5,6 +5,10 @@ from django.utils import timezone
 from django.core.paginator import Paginator
 from myappstaff.models import *
 
+@login_required
+def staff_notifications(req):
+    return render(req, "pages/staff_notifications.html")
+
 # การตั้งค่าหมวดหมุ่
 @login_required
 def staff_setting(req):
@@ -83,7 +87,7 @@ def edit_staff_setting_status(req,id):
 # การแนะนำพัสดุเข้าสู่ระบบ    
 @login_required
 def staff_introduction(req):
-    AllRecList = ListFromRec.objects.all()
+    AllRecList = ListFromRec.objects.all()     
     page_num = req.GET.get('page', 1)
     p = Paginator(AllRecList, 10)
     try:
@@ -94,6 +98,16 @@ def staff_introduction(req):
         'page' :page,
     }
     return render( req, 'pages/staff_introduction.html', context)
+
+@login_required
+def staff_introduction_update(req,id):
+    AllRecList = ListFromRec.objects.filter(id=id).first()
+    AllRecList.status = req.POST['status']
+    AllRecList.save()
+    context = {
+        "AllRecList" : AllRecList,
+    }
+    return redirect('/staff_introduction', context)
 
 @login_required
 def staff_introduction_history(req):
@@ -108,6 +122,15 @@ def staff_introduction_history(req):
         'page' :page
     }
     return render( req, 'pages/staff_introduction_history.html', context)
+
+# จัดการข้อมูลการแนะนำพัสดุเข้าสู่ระบบ
+@login_required
+def staff_introduction_detail(req, id):
+    AllRecList = ListFromRec.objects.filter(id=id).first()
+    context = {
+        "AllRecList" : AllRecList,
+    }
+    return render( req, 'pages/staff_introduction_detail.html', context)
 
 # รายละเอียดการยืม
 @login_required
@@ -138,36 +161,6 @@ def staff_index_borrownow(req):
 @login_required
 def staff_index_return(req):
     return render(req,'pages/staff_index_return.html')
-
-# จัดการข้อมูลการแนะนำพัสดุเข้าสู่ระบบ
-@login_required
-def staff_introduction_detail(req):
-    AllRecList = ListFromRec.objects.all()
-    page_num = req.GET.get('page', 1)
-    p = Paginator(AllRecList, 10)
-    try:
-        page = p.page(page_num)
-    except:
-        page = p.page(1)            
-    context = {
-        'page' :page
-    }
-    return render( req, 'pages/staff_introduction_detail.html', context)
-
-# ข้อมูลการแนะนำพัสดุเข้าสู่ระบบ
-@login_required
-def staff_introduction_hisdetail(req):
-    AllRecList = ListFromRec.objects.all()
-    page_num = req.GET.get('page', 1)
-    p = Paginator(AllRecList, 10)
-    try:
-        page = p.page(page_num)
-    except:
-        page = p.page(1)            
-    context = {
-        'page' :page
-    }
-    return render( req, 'pages/staff_introduction_hisdetail.html', context)
 
 # รายละเอียดจัดการพัสดุ-ครุภัณฑ์
 @login_required

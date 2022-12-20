@@ -19,13 +19,20 @@
                         ยืม-คืน
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{% url 'user_borrow' %}">ยืม</a></li>
-                        <li><a class="dropdown-item" href="{% url 'user_borrowed' %}">คืน</a></li>
-                        <li><a class="dropdown-item" href="{% url 'user_history' %}">ประวัติ</a></li>
+                        <li><a class="dropdown-item" href="{% url 'user_borrow' %}">ยืมรายการ</a></li>
+                        <li><a class="dropdown-item" href="{% url 'user_borrowed' %}">คืนรายการ</a></li>
+                        <li><a class="dropdown-item" href="{% url 'user_history' %}">ประวัติการยืม-คืน</a></li>
                     </ul>
                 </li>
-                <li class="nav-item px-2">
-                    <a class="nav-link fs-6" href="{% url 'user_recommend' %}">แนะนำรายการเข้าระบบ</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        แนะนำรายการเข้าระบบ
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'user_recommend' %}">แนะนำรายการ</a></li>
+                        <li><a class="dropdown-item" href="{% url 'user_recommend_history' %}">ประวัติการแนะนำรายการ</a></li>
+                    </ul>
                 </li>
             </ul>
 

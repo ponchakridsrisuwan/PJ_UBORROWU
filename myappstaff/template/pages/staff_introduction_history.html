@@ -36,12 +36,12 @@
                         <th class="col-md-1 text-center" scope="col">จำนวน</th>
                         <th class="col-md-1 text-center" scope="col">ราคา</th>
                         <th class="col-md-2 text-center" scope="col">วันที่ทำรายการ</th>
-                        <th class="col-md-2 text-center" scope="col">อัพเดตล่าสุด</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody id="xTable">
                     {% for AllRecList in page.object_list %}
+                    {% if AllRecList.status %}
                     <tr class="qrow text-center">
                         <td>
                             <p class="text-start">{{ AllRecList.username.first_name }}&nbsp{{ AllRecList.username.last_name }}</p>
@@ -61,12 +61,10 @@
                         <td>
                             <p>{{ AllRecList.datetime }}</p>
                         </td>
-                        <td>
-                            <p>{{ AllRecList.datetime }}</p>
-                        </td>
                         <td><a class="btn btn-success rounded-pill badge"
-                                href="/staff_introduction_detail">รายละเอียด</a></td>
+                            href="{% url 'staff_introduction_detail' AllRecList.id %}">รายละเอียด</a></td>
                     </tr>
+                    {% endif %}
                     {% endfor %}
                 </tbody>
             </table>

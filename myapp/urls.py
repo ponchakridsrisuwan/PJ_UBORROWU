@@ -12,9 +12,13 @@ urlpatterns = [
     path('user_detail/',user_detail, name="user_detail"), 
     path('user_durable_articles/',user_durable_articles, name="user_durable_articles"), 
     path('user_notifications/',user_notifications, name="user_notifications"), 
-   
+    
+    path('user_recommend',views.user_recommend, name="user_recommend"), 
+    path('user_recommend_edit/<int:id>',views.user_recommend_edit, name="user_recommend_edit"),
     path('deleteRecList/<int:id>', views.deleteRecList, name="deleteRecList"),
-    path('user_recommend/',views.user_recommend, name="user_recommend"), 
+    path('user_recommend_history/',views.user_recommend_history, name="user_recommend_history"), 
+    path('user_recommend_detail/<int:id>', views.user_recommend_detail, name="user_recommend_detail"),
+    
     path('user_personal_info/',views.user_personal_info, name="user_personal_info"), 
     
     

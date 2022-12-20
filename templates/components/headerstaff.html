@@ -21,8 +21,8 @@
                         <li><a class="dropdown-item" href="/staff_index_borrownow">กำลังยืม</a></li>
                         <li><a class="dropdown-item" href="/staff_index_return">รออนุมัติการคืน</a></li>
                         <li><a class="dropdown-item" href="/staff_borrowing_history_detail">ประวัติการยืม-คืน</a></li>
-                        <li><a class="dropdown-item" href="/staff_introduction">แนะนำรายการเข้าระบบ</a></li>
-                        <li><a class="dropdown-item" href="/staff_introduction_history">ประวัติการแนะนำรายการเข้าระบบ</a></li>
+                        <li><a class="dropdown-item" href="{% url 'staff_introduction' %}" >แนะนำรายการเข้าระบบ</a></li>
+                        <li><a class="dropdown-item" href="{% url 'staff_introduction_history' %}" >ประวัติการแนะนำรายการเข้าระบบ</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -55,7 +55,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg-end">
                     <li>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item"  href="{% url 'staff_notifications' %}">
                             <p class="card-title" style="font-size:16px">อีก 2 วัน
                                 จะสิ้นสุดการยืม</p>
                             <p class="card-subtitle" style="font-size:12px">รายละเอียด</p>
@@ -67,6 +67,7 @@
                     </li>
                 </ul>
             </div>
+
             <div class="nav-item dropdown me-5 ms-3 ">
                 <a class="text-black" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     {{ user.first_name }}

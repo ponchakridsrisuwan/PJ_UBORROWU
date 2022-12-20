@@ -44,9 +44,10 @@
                 </thead>
                 <tbody id="xTable">
                     {% for AllRecList in page.object_list %}
+                    {% if AllRecList.status is None %}
                     <tr class="qrow text-center">
-                        <td>
-                            <p class="text-start">{{ AllRecList.username.first_name }}&nbsp{{ AllRecList.username.last_name }}</p>
+                        <td class="text-start">
+                            <a href="{% url 'staff_introduction_detail' AllRecList.id %}" >{{ AllRecList.username.first_name }}&nbsp{{ AllRecList.username.last_name }}</a>
                         </td>
                         <td>
                             <p class="text-start">{{ AllRecList.name }}</p>
@@ -63,9 +64,11 @@
                         <td>
                             <p>{{ AllRecList.datetime }}</p>
                         </td>
-                        <td><a class="btn btn-warning rounded-pill badge"
-                                href="/staff_introduction_detail">รายละเอียด</a></td>
+                        <td>
+                            <a class="btn btn-success rounded-pill badge" type="button" data-bs-toggle="modal"
+                            data-bs-target="#approved">รับเรื่อง</a></td>
                     </tr>
+                    {% endif %}
                     {% endfor %}
                 </tbody>
             </table>
@@ -80,5 +83,32 @@
         </div>
         </div>
     </div>
+    <!-- รับเรื่อง -->
+    <div class="modal fade" id="approved" tabindex="-1" aria-labelledby="approvedModal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
+        <form  action="/staff_introduction_update/{{AllRecList.id}}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="disapprovedModal">ยืนยันการรับเรื่อง</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-floating" for="status">
+                    <input class="form-control" id="status" name="status" type="text" style="height: 100px">
+                    <label  >รายละเอียดการรับเรื่อง เช่น ระยะเวลาการดำเนินการ</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary rounded-pill"
+                    data-bs-dismiss="modal">ยกเลิก</button>
+                <button type="submit" class="btn btn-warning rounded-pill" >ยืนยัน</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
 </div>
 {% endblock %}
