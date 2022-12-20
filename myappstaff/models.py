@@ -26,7 +26,7 @@ class Add_Parcel(models.Model):
     quantity = models.CharField(max_length=200, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='Parcel')
-    date = models.DateField(auto_now_add=True)
+    date = models.DateTimeField(auto_now_add=True)
 
 
     def __str__(self):
@@ -42,7 +42,7 @@ class Add_Durable(models.Model):
     numdate = models.CharField(max_length=200, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='Durable')
-    date = models.DateField(auto_now_add=True)
+    date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name    

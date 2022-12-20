@@ -4,25 +4,25 @@ from .views import *
 
 urlpatterns = [
     # staff
-    path('staff_borrow_detail/', staff_borrow_detail),
-    path('staff_borrowing_history_detail', staff_borrowing_history_detail),
-    path('staff_borrowing_history/', staff_borrowing_history),
-    path('staff_index_borrow', staff_index_borrow),
-    path('staff_index_borrownow', staff_index_borrownow),
-    path('staff_index_return', staff_index_return),
+    path('staff_borrow_detail/', views.staff_borrow_detail, name="staff_borrow_detail"),
+    path('staff_borrowing_history_detail', views.staff_borrowing_history_detail, name="staff_borrowing_history_detail"),
+    path('staff_borrowing_history/', views.staff_borrowing_history, name="staff_borrowing_history"),
+    path('staff_index_borrow', views.staff_index_borrow, name="staff_index_borrow"),
+    path('staff_index_borrownow', views.staff_index_borrownow, name="staff_index_borrownow"),
+    path('staff_index_return', views.staff_index_return, name="staff_index_return"),
     
     path('staff_introduction_detail/<int:id>', views.staff_introduction_detail, name="staff_introduction_detail"),
     path('staff_introduction', views.staff_introduction, name="staff_introduction"),
     path('staff_introduction_update/<int:id>', views.staff_introduction_update, name="staff_introduction_update"),
     path('staff_introduction_history', views.staff_introduction_history, name="staff_introduction_history"),
     
-    path('staff_personal_info_edit/', staff_personal_info_edit),
-    path('staff_personal_info/', staff_personal_info),
+    path('staff_personal_info_edit/', views.staff_personal_info_edit, name="staff_personal_info_edit"),
+    path('staff_personal_info/', views.staff_personal_info, name="staff_personal_info"),
     
-    path('staff_report_borrowReport/', staff_report_borrowReport),
-    path('staff_report_dispose/', staff_report_dispose),
-    path('staff_report_remaining/', staff_report_remaining),
-    path('staff_Including_borrowing/', staff_Including_borrowing),
+    path('staff_report_borrowReport/', views.staff_report_borrowReport, name="staff_report_borrowReport"),
+    path('staff_report_dispose', views.staff_report_dispose, name="staff_report_dispose"),
+    path('staff_report_remaining/', views.staff_report_remaining, name="staff_report_remaining"),
+    path('staff_Including_borrowing/', views.staff_Including_borrowing, name="staff_Including_borrowing"),
     
     path('staff_notifications/',views.staff_notifications, name="staff_notifications"),
     
@@ -34,7 +34,7 @@ urlpatterns = [
     path('edit_staff_setting/<int:id>',views.edit_staff_setting, name="edit_staff_setting"),
     
     #path manage parcel durable
-    path('staff_manage_detail/', staff_manage_detail),
+    path('staff_manage_detail/', views.staff_manage_detail),
     path('staff_manage_parcel/', views.staff_manage_parcel, name="staff_manage_parcel"), #add parcel
     path('delete_staff_manage_parcel/<int:id>',views.delete_staff_manage_parcel, name="delete_staff_manage_parcel"),
     

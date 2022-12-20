@@ -6,9 +6,6 @@
             <div>
                 <h5 class="fw-bold">รายการแนะนำรายการเข้าระบบ</h5>
             </div>
-            <div>
-                <a class="btn btn-outline-dark rounded-pill">PDF</a>
-            </div>
         </div>
         <div class="d-flex row rounded-2 small fw-bold justify-content-between">
             <div class="d-flex col-sm-12 col-md-12 col-lg-6">
@@ -62,10 +59,10 @@
                             <p>{{ AllRecList.price }}</p>
                         </td>
                         <td>
-                            <p>{{ AllRecList.datetime }}</p>
+                            <p>{{ AllRecList.datetime|date:"G:m A d M y" }}</p>
                         </td>
                         <td>
-                            <a class="btn btn-success rounded-pill badge" type="button" data-bs-toggle="modal"
+                            <a class="btn btn-warning rounded-pill badge" type="button" data-bs-toggle="modal"
                             data-bs-target="#approved">รับเรื่อง</a></td>
                     </tr>
                     {% endif %}

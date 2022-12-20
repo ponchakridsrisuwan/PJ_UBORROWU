@@ -40,7 +40,7 @@
               <p class="text-center">{{ AllRecList.price }}</p>
             </td>
             <td>
-              <p class="text-center">{{ AllRecList.datetime }}</p>
+              <p class="text-center">{{ AllRecList.datetime|date:"G:m A d M y" }}</p>
             </td>
             <td>
               <a class="btn btn-success rounded-pill" type="button" href="{% url 'user_recommend_detail' AllRecList.id %}" >ตรวจสอบ</a>
